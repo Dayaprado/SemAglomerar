@@ -1,0 +1,66 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Oct 18, 2020, 9:34:11 PM
+    Author     : dayaprado
+*/
+
+body {
+    margin: auto 0px;
+    text-align: center;
+}
+
+.container{
+    max-width: 480px;
+    margin-left: 30%;
+}
+
+.row {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.row  input {
+    float: right;
+    width: 350px;
+    margin-left: 5px;
+}
+
+
+.label {
+    float: right;
+    margin: 5px;
+}
+
+.row button{
+    float: right;
+    color: black;
+    background-color: #40E0D0;
+    font-weight: bold;
+    cursor: pointer;
+    border: 2px solid blue;
+    border-radius: 5px;
+    text-transform: uppercase;
+    height: 25px;
+    line-height: 10px;
+    padding: 0 20px;
+}
+
+
+/*
+button {
+    
+   
+}
+input{
+    border: 2px solid black;
+    border-radius: 5px;
+    height: 20px;
+    line-height: 10px;
+    padding: 0 20px;
+}
+*/  
+
