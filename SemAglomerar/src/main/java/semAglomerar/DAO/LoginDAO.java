@@ -32,14 +32,13 @@ public class LoginDAO {
         return resul;
     }
     
-    public Login findById(Integer id) throws SQLException {
-        String sql = "SELECT login_id, login_usuario, login_senha FROM Login WHERE login_id=?";
+    public Login findByUser(String user) throws SQLException {
+        String sql = "SELECT login_usuario, login_senha FROM Login WHERE login_usuario=?";
         try (Connection conn = ConnectionMySql.obterConexao();
                 PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setInt(1, id);
+            stmt.setString(1, user);
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
-                    login.setId(rs.getInt("login_id"));
                     login.setUsuario(rs.getString("login_usuario"));
                     login.setSenha(rs.getString("login_senha"));
                     return login;
@@ -77,5 +76,7 @@ public class LoginDAO {
             }
         }
     }
+    
+    
     
 }
