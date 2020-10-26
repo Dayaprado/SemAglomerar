@@ -1,7 +1,10 @@
 package semAglomerar.Model;
 
+import java.util.List;
+
 
 public class Login {
+
     private Integer id;
     private String usuario;
     private String senha;
@@ -10,9 +13,11 @@ public class Login {
         this.usuario = usuario;
         this.senha = senha;
     }
-
-    public Login() {
-        
+    
+    public Login(Integer id,String usuario,String senha){
+        this.id = id;
+        this.usuario = usuario;
+        this.senha = senha;
     }
     
     public int getId() {
