@@ -8,51 +8,53 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import semAglomerar.ConnectionBD.ConnectionMySql;
-import semAglomerar.Model.Login;
+import semAglomerar.Model.Responsavel;
 
-
-public class LoginDAO {    
+public class ResponsavelDAO {
+    private Responsavel resp;
     
-    Login login;
-    
-    public List<Login> findAll() throws SQLException {
-        String sql = "SELECT * FROM Login";
-        List<Login> resul = new ArrayList<>();
+    public List<Responsavel> findAll() throws SQLException {
+        String sql = "SELECT * FROM Responsavel";
+        List<Responsavel> resul = new ArrayList<>();
 
         try (Connection conn = ConnectionMySql.obterConexao();
                 PreparedStatement stmt = conn.prepareStatement(sql);
                 ResultSet rs = stmt.executeQuery()) {
             while (rs.next()) {
-                login.setId(rs.getInt("login_id"));
-                login.setUsuario(rs.getString("login_usuario"));
-                login.setSenha(rs.getString("login_senha"));
-                resul.add(login);
+                resp.setId(rs.getInt("resp_id"));
+                resp.setNome(rs.getString("resp_nome"));
+                resp.setCpf(rs.getString("resp_cpf"));
+                resp.setEmail(rs.getString("resp_email"));
+                resp.setTelefone(rs.getString("resp_telefone"));
+                resul.add(resp);
             }
         }
         return resul;
     }
     
-    public Login findByUser(String user) throws SQLException {
-        String sql = "SELECT * FROM Login WHERE login_usuario=?";
+    public Responsavel findByCpf(String cpf) throws SQLException {
+        String sql = "SELECT * FROM Responsavel WHERE resp_cpf=?";
         try (Connection conn = ConnectionMySql.obterConexao();
                 PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setString(1, user);
+            stmt.setString(1, cpf);
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
-                    login.setId(rs.getInt("login_id"));
-                    login.setUsuario(rs.getString("login_usuario"));
-                    login.setSenha(rs.getString("login_senha"));
-                    return login;
+                    resp.setId(rs.getInt("resp_id"));
+                    resp.setNome(rs.getString("resp_nome"));
+                    resp.setCpf(rs.getString("resp_cpf"));
+                    resp.setEmail(rs.getString("resp_email"));
+                    resp.setTelefone(rs.getString("resp_telefone"));
+                    return resp;
                 }
             }catch (Exception e) {
-            System.out.print("Erro ao pesquisar usuário: " + user);
+            System.out.print("Erro ao pesquisar o CPF: " + cpf);
             }
         }
         return null;
     }
     
-    public void inserirLogin(Login login) throws SQLException {
-        String sql = "INSERT INTO Login (login_usuario, login_senha) VALUES (?,?)";
+    public void inserirResponsavel(Responsavel resp) throws SQLException {
+        String sql = "INSERT INTO Responsavel (resp_nome, resp_cpf, resp_email,resp_telefone) VALUES (?,?,?,?)";
 
         try (Connection conn = ConnectionMySql.obterConexao()) {
             // DESLIGAR AUTO-COMMIT -> POSSIBILITAR DESFAZER OPERACOES EM CASOS DE ERROS
@@ -60,15 +62,17 @@ public class LoginDAO {
 
             // ADICIONAR O Statement.RETURN_GENERATED_KEYS PARA RECUPERAR O ID GERADO NO BD
             try (PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-                stmt.setString(1, login.getUsuario());
-                stmt.setString(2, login.getSenha());
+                stmt.setString(1, resp.getNome());
+                stmt.setString(2, resp.getCpf());
+                stmt.setString(3, resp.getEmail());
+                stmt.setString(4, resp.getTelefone());
                 int resul = stmt.executeUpdate();
 
                 try (ResultSet rs = stmt.getGeneratedKeys()) {
                     // RECUPERA O ID GERADO PARA O INFO NOVO
                     while (rs.next()) {
                         Integer idGerado = rs.getInt(1);
-                        login.setId(idGerado);
+                        resp.setId(idGerado);
                     }
                 }
                 conn.commit();
@@ -79,22 +83,24 @@ public class LoginDAO {
         }
     }
     
-    public void atualizarLogin(Login login) throws SQLException {
-        String sql = "UPDATE Login set login_usuario=?, login_senha=? WHERE login_id=?";
+    public void atualizarResponsavel(Responsavel resp) throws SQLException {
+        String sql = "UPDATE Responsavel set resp_nome=?, resp_cpf=?, resp_email=?,resp_telefone=? WHERE resp_id=?";
         try (Connection conn = ConnectionMySql.obterConexao()) {
             // DESLIGAR AUTO-COMMIT -> POSSIBILITAR DESFAZER OPERACOES EM CASOS DE ERROS
             conn.setAutoCommit(false);
             // ADICIONAR O Statement.RETURN_GENERATED_KEYS PARA RECUPERAR O ID GERADO NO BD
             try (PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-                stmt.setString(1, login.getUsuario());
-                stmt.setString(2, login.getSenha());
-                stmt.setString(3, String.valueOf(login.getId()));
+                stmt.setString(1, resp.getNome());
+                stmt.setString(2, resp.getCpf());
+                stmt.setString(3, resp.getEmail());
+                stmt.setString(4, resp.getTelefone());
+                stmt.setString(5, String.valueOf(resp.getId()));
                 int resul = stmt.executeUpdate();
                 try (ResultSet rs = stmt.getGeneratedKeys()) {
                     // RECUPERA O ID GERADO PARA O INFO NOVO
                     while (rs.next()) {
-                        Integer idGerado = rs.getInt(3);
-                        login.setId(idGerado);
+                        Integer idGerado = rs.getInt(5);
+                        resp.setId(idGerado);
                     }
                 }
                 conn.commit();
@@ -104,20 +110,20 @@ public class LoginDAO {
             }
         }
     }
-     public void deletarLogin(Login login) throws SQLException {
-        String sql = "DELETE * FROM Login WHERE login_id=?";
+     public void deletarResponsavel(Responsavel resp) throws SQLException {
+        String sql = "DELETE * FROM Responsavel WHERE resp_id=?";
         try (Connection conn = ConnectionMySql.obterConexao()) {
             // DESLIGAR AUTO-COMMIT -> POSSIBILITAR DESFAZER OPERACOES EM CASOS DE ERROS
             conn.setAutoCommit(false);
             // ADICIONAR O Statement.RETURN_GENERATED_KEYS PARA RECUPERAR O ID GERADO NO BD
             try (PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-                stmt.setString(1, String.valueOf(login.getId()));
+                stmt.setString(1, String.valueOf(resp.getId()));
                 int resul = stmt.executeUpdate();
                 try (ResultSet rs = stmt.getGeneratedKeys()) {
                     // RECUPERA O ID GERADO PARA O INFO NOVO
                     while (rs.next()) {
                         Integer idGerado = rs.getInt(1);
-                        login.setId(idGerado);
+                        resp.setId(idGerado);
                     }
                 }
                 conn.commit();
@@ -126,5 +132,5 @@ public class LoginDAO {
                 throw e;
             }
         }
-    }
+    }    
 }

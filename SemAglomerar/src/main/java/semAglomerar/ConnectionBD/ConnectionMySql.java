@@ -16,7 +16,7 @@ public class ConnectionMySql {
         
         // 2) Abrir a conexão
         Connection conn = DriverManager.getConnection(
-                "jdbc:mysql://localhost:3306/semAglomerar?useUnicode=yes&characterEncoding=UTF-8&useTimezone=true&serverTimezone=UTC",
+                "jdbc:mysql://localhost:3307/semAglomerar?useUnicode=yes&characterEncoding=UTF-8&useTimezone=true&serverTimezone=UTC",
                 "root", // Usuário de conexão no BD
                 ""); // Senha
         return conn ;
