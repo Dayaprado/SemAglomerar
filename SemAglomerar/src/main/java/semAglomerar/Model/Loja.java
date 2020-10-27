@@ -6,16 +6,18 @@ public class Loja {
     private String cnpj;
     private String razaoSocial;
     private String piso;
+    private String categoria;
     private Login login;
     private Responsavel resp;
     private Shopping shop;
 
-    public Loja(Integer id, String nome, String cnpj, String razaoSocial, String piso, Login login, Responsavel resp, Shopping shop) {
+    public Loja(Integer id, String nome, String cnpj, String razaoSocial, String piso, String categoria, Login login, Responsavel resp, Shopping shop) {
         this.id = id;
         this.nome = nome;
         this.cnpj = cnpj;
         this.razaoSocial = razaoSocial;
         this.piso = piso;
+        this.categoria = categoria;
         this.login = login;
         this.resp = resp;
         this.shop = shop;
@@ -59,6 +61,14 @@ public class Loja {
 
     public void setPiso(String piso) {
         this.piso = piso;
+    }
+
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
     }
 
     public Login getLogin() {
