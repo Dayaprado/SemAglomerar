@@ -19,8 +19,8 @@ USE `semAglomerar` ;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Login` (
   `login_id` INT NOT NULL AUTO_INCREMENT,
-  `login_usuario` VARCHAR(45) NOT NULL,
-  `login_senha` VARCHAR(45) NOT NULL,
+  `login_usuario` VARCHAR(50) NOT NULL,
+  `login_senha` VARCHAR(12) NOT NULL,
   PRIMARY KEY (`login_id`),
   UNIQUE INDEX `login_usuario_UNIQUE` (`login_usuario` ASC))
 ENGINE = InnoDB;
@@ -31,10 +31,10 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Responsavel` (
   `resp_id` INT NOT NULL AUTO_INCREMENT,
-  `resp_nome` VARCHAR(45) NOT NULL,
-  `resp_cpf` VARCHAR(11) NOT NULL,
-  `resp_email` VARCHAR(45) NOT NULL,
-  `resp_telefone` VARCHAR(45) NULL,
+  `resp_nome` VARCHAR(50) NOT NULL,
+  `resp_cpf` VARCHAR(20) NOT NULL,
+  `resp_email` VARCHAR(50) NOT NULL,
+  `resp_telefone` VARCHAR(50) NULL,
   PRIMARY KEY (`resp_id`),
   UNIQUE INDEX `resp_rg_UNIQUE` (`resp_cpf` ASC),
   UNIQUE INDEX `resp_email_UNIQUE` (`resp_email` ASC))
@@ -46,7 +46,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Shopping` (
   `shop_id` INT NOT NULL AUTO_INCREMENT,
-  `shop_nome` VARCHAR(45) NOT NULL,
+  `shop_nome` VARCHAR(50) NOT NULL,
   `shop_cnpj` VARCHAR(20) NOT NULL,
   `shop_login_id` INT NOT NULL,
   `shop_resp_id` INT NOT NULL,
@@ -76,6 +76,7 @@ CREATE TABLE IF NOT EXISTS `Loja` (
   `loja_cnpj` VARCHAR(20) NOT NULL,
   `loja_razao` VARCHAR(50) NOT NULL,
   `loja_piso` VARCHAR(2) NOT NULL,
+  `loja_categoria` VARCHAR(50) NOT NULL,    
   `loja_shop_id` INT NOT NULL,
   `loja_login_id` INT NOT NULL,
   `loja_resp_id` INT NOT NULL,
