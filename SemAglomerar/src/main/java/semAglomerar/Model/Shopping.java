@@ -7,7 +7,7 @@ public class Shopping {
     private String cnpj;
     private Login login;
     private Responsavel resp;
-
+/*
     public Shopping(Integer id, String nome, String cnpj, Login login, Responsavel resp) {
         this.id = id;
         this.nome = nome;
@@ -15,7 +15,7 @@ public class Shopping {
         this.login = login;
         this.resp = resp;
     }
-
+*/
     public Integer getId() {
         return id;
     }

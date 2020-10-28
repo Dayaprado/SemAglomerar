@@ -8,7 +8,7 @@ public class Login {
     private Integer id;
     private String usuario;
     private String senha;
-
+/*
     public Login(String usuario,String senha){
         this.usuario = usuario;
         this.senha = senha;
@@ -19,7 +19,7 @@ public class Login {
         this.usuario = usuario;
         this.senha = senha;
     }
-    
+  */  
     public int getId() {
         return id;
     }
