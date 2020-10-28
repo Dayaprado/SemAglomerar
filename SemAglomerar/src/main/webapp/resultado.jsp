@@ -13,4 +13,4 @@
         <p>E-mail: <c:out value="${responsavels.email}"/></p>    
         <p>Para realizar o acesso utilize o usuario: </p>
     </body>
-</ht
+</ht    

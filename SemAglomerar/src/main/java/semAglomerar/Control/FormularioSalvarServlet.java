@@ -58,10 +58,9 @@ public class FormularioSalvarServlet extends HttpServlet {
         lojas.setPiso(Piso);
         lojas.setLogin(logins);
         lojas.setResp(responsavels);
-        
+      
         request.setAttribute("responsavels", responsavels); 
         request.setAttribute("logins", logins);
-
         request.setAttribute("lojas", lojas);
         
         RequestDispatcher dispatcher = request.getRequestDispatcher("/resultado.jsp");
