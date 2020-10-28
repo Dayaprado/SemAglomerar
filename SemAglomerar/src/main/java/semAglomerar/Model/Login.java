@@ -8,18 +8,12 @@ public class Login {
     private Integer id;
     private String usuario;
     private String senha;
-/*
+
     public Login(String usuario,String senha){
         this.usuario = usuario;
         this.senha = senha;
     }
-    
-    public Login(Integer id,String usuario,String senha){
-        this.id = id;
-        this.usuario = usuario;
-        this.senha = senha;
-    }
-  */  
+     
     public int getId() {
         return id;
     }

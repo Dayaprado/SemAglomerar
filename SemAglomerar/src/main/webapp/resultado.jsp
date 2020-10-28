@@ -11,6 +11,6 @@
         <h2>Nome da loja: <c:out value="${lojas.nome}"/></h2>
         <p>Você iria receber um email de confirmação no seguinte email:<p>
         <p>E-mail: <c:out value="${responsavels.email}"/></p>    
-        <p>Para realizar o acesso utilize o usuario: </p>
+        <p>Para realizar o acesso utilize o usuario:  <c:out value="${logins.usuario}"/></p>
     </body>
 </ht    

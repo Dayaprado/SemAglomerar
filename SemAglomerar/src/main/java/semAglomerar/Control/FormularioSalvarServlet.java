@@ -19,9 +19,11 @@ import javax.servlet.http.HttpServletResponse;
 import semAglomerar.DAO.LoginDAO;
 import semAglomerar.DAO.LojaDAO;
 import semAglomerar.DAO.ResponsavelDAO;
+import semAglomerar.Control.ResponsavelControl;
 import semAglomerar.Model.Loja;
 import semAglomerar.Model.Responsavel;
 import semAglomerar.Model.Login;
+
 
 @WebServlet(name = "FormularioSalvarServlet", urlPatterns = {"/formulario-salvar"})
 public class FormularioSalvarServlet extends HttpServlet {
@@ -41,29 +43,17 @@ public class FormularioSalvarServlet extends HttpServlet {
         String social = request.getParameter("social");
         String CNPJ = request.getParameter("CNPJ");
         String Piso = request.getParameter("Piso");
+        String categoria = request.getParameter("categoria");
         String responsavel = request.getParameter("loja");
+        String cpf = request.getParameter("cpf");
         String email = request.getParameter("email");
         String telefone = request.getParameter("telefone");
         String nomeLogin = request.getParameter("nomeLogin");
         String senha = request.getParameter("senha");
 
-        Responsavel responsavels = new Responsavel();
-        responsavels.setNome(responsavel);
-        responsavels.setEmail(email);
-        responsavels.setTelefone(telefone);
-       
-
-        Login logins = new Login();
-        logins.setUsuario(nomeLogin);
-        logins.setSenha(senha);
-        
-        Loja lojas = new Loja();
-        lojas.setNome(nome);
-        lojas.setRazaoSocial(social);
-        lojas.setCnpj(CNPJ);
-        lojas.setPiso(Piso);
-        lojas.setLogin(logins);
-        lojas.setResp(responsavels);
+        Responsavel responsavels = new Responsavel(responsavel,cpf,email,telefone);
+        Login logins = new Login(nomeLogin,senha);
+        Loja lojas = new Loja(nome,CNPJ,social,Piso,categoria);
       
         request.setAttribute("responsavels", responsavels); 
         request.setAttribute("logins", logins);
