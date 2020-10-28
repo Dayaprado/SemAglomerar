@@ -15,7 +15,7 @@
         <h2>Cadastrar Loja</h2>
 
         <div class="container">
-            <form method="post" action="formulario-salvar">
+            <form method="post" action="/SemAglomerar/formulario-salvar">
                 <div class="row">
                     <label class="label">Nome da loja:
                         <input name="nome" type="text" value="" />
@@ -38,7 +38,7 @@
 
                 </div>
                 <div class="row">
-                    <label class="label">Nome do responsável:
+                    <label class="label">Responsável:
                         <input name="loja" type="text" value="" />
                     </label>
 
@@ -60,12 +60,12 @@
                 </div>
                 <div class="row">
                     <label class="label">Senha:
-                        <input name="senha" type="text" value="" />
+                        <input name="senha" type="password" value="" />
                     </label>
                 </div>
                 <div class="row">
                     <label class="label">Repetir senha:
-                        <input name="repetirSenha" type="text" value="" />
+                        <input name="repetirSenha" type="password" value="" />
                     </label>
                 </div>
                 <div class="row">
