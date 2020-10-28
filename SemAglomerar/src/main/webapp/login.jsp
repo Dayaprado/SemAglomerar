@@ -4,16 +4,16 @@
     Author     : crisdut
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <jsp:include page="header.jsp" />
+        
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/default.css">
         <title>Sem Aglomerar Login</title>
     </head>
     <body>
-        <h2>Login</h2>
+        <h2>Login:</h2>
         <div class="container">
             <div class="row">
                 <label class="label"> 
@@ -26,6 +26,10 @@
                     <input name="senha" type="text" value="" />
                 </label>
             </div>
-            
+            <div class="row">
+                <button>Entrar</button>
+            </div>
+        </div>
+        <jsp:include page="footer.jsp" />
     </body>
 </html>

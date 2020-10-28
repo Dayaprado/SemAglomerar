@@ -3,14 +3,10 @@
     Created on : Oct 18, 2020, 9:06:26 PM
     Author     : dayaprado
 --%>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/default.css">
+        <jsp:include page="header.jsp" />
         <title>Sem Aglomerar</title>
     </head>
     <body>
@@ -24,8 +20,13 @@
                 </label>
             </div>
             <div class="row">
-                <label class="label">Raz√£o Social:
+                <label class="label">Raz„o Social:
                     <input name="social" type="text" value="" />
+                </label>
+            </div>
+            <div class="row">
+                <label class="label">CNPJ:
+                    <input name="cnpj" type="text" value="" />
                 </label>
             </div>
             <div class="row">
@@ -68,6 +69,7 @@
             <div class="row">
                 <button>Salvar</button>
             </div>
+            <jsp:include page="footer.jsp" />            
         </div>
 
     </body>
