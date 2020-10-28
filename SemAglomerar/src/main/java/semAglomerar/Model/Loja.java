@@ -10,7 +10,15 @@ public class Loja {
     private Login login;
     private Responsavel resp;
     private Shopping shop;
-/*
+
+    public Loja(String nome, String cnpj, String razaoSocial, String piso, String categoria){
+        this.nome = nome;
+        this.cnpj = cnpj;
+        this.razaoSocial = razaoSocial;
+        this.piso = piso;
+        this.categoria = categoria;
+    }
+    
     public Loja(Integer id, String nome, String cnpj, String razaoSocial, String piso, String categoria, Login login, Responsavel resp, Shopping shop) {
         this.id = id;
         this.nome = nome;
@@ -22,7 +30,6 @@ public class Loja {
         this.resp = resp;
         this.shop = shop;
     }
-*/
     
     public Integer getId() {
         return id;

@@ -1,20 +1,22 @@
 package semAglomerar.Model;
 
-
 public class Responsavel {
     private Integer id;
     private String nome;
     private String cpf;
     private String email;
     private String telefone;
-    /*
-    public Responsavel(Integer id, String nome, String cpf, String email, String telefone) {
+    
+    
+    public Responsavel(String nome, String cpf, String email, String telefone) {
         this.nome = nome;
         this.cpf = cpf;
         this.email = email;
         this.telefone = telefone;
     }
-*/
+    
+    public Responsavel(){
+    }
     
     public Integer getId() {
         return id;
