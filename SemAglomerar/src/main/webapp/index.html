@@ -5,30 +5,31 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/default.css">
         <title>Sem Aglomerar</title>
         <meta charset="utf-8"/>
+        <link href="css/default.css" rel="stylesheet" type="text/css"/>
     </head>
 
     <body>
         <div id="cabecalho">
-            <a href="index.html">
+            <a href="index.html" class="left">
                 <img src="img/logo.png" alt="Logotipo da Sem Aglomerar" width=200 height=100>
             </a>
-            <form>
-                <input type="text" id="txtPesquisa" placeholder="Pesquisar Shoppings" value=""/>
+            <form class="search-center">
+                <input type="text" id="txtPesquisa" class= "barra-de-pesquisa" placeholder="Pesquisar Shoppings" value=""/>
                 <button type="submit">Pesquisar</button>
             </form>
-           <a href="login.jsp">
+           <a href="login.jsp" class="right">
                <img src="img/icon_usuario.png" alt="'Icone para Login" width=15 height=15>
                 Login
             </a>
         </div>
 
         <div id="conteudo">
-            <p>Fique em Casa!<br> Mas se precisar sair vá <strong>Sem Aglomerar</strong></p>
-            <img src="img/home_img.jpg" alt="Imagem Sem Aglomerar" width="600" height="600">
+            <p class="left">Fique em Casa!<br> Mas se precisar sair vá <strong>Sem Aglomerar</strong></p>
+            <img class="right" src="img/home_img.jpg" alt="Imagem Sem Aglomerar" width="500" height="500">
         </div>
 
-        <div id="rodape">
-            <p>© Todos os direitos reservados | contato@semaglomerar | Termos de Serviço| Política de Privacidade</p>
-        </div>        
+        <div class="">
+            <p class="rodape-fixed">© Todos os direitos reservados | contato@semaglomerar | Termos de Serviço| Política de Privacidade</p>
+        </div>
     </body>
 </html>

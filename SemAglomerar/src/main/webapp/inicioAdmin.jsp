@@ -10,65 +10,61 @@
     <head>
         <jsp:include page="header.jsp" />
         <title>Sem Aglomerar Administrador</title>
+        <link href="css/default.css" rel="stylesheet" type="text/css"/>
     </head>
 
     <body>
         <div id="cabecalho">
-            <a href="index.html">
-                <img src="img/home_img.jpg" alt="Logotipo da Sem Aglomerar" width=200 height=100>
+            <a class="left" href="index.html">
+                <img src="img/logo.png" alt="Logotipo da Sem Aglomerar" width=200 height=100>
             </a>
-            
-            <p>Olá, Administrador!</p>
-            <a href="index.html">Sair</a>
-        </div>
-
-        <fieldset>
-            <legend>Escolha por Categorias</legend>
-            <div>
-                <input type="checkbox" id ="artigosDoLar" name="artigosDoLar">
-                <label for="artigosDoLar">Artigos do Lar</label>
-            </div>
-            <div>
-                <input type="checkbox" id ="alimentacao" name="alimentacao">
-                <label for="alimentacao">Alimentação</label>
-            </div>
-            <div>
-                <input type="checkbox" id ="vestuario" name="vestuario">
-                <label for="vestuario">Vestuário</label>
-            </div>
-            <div>
-                <input type="checkbox" id ="calcados" name="calcados">
-                <label for="calcados">Calçados</label>
-            </div>
-            <div>
-                <input type="checkbox" id ="servicosEssenciais" name="servicosEssenciais">
-                <label for="servicosEssenciais">Serviços Essenciais</label>
-            </div>
-            <div>
-                <input type="checkbox" id ="beleza" name="beleza">
-                <label for="beleza">Beleza</label>
-            </div>
-            <div>
-                <input type="checkbox" id ="outros" name="outros">
-                <label for="outros">Outros</label>
-            </div>
-        </fieldset>
-
-        <div id="conteudo">
-             <form>
-                <input type="text" id="txtPesquisa" placeholder="Pesquisar Shoppings" value=""/>
+             <form class="search-center">
+                <input class="barra-de-pesquisa" type="text" id="txtPesquisa" placeholder="Pesquisar Shoppings" value=""/>
                 <button type="submit">Pesquisar</button>
             </form>
-            <a href="cadastro.jsp">
+            <h3>Olá, Administrador!</h3>
+            <a class="right" href="index.html">Sair</a>
+        </div>
+        <div id="lateral">
+            <a class="left" href="cadastro.jsp">
                 <button>Cadastrar Loja</button>
             </a>
+            <fieldset class="filtro">
+                <legend>Escolha por Categorias</legend>
+                <div>
+                    <input type="checkbox" id ="artigosDoLar" name="artigosDoLar">
+                    <label for="artigosDoLar">Artigos do Lar</label>
+                </div>
+                <div>
+                    <input type="checkbox" id ="alimentacao" name="alimentacao">
+                    <label for="alimentacao">Alimentação</label>
+                </div>
+                <div>
+                    <input type="checkbox" id ="vestuario" name="vestuario">
+                    <label for="vestuario">Vestuário</label>
+                </div>
+                <div>
+                    <input type="checkbox" id ="calcados" name="calcados">
+                    <label for="calcados">Calçados</label>
+                </div>
+                <div>
+                    <input type="checkbox" id ="servicosEssenciais" name="servicosEssenciais">
+                    <label for="servicosEssenciais">Serviços Essenciais</label>
+                </div>
+                <div>
+                    <input type="checkbox" id ="beleza" name="beleza">
+                    <label for="beleza">Beleza</label>
+                </div>
+                <div>
+                    <input type="checkbox" id ="outros" name="outros">
+                    <label for="outros">Outros</label>
+                </div>
+            </fieldset>
         </div>
         <div id="lojas">
             <h2>Lojas Renner</h2>
             
         </div>
-        <div id="rodape">
-            <p>© Todos os direitos reservados | contato@semaglomerar | Termos de Serviço| Política de Privacidade</p>
-        </div>        
+        <jsp:include page="footer-fixed.jsp" />
     </body>
 </html>
