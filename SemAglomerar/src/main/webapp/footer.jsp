@@ -4,6 +4,6 @@
     Author     : dayprado
 --%>
 
-<div class="row">
+<div class="">
     <p class="rodape">© Todos os direitos reservados | contato@semaglomerar | Termos de Serviço| Política de Privacidade</p>
 </div>
