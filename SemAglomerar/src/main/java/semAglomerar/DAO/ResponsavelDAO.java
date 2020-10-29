@@ -11,8 +11,9 @@ import semAglomerar.ConnectionBD.ConnectionMySql;
 import semAglomerar.Model.Responsavel;
 
 public class ResponsavelDAO {
+
     private Responsavel resp;
-    
+
     public List<Responsavel> findAll() throws SQLException {
         String sql = "SELECT * FROM Responsavel";
         List<Responsavel> resul = new ArrayList<>();
@@ -31,7 +32,7 @@ public class ResponsavelDAO {
         }
         return resul;
     }
-    
+
     public Responsavel findByCpf(String cpf) throws SQLException {
         String sql = "SELECT * FROM Responsavel WHERE resp_cpf=?";
         try (Connection conn = ConnectionMySql.obterConexao();
@@ -46,42 +47,43 @@ public class ResponsavelDAO {
                     resp.setTelefone(rs.getString("resp_telefone"));
                     return resp;
                 }
-            }catch (Exception e) {
-            System.out.print("Erro ao pesquisar o CPF: " + cpf);
+            } catch (Exception e) {
+                System.out.print("Erro ao pesquisar o CPF: " + cpf);
             }
         }
         return null;
     }
-    
-    public void inserirResponsavel(Responsavel resp) throws SQLException {
-        String sql = "INSERT INTO Responsavel (resp_nome, resp_cpf, resp_email,resp_telefone) VALUES (?,?,?,?)";
 
-        try (Connection conn = ConnectionMySql.obterConexao()) {
+    public void inserirResponsavel(Responsavel resp) throws SQLException{
+        String sql = "INSERT INTO Responsavel (resp_nome, resp_cpf, resp_email,resp_telefone) VALUES (?,?,?,?)";
+        Connection conn = null;
+        try  {
+            conn = ConnectionMySql.obterConexao();
             // DESLIGAR AUTO-COMMIT -> POSSIBILITAR DESFAZER OPERACOES EM CASOS DE ERROS
             conn.setAutoCommit(false);
 
             // ADICIONAR O Statement.RETURN_GENERATED_KEYS PARA RECUPERAR O ID GERADO NO BD
-            try (PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-                stmt.setString(1, resp.getNome());
-                stmt.setString(2, resp.getCpf());
-                stmt.setString(3, resp.getEmail());
-                stmt.setString(4, resp.getTelefone());
-                int resul = stmt.executeUpdate();
+            PreparedStatement stmt =   conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            stmt.setString(1, resp.getNome());
+            stmt.setString(2, resp.getCpf());
+            stmt.setString(3, resp.getEmail());
+            stmt.setString(4, resp.getTelefone());
+            boolean resul = stmt.execute();
 
-                try (ResultSet rs = stmt.getGeneratedKeys()) {
-                    // RECUPERA O ID GERADO PARA O INFO NOVO
-                    while (rs.next()) {
-                        Integer idGerado = rs.getInt(1);
-                        resp.setId(idGerado);
-                    }
-                }
-                conn.commit();
-            } catch (SQLException e) {
-                conn.rollback();
-                throw e;
+            ResultSet rs = stmt.getGeneratedKeys(); // RECUPERA O ID GERADO PARA O INFO NOVO
+            while (rs.next()) {
+                Integer idGerado = rs.getInt(1);
+                resp.setId(idGerado);
             }
+
+            conn.commit();
+
+        } catch (SQLException e) {
+            conn.rollback();
+            
         }
     }
+
     
     public void atualizarResponsavel(Responsavel resp) throws SQLException {
         String sql = "UPDATE Responsavel set resp_nome=?, resp_cpf=?, resp_email=?,resp_telefone=? WHERE resp_id=?";
@@ -110,7 +112,8 @@ public class ResponsavelDAO {
             }
         }
     }
-     public void deletarResponsavel(Responsavel resp) throws SQLException {
+
+    public void deletarResponsavel(Responsavel resp) throws SQLException {
         String sql = "DELETE * FROM Responsavel WHERE resp_id=?";
         try (Connection conn = ConnectionMySql.obterConexao()) {
             // DESLIGAR AUTO-COMMIT -> POSSIBILITAR DESFAZER OPERACOES EM CASOS DE ERROS
@@ -132,5 +135,5 @@ public class ResponsavelDAO {
                 throw e;
             }
         }
-    }    
+    }
 }

@@ -39,7 +39,11 @@
                     <label class="label">Responsável:
                         <input name="loja" type="text" value="" />
                     </label>
-
+                </div>
+                 <div class="row">
+                    <label class="label">Cpf:
+                        <input name="cpf" type="text" value="" />
+                    </label>
                 </div>
                 <div class="row">
                     <label class="label">E-mail:

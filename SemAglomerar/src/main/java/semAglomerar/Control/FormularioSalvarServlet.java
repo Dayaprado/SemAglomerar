@@ -6,7 +6,6 @@
 package semAglomerar.Control;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,7 +18,6 @@ import javax.servlet.http.HttpServletResponse;
 import semAglomerar.DAO.LoginDAO;
 import semAglomerar.DAO.LojaDAO;
 import semAglomerar.DAO.ResponsavelDAO;
-import semAglomerar.Control.ResponsavelControl;
 import semAglomerar.Model.Loja;
 import semAglomerar.Model.Responsavel;
 import semAglomerar.Model.Login;
@@ -41,7 +39,7 @@ public class FormularioSalvarServlet extends HttpServlet {
         //recuperar dados inseridos no formulario.
         String nome = request.getParameter("nome");
         String social = request.getParameter("social");
-        String CNPJ = request.getParameter("CNPJ");
+        String CNPJ = request.getParameter("cnpj");
         String Piso = request.getParameter("Piso");
         String categoria = request.getParameter("categoria");
         String responsavel = request.getParameter("loja");
