@@ -15,7 +15,7 @@
     <body>
         <h2>Login:</h2>
         <div class="container">
-            <form method="post" action="/SemAglomerar/formulario-salvar">
+            <form method="post" action="/SemAglomerar/login">
                 <div class="row">
                     <label class="label"> 
                         Login:
@@ -28,7 +28,7 @@
                     </label>
                 </div>
                 <div class="row">
-                    <button>Entrar</button>
+                    <a href="inicioAdmin.jsp"><button>Entrar</button></a>
                 </div>
             </form>
         </div>

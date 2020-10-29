@@ -19,17 +19,6 @@ public class Loja {
         this.categoria = categoria;
     }
     
-    public Loja(Integer id, String nome, String cnpj, String razaoSocial, String piso, String categoria, Login login, Responsavel resp, Shopping shop) {
-        this.id = id;
-        this.nome = nome;
-        this.cnpj = cnpj;
-        this.razaoSocial = razaoSocial;
-        this.piso = piso;
-        this.categoria = categoria;
-        this.login = login;
-        this.resp = resp;
-        this.shop = shop;
-    }
     
     public Integer getId() {
         return id;

@@ -53,29 +53,29 @@ public class LoginDAO {
     
     public void inserirLogin(Login login) throws SQLException {
         String sql = "INSERT INTO Login (login_usuario, login_senha) VALUES (?,?)";
-
-        try (Connection conn = ConnectionMySql.obterConexao()) {
+        Connection conn = null;
+        try  {
+            conn = ConnectionMySql.obterConexao();
             // DESLIGAR AUTO-COMMIT -> POSSIBILITAR DESFAZER OPERACOES EM CASOS DE ERROS
             conn.setAutoCommit(false);
 
             // ADICIONAR O Statement.RETURN_GENERATED_KEYS PARA RECUPERAR O ID GERADO NO BD
-            try (PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-                stmt.setString(1, login.getUsuario());
-                stmt.setString(2, login.getSenha());
-                int resul = stmt.executeUpdate();
+            PreparedStatement stmt =   conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            stmt.setString(1, login.getUsuario());
+            stmt.setString(2, login.getSenha());
+            boolean resul = stmt.execute();
 
-                try (ResultSet rs = stmt.getGeneratedKeys()) {
-                    // RECUPERA O ID GERADO PARA O INFO NOVO
-                    while (rs.next()) {
-                        Integer idGerado = rs.getInt(1);
-                        login.setId(idGerado);
-                    }
-                }
-                conn.commit();
-            } catch (SQLException e) {
-                conn.rollback();
-                throw e;
+            ResultSet rs = stmt.getGeneratedKeys(); // RECUPERA O ID GERADO PARA O INFO NOVO
+            while (rs.next()) {
+                Integer idGerado = rs.getInt(1);
+                login.setId(idGerado);
             }
+
+            conn.commit();
+
+        } catch (SQLException e) {
+            conn.rollback();
+            
         }
     }
     

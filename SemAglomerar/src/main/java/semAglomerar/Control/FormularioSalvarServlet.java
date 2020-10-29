@@ -21,6 +21,7 @@ import semAglomerar.DAO.ResponsavelDAO;
 import semAglomerar.Model.Loja;
 import semAglomerar.Model.Responsavel;
 import semAglomerar.Model.Login;
+import semAglomerar.Model.Shopping;
 
 
 @WebServlet(name = "FormularioSalvarServlet", urlPatterns = {"/formulario-salvar"})
@@ -40,7 +41,7 @@ public class FormularioSalvarServlet extends HttpServlet {
         String nome = request.getParameter("nome");
         String social = request.getParameter("social");
         String CNPJ = request.getParameter("cnpj");
-        String Piso = request.getParameter("Piso");
+        String Piso = request.getParameter("piso");
         String categoria = request.getParameter("categoria");
         String responsavel = request.getParameter("loja");
         String cpf = request.getParameter("cpf");
@@ -52,6 +53,8 @@ public class FormularioSalvarServlet extends HttpServlet {
         Responsavel responsavels = new Responsavel(responsavel,cpf,email,telefone);
         Login logins = new Login(nomeLogin,senha);
         Loja lojas = new Loja(nome,CNPJ,social,Piso,categoria);
+        Shopping shoppings = new Shopping();
+        shoppings.setId(1);
       
         request.setAttribute("responsavels", responsavels); 
         request.setAttribute("logins", logins);
@@ -64,7 +67,7 @@ public class FormularioSalvarServlet extends HttpServlet {
         try {
             respDAO.inserirResponsavel(responsavels);
             loginDAO.inserirLogin(logins);
-            lojaDAO.inserirLoja(lojas);
+            lojaDAO.inserirLoja(lojas,logins,responsavels,shoppings);
         } catch (SQLException ex) {
             Logger.getLogger(FormularioSalvarServlet.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -36,6 +36,12 @@
 
                 </div>
                 <div class="row">
+                    <label class="label">Categoria:
+                        <input name="categoria" type="text" value="" />                
+                    </label>
+
+                </div>
+                <div class="row">
                     <label class="label">Responsável:
                         <input name="loja" type="text" value="" />
                     </label>

@@ -97,16 +97,18 @@ public class LojaDAO {
         return null;
     }
     
-    public void inserirLoja(Loja loja) throws SQLException {
+    public void inserirLoja(Loja loja, Login login, Responsavel resp, Shopping shop) throws SQLException {
         String sql = "INSERT INTO Loja (loja_nome, loja_cnpj, loja_piso, loja_razao, loja_categoria, loja_shop_id, loja_resp_id, loja_login_id) " 
                 + "VALUES (?,?,?,?,?,?,?,?)";
-
-        try (Connection conn = ConnectionMySql.obterConexao()) {
+        Connection conn = null;
+        
+        try  {
+            conn = ConnectionMySql.obterConexao();
             // DESLIGAR AUTO-COMMIT -> POSSIBILITAR DESFAZER OPERACOES EM CASOS DE ERROS
             conn.setAutoCommit(false);
 
             // ADICIONAR O Statement.RETURN_GENERATED_KEYS PARA RECUPERAR O ID GERADO NO BD
-            try (PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+            PreparedStatement stmt =   conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
                 stmt.setString(1, loja.getNome());
                 stmt.setString(2, loja.getCnpj());
                 stmt.setString(3, loja.getPiso());
@@ -115,21 +117,19 @@ public class LojaDAO {
                 stmt.setInt(6, shop.getId());
                 stmt.setInt(7, resp.getId());
                 stmt.setInt(8, login.getId());
-                int resul = stmt.executeUpdate();
+            boolean resul = stmt.execute();
 
-                try (ResultSet rs = stmt.getGeneratedKeys()) {
-                    // RECUPERA O ID GERADO PARA O INFO NOVO
-                    while (rs.next()) {
-                        Integer idGerado = rs.getInt(1);
-                        loja.setId(idGerado);
-                    }
-                }
-                conn.commit();
-            } catch (SQLException e) {
-                conn.rollback();
-                throw e;
+            ResultSet rs = stmt.getGeneratedKeys(); // RECUPERA O ID GERADO PARA O INFO NOVO
+            while (rs.next()) {
+                Integer idGerado = rs.getInt(1);
+                login.setId(idGerado);
             }
-        }
+
+            conn.commit();
+
+        } catch (SQLException e) {
+            conn.rollback();            
+        }        
     }
     
     public void atualizarLoja(Loja loja) throws SQLException {
