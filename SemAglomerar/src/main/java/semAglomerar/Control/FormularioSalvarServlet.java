@@ -41,7 +41,7 @@ public class FormularioSalvarServlet extends HttpServlet {
         //recuperar dados inseridos no formulario.
         String nome = request.getParameter("nome");
         String social = request.getParameter("social");
-        String CNPJ = request.getParameter("CNPJ");
+        String CNPJ = request.getParameter("cnpj");
         String Piso = request.getParameter("Piso");
         String categoria = request.getParameter("categoria");
         String responsavel = request.getParameter("loja");

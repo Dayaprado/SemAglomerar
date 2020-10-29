@@ -14,33 +14,33 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
     <developers>        
-            <developer>
-                <id>carolinamalm</id>
-                <name>Carolina Maria de Alemida</name>
-                <email>carolpsg18@gmail.com</email>
-                <organization>Projeto PI3: Sem Aglomerar</organization>
-            </developer>
+        <developer>
+            <id>carolinamalm</id>
+            <name>Carolina Maria de Alemida</name>
+            <email>carolpsg18@gmail.com</email>
+            <organization>Projeto PI3: Sem Aglomerar</organization>
+        </developer>
             
-            <developer>
-                <id>Dayaprado</id>
-                <name>Dayana do Prado Silva</name>
-                <email>dayprado_silva@yahoo.com</email>
-                <organization>Projeto PI3: Sem Aglomerar</organization>
-            </developer>
+        <developer>
+            <id>Dayaprado</id>
+            <name>Dayana do Prado Silva</name>
+            <email>dayprado_silva@yahoo.com</email>
+            <organization>Projeto PI3: Sem Aglomerar</organization>
+        </developer>
             
-            <developer>
-                <id>ghoac97</id>
-                <name>Gabriel Henrique Oliveira de Almeida Castro</name>
-                <email>gabrielwdc@hotmail.com</email>
-                <organization>Projeto PI3: Sem Aglomerar</organization>
-            </developer>            
+        <developer>
+            <id>ghoac97</id>
+            <name>Gabriel Henrique Oliveira de Almeida Castro</name>
+            <email>gabrielwdc@hotmail.com</email>
+            <organization>Projeto PI3: Sem Aglomerar</organization>
+        </developer>            
             
-            <developer>
-                <id>talemida0</id>
-                <name>Thalita Almeida</name>
-                <email>talmeida013@outlook.com</email>
-                <organization>Projeto PI3: Sem Aglomerar</organization>
-            </developer>
+        <developer>
+            <id>talemida0</id>
+            <name>Thalita Almeida</name>
+            <email>talmeida013@outlook.com</email>
+            <organization>Projeto PI3: Sem Aglomerar</organization>
+        </developer>
     </developers>
 
     <build>
@@ -93,11 +93,42 @@
         </plugins>
     </build>
     <dependencies>
+
         <dependency>
+
             <groupId>javax</groupId>
+
             <artifactId>javaee-web-api</artifactId>
+
             <version>7.0</version>
-            <type>jar</type>
+
+            <scope>provided</scope>
+
         </dependency>
+
+
+
+        <dependency>
+
+            <groupId>javax.servlet</groupId>
+
+            <artifactId>jstl</artifactId>
+
+            <version>1.2</version>
+
+        </dependency>
+
+
+
+        <dependency>
+
+            <groupId>mysql</groupId>
+
+            <artifactId>mysql-connector-java</artifactId>
+
+            <version>8.0.21</version>
+
+        </dependency>
+
     </dependencies>
 </project>
