@@ -11,6 +11,7 @@
         <title>Sem Aglomerar</title>
     </head>
     <body>
+        <jsp:include page="cabecalho.jsp" /> 
         <h2>Cadastrar Loja</h2>
         <div class="container">
             <form method="post" action="/SemAglomerar/formulario-salvar">
@@ -71,7 +72,9 @@
                     </label>
                 </div>
                 <div class="row">
+                    <a href="resultado.jsp">   
                     <button>Salvar</button>
+                    </a>
                 </div>
             </form>
         </div>
