@@ -11,9 +11,7 @@
         <title>Sem Aglomerar</title>
     </head>
     <body>
-
         <h2>Cadastrar Loja</h2>
-
         <div class="container">
             <form method="post" action="/SemAglomerar/formulario-salvar">
                 <div class="row">
@@ -75,9 +73,9 @@
                 <div class="row">
                     <button>Salvar</button>
                 </div>
-                <jsp:include page="footer.jsp" />  
             </form>
         </div>
+        <jsp:include page="footer-fixed.jsp" />  
     </form>
 
 </body>
