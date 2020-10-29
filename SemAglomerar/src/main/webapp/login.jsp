@@ -13,6 +13,7 @@
         <title>Sem Aglomerar Login</title>
     </head>
     <body>
+        <jsp:include page="cabecalho.jsp" /> 
         <h2>Login:</h2>
         <div class="container">
             <form method="post" action="/SemAglomerar/login">
@@ -32,6 +33,6 @@
                 </div>
             </form>
         </div>
-        <jsp:include page="footer.jsp" />
+        <jsp:include page="footer-fixed.jsp" />
     </body>
 </html>
