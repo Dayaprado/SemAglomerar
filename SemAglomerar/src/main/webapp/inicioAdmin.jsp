@@ -22,7 +22,7 @@
                 <input class="barra-de-pesquisa" type="text" id="txtPesquisa" placeholder="Pesquisar Shoppings" value=""/>
                 <button type="submit">Pesquisar</button>
             </form>
-            <h3>Olá, Administrador!</h3>
+            <h3>Olá!</h3>
             <a class="right" href="index.html">Sair</a>
         </div>
         <div id="lateral">
@@ -62,7 +62,7 @@
             </fieldset>
         </div>
         <div id="lojas">
-            <h2>Lojas Renner</h2>
+            <h2>Lista de Lojas</h2>
             
         </div>
         <jsp:include page="footer-fixed.jsp" />

@@ -25,7 +25,7 @@
                 </div>
                 <div class="row">
                     <label class="label">Senha:
-                        <input name="senha" type="text" value="" />
+                        <input name="senha" type="password" value="" />
                     </label>
                 </div>
                 <div class="row">

@@ -37,6 +37,8 @@ public class LoginServlet extends HttpServlet {
         LoginDAO loginDAO = new LoginDAO();
         try {
             Login usuarioDaBase = loginDAO.findByUser(email);
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/inicioAdmin.jsp");
+                dispatcher.forward(request, response);
             
         } catch (SQLException ex) {
             Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
