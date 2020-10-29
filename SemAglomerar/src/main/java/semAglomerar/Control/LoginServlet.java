@@ -36,7 +36,9 @@ public class LoginServlet extends HttpServlet {
         LoginDAO loginDAO = new LoginDAO();
         try {
             semAglomerar.Model.Login usuarioDaBase = loginDAO.findByUser(email);
-            
+            if (usuarioDaBase.getSenha() == senha){
+                
+            }
             
         } catch (SQLException ex) {
             Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
