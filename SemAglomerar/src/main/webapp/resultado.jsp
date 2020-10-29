@@ -8,9 +8,7 @@
         <title>Confirmação de cadastro</title>
     </head>
     <body>
-        <div id="cabecalho">
-            <img src="img/logo.png" alt="Logotipo da Sem Aglomerar" width="300px" height="200px">
-        </div>
+        <jsp:include page="cabecalho.jsp" />  
 
         <h2>Cadastro Efetuado com Sucesso!</h2>
 
