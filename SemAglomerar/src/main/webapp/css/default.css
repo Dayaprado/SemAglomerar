@@ -18,6 +18,11 @@ body {
     margin-left: 30%;
 }
 
+.container-2{
+    max-width: 480px;
+    margin-left: 34%;
+}
+
 .row {
     padding-top: 5px;
     padding-bottom: 5px;
@@ -33,6 +38,20 @@ body {
 .label {
     float: right;
     margin: 5px;
+}
+
+.cabecalho
+{
+    float: right !important;
+}
+
+.conteudo {
+    float: right;
+    width: 350px;
+    min-width: 350px;    
+    margin-left: 5px;
+    text-align: left;
+    display: inline-block;
 }
 
 .row button{
