@@ -6,7 +6,6 @@
 package semAglomerar.Control;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -34,11 +33,20 @@ public class LoginServlet extends HttpServlet {
         String email = request.getParameter("login");
         String senha = request.getParameter("senha");
         
-        LoginDAO loginDAO = new LoginDAO();
+        LoginDAO loginDAO = new LoginDAO(); 
+        
         try {
-            Login usuarioDaBase = loginDAO.findByUser(email);
+            Login usuario = new Login(email,senha);
+            
+            loginDAO.findByUser(usuario, email);  
+            
+            if(email.equals(usuario.getUsuario())){
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/inicioAdmin.jsp");
                 dispatcher.forward(request, response);
+            }else{
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/validacao.jsp");                
+                dispatcher.forward(request, response);
+            }
             
         } catch (SQLException ex) {
             Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);

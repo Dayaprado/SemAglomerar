@@ -59,7 +59,7 @@ public class LojaDAO {
     
     public Loja findByCnpj(String cnpj) throws SQLException {
         
-        String sql = "SELECT loja_nome, loja_razao, loja_cnpj, loja_piso, loja_categoria, resp_nome, resp_cpf, resp_email, resp_telefone, shop_nome, shop_cnpj, login_usuario" +
+        String sql = "SELECT loja_id, loja_nome, loja_razao, loja_cnpj, loja_piso, loja_categoria, resp_id, resp_nome, resp_cpf, resp_email, resp_telefone, shop_id, shop_nome, shop_cnpj, login_id, login_usuario, login_senha" +
         " FROM  Loja, 	Responsavel,	Login,    Shopping " +
         " WHERE loja_cnpj= ? " +
         " AND loja_resp_id=resp_id AND loja_login_id=login_id AND loja_shop_id=shop_id; ";
@@ -88,6 +88,7 @@ public class LojaDAO {
                 
                     login.setId(rs.getInt("login_id"));
                     login.setUsuario(rs.getString("login_usuario"));
+                    login.setSenha(rs.getString("login_senha"));
                     return loja;
                 }
             }catch (Exception e) {

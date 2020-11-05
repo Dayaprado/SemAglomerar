@@ -32,22 +32,26 @@ public class LoginDAO {
         return resul;
     }
     
-    public Login findByUser(String user) throws SQLException {
-        String sql = "SELECT * FROM Login WHERE login_usuario=?";
-        try (Connection conn = ConnectionMySql.obterConexao();
-                PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setString(1, user);
-            try (ResultSet rs = stmt.executeQuery()) {
+    public Login findByUser(Login login, String user) throws SQLException {
+        String sql = "SELECT login_id, login_usuario, login_senha FROM Login WHERE login_usuario=?";
+        Connection conn = null;
+        
+        try {
+            conn = ConnectionMySql.obterConexao();
+            conn.setAutoCommit(false);      
+            
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1, user);            
+            ResultSet rs = stmt.executeQuery();
+            
                 if (rs.next()) {
                     login.setId(rs.getInt("login_id"));
                     login.setUsuario(rs.getString("login_usuario"));
                     login.setSenha(rs.getString("login_senha"));
                     return login;
                 }
-            }catch (Exception e) {
-            System.out.print("Erro ao pesquisar usuário: " + user);
+            }catch (SQLException e) {
             }
-        }
         return null;
     }
     

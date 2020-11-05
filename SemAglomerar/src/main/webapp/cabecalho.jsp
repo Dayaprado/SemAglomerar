@@ -1,3 +1,3 @@
 <div id="cabecalho">
-    <a href="inicioAdmin.jsp"><img src="img/logo.png" alt="Logotipo da Sem Aglomerar" width="20%" height="15%"></a>
+    <a href="index.html"><img src="img/logo.png" alt="Logotipo da Sem Aglomerar" width="300px" height="200px"></a>
 </div>

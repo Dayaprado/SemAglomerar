@@ -34,11 +34,8 @@
             <div class="row">
                 <h3> Lojista recebeu o email?</h3>  
                 
-                  <a href="login.jsp">   
-                <button style="float: none">Sim</button>
-                </a>
-               <a href="resultado.jsp">
-                <button style="float: none">Nao</button>
+                <a href="login.jsp">   
+                    <button style="float: none">Sim</button>
                 </a>
             </div>
             <br/>            
