@@ -33,7 +33,7 @@ public class LoginDAO {
     }
     
     public Login findByUser(Login login, String user) throws SQLException {
-        String sql = "SELECT login_id, login_usuario, login_senha FROM Login WHERE login_usuario=?";
+        String sql = "SELECT * FROM Login WHERE login_usuario=?";
         Connection conn = null;
         
         try {
@@ -48,11 +48,11 @@ public class LoginDAO {
                     login.setId(rs.getInt("login_id"));
                     login.setUsuario(rs.getString("login_usuario"));
                     login.setSenha(rs.getString("login_senha"));
-                    return login;
                 }
             }catch (SQLException e) {
+                conn.rollback();
             }
-        return null;
+        return login;
     }
     
     public void inserirLogin(Login login) throws SQLException {

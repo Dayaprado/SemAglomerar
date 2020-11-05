@@ -37,10 +37,10 @@ public class LoginServlet extends HttpServlet {
         
         try {
             Login usuario = new Login(email,senha);
+            Login usuarioTeste = new Login();
+            usuarioTeste = loginDAO.findByUser(usuarioTeste, email);  
             
-            loginDAO.findByUser(usuario, email);  
-            
-            if(email.equals(usuario.getUsuario())){
+            if(email.equals(usuarioTeste.getUsuario()) && senha.equals(usuarioTeste.getSenha())){
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/inicioAdmin.jsp");
                 dispatcher.forward(request, response);
             }else{
@@ -51,9 +51,5 @@ public class LoginServlet extends HttpServlet {
         } catch (SQLException ex) {
             Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
-        
     }
-    
 }

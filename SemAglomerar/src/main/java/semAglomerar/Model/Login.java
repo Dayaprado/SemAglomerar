@@ -9,6 +9,11 @@ public class Login {
     private String usuario;
     private String senha;
 
+    public Login(){
+        usuario = null;
+        senha = null;
+    }
+    
     public Login(String usuario,String senha){
         this.usuario = usuario;
         this.senha = senha;

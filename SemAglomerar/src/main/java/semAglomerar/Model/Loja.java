@@ -19,7 +19,6 @@ public class Loja {
         this.categoria = categoria;
     }
     
-    
     public Integer getId() {
         return id;
     }
