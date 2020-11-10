@@ -32,6 +32,13 @@
                     <a href="inicioAdmin.jsp"><button>Entrar</button></a>
                 </div>
             </form>
+            
+            <div>
+                </br></br></br></br></br></br>
+                <p>Não é Parceiro?
+                    <a href="cadastroShop.jsp"><h5>Coloque seu Shopping na plataforma por aqui.</h5></a>
+                </p>
+            </div>
         </div>
         <jsp:include page="footer-fixed.jsp" />
     </body>

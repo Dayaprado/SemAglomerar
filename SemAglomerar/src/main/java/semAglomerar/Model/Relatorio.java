@@ -20,6 +20,10 @@ public class Relatorio {
         this.loja = loja;
         this.shop = shop;
     }
+    
+    public Relatorio(){
+        
+    }
 
     public Integer getId() {
         return id;

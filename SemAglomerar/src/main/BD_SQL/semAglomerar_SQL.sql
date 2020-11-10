@@ -48,6 +48,7 @@ CREATE TABLE IF NOT EXISTS `Shopping` (
   `shop_id` INT NOT NULL AUTO_INCREMENT,
   `shop_nome` VARCHAR(50) NOT NULL,
   `shop_cnpj` VARCHAR(20) NOT NULL,
+  `shop_status` VARCHAR(50) NOT NULL,
   `shop_login_id` INT NOT NULL,
   `shop_resp_id` INT NOT NULL,
   PRIMARY KEY (`shop_id`),

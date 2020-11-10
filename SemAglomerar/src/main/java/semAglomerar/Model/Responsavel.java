@@ -16,6 +16,7 @@ public class Responsavel {
     }
     
     public Responsavel(){
+        
     }
     
     public Integer getId() {

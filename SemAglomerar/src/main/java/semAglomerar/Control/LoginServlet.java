@@ -17,6 +17,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import semAglomerar.DAO.LoginDAO;
 import semAglomerar.Model.Login;
+import semAglomerar.DAO.ResponsavelDAO;
+import semAglomerar.DAO.ShoppingDAO;
+import semAglomerar.Model.Loja;
 
 /**
  *
@@ -24,7 +27,7 @@ import semAglomerar.Model.Login;
  */
 @WebServlet(name = "LoginServlet", urlPatterns = {"/login"})
 public class LoginServlet extends HttpServlet {
-
+        
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -41,6 +44,9 @@ public class LoginServlet extends HttpServlet {
             usuarioTeste = loginDAO.findByUser(usuarioTeste, email);  
             
             if(email.equals(usuarioTeste.getUsuario()) && senha.equals(usuarioTeste.getSenha())){
+                
+                LoadUsuarioShop(usuarioTeste, email);
+                
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/inicioAdmin.jsp");
                 dispatcher.forward(request, response);
             }else{
@@ -51,5 +57,10 @@ public class LoginServlet extends HttpServlet {
         } catch (SQLException ex) {
             Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    public void LoadUsuarioShop(Login login, String user) throws SQLException{
+        ShoppingDAO shop = new ShoppingDAO();
+        shop.findByUser(user);
     }
 }
