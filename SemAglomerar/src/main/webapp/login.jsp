@@ -37,8 +37,8 @@
             
             <div>
                 </br></br></br></br></br></br>
-                <p>Nï¿½o ï¿½ Parceiro?
-                    <a href="cadastroShop.jsp"><h5>Coloque seu Shopping na plataforma por aqui.</h5></a>
+                <p>Ainda não é nosso parceiro? </p>
+                    <a href="cadastroShop.jsp"><h5>Cadastre-se </h5></a>
                 </p>
             </div>
         </div>

@@ -13,7 +13,7 @@
     </head>
     <body>
         <jsp:include page="cabecalho.jsp" /> 
-        <h2>Cadastrar Loja</h2>
+        <h2>Cadastrar Shopping</h2>
         <div class="container">
             <form method="post" action="/SemAglomerar/formulario-salvarShop">
                 <div class="row">

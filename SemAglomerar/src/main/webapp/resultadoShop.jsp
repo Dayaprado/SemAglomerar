@@ -11,7 +11,7 @@
         <jsp:include page="cabecalho.jsp" />  
 
         <h2>Cadastro Efetuado com Sucesso!</h2>
-        <h5>Agora é só esperar que entraremos em contato para poder validar a conta e você começar a usar a plataforma :)</h5>
+        <h5>Aguarde que nossa equipe entrará em contato.</h5>
 
         <div class="container-2">
             <div class="row">

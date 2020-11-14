@@ -13,7 +13,7 @@
         
         <div class="container">
             <div class="row">
-                <label class="label"><b>Usuário ou Senha inserido está inválido.</b>                   
+                <label class="label"><b>Usuário ou Senha inválido.</b>                   
                 </label>
                 </br></br><a href="login.jsp">   
                     <button>Tente Novamente</button>
