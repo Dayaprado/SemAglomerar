@@ -29,13 +29,15 @@
                     </label>
                 </div>
                 <div class="row">
-                    <a href="inicioAdmin.jsp"><button>Entrar</button></a>
+                    <a href="inicioAdmin.jsp">  
+                        <button>Entrar</button>
+                    </a>
                 </div>
             </form>
             
             <div>
                 </br></br></br></br></br></br>
-                <p>Não é Parceiro?
+                <p>Nï¿½o ï¿½ Parceiro?
                     <a href="cadastroShop.jsp"><h5>Coloque seu Shopping na plataforma por aqui.</h5></a>
                 </p>
             </div>
