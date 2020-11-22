@@ -25,7 +25,7 @@ public class LoginDAO {
             while (rs.next()) {
                 login.setId(rs.getInt("login_id"));
                 login.setUsuario(rs.getString("login_usuario"));
-                login.setSenha(rs.getString("login_senha"));
+                login.setHashSenha(rs.getString("login_senha"));
                 resul.add(login);
             }
         }
@@ -47,12 +47,34 @@ public class LoginDAO {
                 if (rs.next()) {
                     login.setId(rs.getInt("login_id"));
                     login.setUsuario(rs.getString("login_usuario"));
-                    login.setSenha(rs.getString("login_senha"));
+                    login.setHashSenha(rs.getString("login_senha"));
                 }
             }catch (SQLException e) {
                 conn.rollback();
             }
         return login;
+    }
+    public boolean findByUser2(String user) throws SQLException {
+        String sql = "SELECT * FROM Login WHERE login_usuario=?";
+        Connection conn = null;
+        
+        try {
+            conn = ConnectionMySql.obterConexao();
+            conn.setAutoCommit(false);      
+            
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1, user);            
+            ResultSet rs = stmt.executeQuery();
+            
+                if (rs.next()) {
+                    login.setId(rs.getInt("login_id"));
+                    login.setUsuario(rs.getString("login_usuario"));
+                    login.setHashSenha(rs.getString("login_senha"));
+                }
+            }catch (SQLException e) {
+                conn.rollback();
+            }
+        return false;
     }
     
     public void inserirLogin(Login login) throws SQLException {
@@ -66,7 +88,7 @@ public class LoginDAO {
             // ADICIONAR O Statement.RETURN_GENERATED_KEYS PARA RECUPERAR O ID GERADO NO BD
             PreparedStatement stmt =   conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             stmt.setString(1, login.getUsuario());
-            stmt.setString(2, login.getSenha());
+            stmt.setString(2, login.getHashSenha());
             boolean resul = stmt.execute();
 
             ResultSet rs = stmt.getGeneratedKeys(); // RECUPERA O ID GERADO PARA O INFO NOVO
@@ -91,7 +113,7 @@ public class LoginDAO {
             // ADICIONAR O Statement.RETURN_GENERATED_KEYS PARA RECUPERAR O ID GERADO NO BD
             try (PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
                 stmt.setString(1, login.getUsuario());
-                stmt.setString(2, login.getSenha());
+                stmt.setString(2, login.getHashSenha());
                 stmt.setString(3, String.valueOf(login.getId()));
                 int resul = stmt.executeUpdate();
                 try (ResultSet rs = stmt.getGeneratedKeys()) {

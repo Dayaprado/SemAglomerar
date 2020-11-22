@@ -40,7 +40,7 @@ public class ShoppingDAO {
                 resp.setTelefone(rs.getString("resp_telefone"));   
                 login.setId(rs.getInt("login_id"));      
                 login.setUsuario(rs.getString("login_usuario"));    
-                login.setSenha(rs.getString("login_senha"));             
+                login.setHashSenha(rs.getString("login_senha"));             
                 resul.add(shop);
             }
         }        

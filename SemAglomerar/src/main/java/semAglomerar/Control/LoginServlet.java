@@ -43,7 +43,7 @@ public class LoginServlet extends HttpServlet {
             Login usuarioTeste = new Login();
             usuarioTeste = loginDAO.findByUser(usuarioTeste, email);  
             
-            if(email.equals(usuarioTeste.getUsuario()) && senha.equals(usuarioTeste.getSenha())){
+            if(email.equals(usuarioTeste.getUsuario()) && usuarioTeste.validarSenha(senha)){
                 
                 LoadUsuarioShop(usuarioTeste, email);
                 
