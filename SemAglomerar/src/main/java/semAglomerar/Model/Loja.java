@@ -19,6 +19,14 @@ public class Loja {
         this.categoria = categoria;
     }
     
+    public Loja(){
+        nome = null;
+        cnpj = null;
+        razaoSocial = null;
+        piso = null;
+        categoria = null;
+    }
+    
     public Integer getId() {
         return id;
     }

@@ -30,6 +30,7 @@
             <h2>Shoppings</h2>
             <div class="card">
                 <p><span><c:out value="${shopping.nome}"/></span></p>
+                <button>entrar</button>
             </div>
         </div>
     </div>
