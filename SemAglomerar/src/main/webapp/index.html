@@ -13,12 +13,13 @@
             <a href="index.html" class="left">
                 <img src="img/logo.png" alt="Logotipo da Sem Aglomerar" width=200 height=100>
             </a>
-            <form class="search-center">
-                <input type="text" id="txtPesquisa" class= "barra-de-pesquisa" placeholder="Pesquisar Shoppings" value=""/>
+            <form class="search-center" method="post" action="/SemAglomerar/pesquisa-shopping">
+                <input type="text" name="txtPesquisa" class= "barra-de-pesquisa" placeholder="Pesquisar Shoppings" value=""/>
                 <a href="pesquisaShop.jsp">   
                     <img src="img/036-zoom.png" alt="Procurar" width=15 height=15 />
                 </a>
             </form>
+            
            <a href="login.jsp" class="right">
                <img src="img/icon_usuario.png" alt="'Icone para Login" width=15 height=15>
                 Login

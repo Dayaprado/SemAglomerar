@@ -145,6 +145,34 @@ public class ShoppingDAO {
         return shop;
     }
     
+    public Shopping Pesquisa(String pesq) throws SQLException{
+        String sql = "SELECT shop_id, shop_nome, shop_cnpj, shop_status" +
+            "FROM shopping " +
+            "WHERE shop_nome like ? ;";
+        
+        Connection conn = null;
+        
+        try {
+            conn = ConnectionMySql.obterConexao();
+            conn.setAutoCommit(false);  
+            
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1, "%"+pesq+"%");    
+            
+            ResultSet rs = stmt.executeQuery();
+                if (rs.next()) {
+                    shop.setId(rs.getInt("shop_id"));
+                    shop.setNome(rs.getString("shop_nome"));
+                    shop.setCnpj(rs.getString("shop_cnpj"));
+                    shop.setStatus(rs.getString("shop_status"));
+                    return shop;
+                }
+        }catch (SQLException e) {
+                conn.rollback();
+            }
+        return shop;
+    }
+    
     public void inserirShopping(Shopping shop, Responsavel resp, Login login) throws SQLException{
         String sql = "INSERT INTO shopping (shop_nome, shop_cnpj, shop_status, shop_login_id, shop_resp_id) " +
         "VALUES (?,?,?,?,?);";

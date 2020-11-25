@@ -53,6 +53,7 @@ public class FormularioSalvarServlet extends HttpServlet {
         Responsavel responsavels = new Responsavel(responsavel,cpf,email,telefone);
         Login logins = new Login(nomeLogin,senha,"Loja");
         Loja lojas = new Loja(nome,CNPJ,social,Piso,categoria);
+        Shopping shoppings = new Shopping();
         
         request.setAttribute("responsavels", responsavels); 
         request.setAttribute("logins", logins);
@@ -63,7 +64,6 @@ public class FormularioSalvarServlet extends HttpServlet {
         ResponsavelDAO respDAO = new ResponsavelDAO();
         
         try {
-            Shopping shoppings = new Shopping();
             shoppings.LoadUsuarioId(shoppings);
             
             respDAO.inserirResponsavel(responsavels);
