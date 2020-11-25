@@ -26,6 +26,7 @@ public class LoginDAO {
                 login.setId(rs.getInt("login_id"));
                 login.setUsuario(rs.getString("login_usuario"));
                 login.setHashSenha(rs.getString("login_senha"));
+                login.setTipo(rs.getString("login_tipo"));
                 resul.add(login);
             }
         }
@@ -48,6 +49,7 @@ public class LoginDAO {
                     login.setId(rs.getInt("login_id"));
                     login.setUsuario(rs.getString("login_usuario"));
                     login.setHashSenha(rs.getString("login_senha"));
+                    login.setTipo(rs.getString("login_tipo"));
                 }
             }catch (SQLException e) {
                 conn.rollback();
@@ -70,6 +72,7 @@ public class LoginDAO {
                     login.setId(rs.getInt("login_id"));
                     login.setUsuario(rs.getString("login_usuario"));
                     login.setHashSenha(rs.getString("login_senha"));
+                    login.setTipo(rs.getString("login_tipo"));
                 }
             }catch (SQLException e) {
                 conn.rollback();
