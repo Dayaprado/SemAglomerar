@@ -56,6 +56,7 @@ public class LoginDAO {
             }
         return login;
     }
+    
     public boolean findByUser2(String user) throws SQLException {
         String sql = "SELECT * FROM Login WHERE login_usuario=?";
         Connection conn = null;

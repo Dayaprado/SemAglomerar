@@ -98,6 +98,7 @@ public class LojaDAO {
         return null;
     }
     
+    
     public void inserirLoja(Loja loja, Login login, Responsavel resp, Shopping shop) throws SQLException {
         String sql = "INSERT INTO Loja (loja_nome, loja_cnpj, loja_piso, loja_razao, loja_categoria, loja_shop_id, loja_resp_id, loja_login_id) " 
                 + "VALUES (?,?,?,?,?,?,?,?)";

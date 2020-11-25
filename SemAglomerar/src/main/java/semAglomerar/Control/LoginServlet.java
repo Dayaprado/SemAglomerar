@@ -17,9 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import semAglomerar.DAO.LoginDAO;
 import semAglomerar.Model.Login;
-import semAglomerar.DAO.ResponsavelDAO;
 import semAglomerar.DAO.ShoppingDAO;
-import semAglomerar.Model.Loja;
 
 /**
  *
@@ -39,16 +37,24 @@ public class LoginServlet extends HttpServlet {
         LoginDAO loginDAO = new LoginDAO(); 
         
         try {
-            Login usuario = new Login(email,senha,null);
-            Login usuarioTeste = new Login();
-            usuarioTeste = loginDAO.findByUser(usuarioTeste, email);  
+            Login usuario = new Login();
+            usuario = loginDAO.findByUser(usuario, email);  
+            String usuario_tipo = usuario.getTipo();
             
-            if(email.equals(usuarioTeste.getUsuario()) && usuarioTeste.validarSenha(senha)){
+            if(email.equals(usuario.getUsuario()) && usuario.validarSenha(senha)){
                 
-                LoadUsuarioShop(usuarioTeste, email);
+                //LoadUsuarioShop(usuarioTeste, email);
+                if(usuario_tipo.equals("Loja")){
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("/report.jsp");
+                    dispatcher.forward(request, response);  
+                    LoadUsuarioLoja(email);
+                    
+                }else{
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("/inicioAdmin.jsp");
+                    dispatcher.forward(request, response);  
+                    LoadUsuarioShop(email);
+                }
                 
-                RequestDispatcher dispatcher = request.getRequestDispatcher("/inicioAdmin.jsp");
-                dispatcher.forward(request, response);
             }else{
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/validacao.jsp");                
                 dispatcher.forward(request, response);
@@ -59,8 +65,13 @@ public class LoginServlet extends HttpServlet {
         }
     }
     
-    public void LoadUsuarioShop(Login login, String user) throws SQLException{
+    public void LoadUsuarioShop(String usuario) throws SQLException{
         ShoppingDAO shop = new ShoppingDAO();
-        shop.findByUser(user);
+        shop.findByUser(usuario);
+    }
+
+    public void LoadUsuarioLoja(String usuario) throws SQLException{
+        ShoppingDAO shop = new ShoppingDAO();
+        shop.findUserShop(usuario);
     }
 }
