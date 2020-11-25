@@ -47,7 +47,7 @@ public class FormularioSalvarShopping extends HttpServlet  {
         String senha = request.getParameter("senha");
         
         Responsavel responsavels = new Responsavel(responsavel,cpf,email,telefone);
-        Login logins = new Login(nomeLogin,senha);
+        Login logins = new Login(nomeLogin,senha,"Shopping");
         Shopping shoppings = new Shopping(nome,CNPJ,"Novo",logins,responsavels);
       
         request.setAttribute("responsavels", responsavels); 

@@ -20,7 +20,9 @@
             </a>
             <form class="search-center">
                 <input class="barra-de-pesquisa" type="text" id="txtPesquisa" placeholder="Pesquisar Shoppings" value=""/>
-                <button type="submit">Pesquisar</button>
+                <a href="pesquisaLoja.jsp"> 
+                    <img src="img/036-zoom.png" alt="Procurar" width=15 height=15 />
+                </a>
             </form>
             <h3>Olá!</h3>
             <a class="right" href="index.html">Sair</a>

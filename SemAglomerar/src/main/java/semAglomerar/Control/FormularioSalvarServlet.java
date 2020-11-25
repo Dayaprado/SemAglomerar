@@ -51,10 +51,10 @@ public class FormularioSalvarServlet extends HttpServlet {
         String senha = request.getParameter("senha");
 
         Responsavel responsavels = new Responsavel(responsavel,cpf,email,telefone);
-        Login logins = new Login(nomeLogin,senha);
+        Login logins = new Login(nomeLogin,senha,"Loja");
         Loja lojas = new Loja(nome,CNPJ,social,Piso,categoria);
         Shopping shoppings = new Shopping();
-        LoadShop(shoppings);
+        shoppings.setId(1);
         
         request.setAttribute("responsavels", responsavels); 
         request.setAttribute("logins", logins);

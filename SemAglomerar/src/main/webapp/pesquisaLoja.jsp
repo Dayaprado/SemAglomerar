@@ -20,14 +20,13 @@
             </a>
             <form class="search-center">
                 <input class="barra-de-pesquisa" type="text" id="txtPesquisa" placeholder="Pesquisar Shoppings" value=""/>
-                <button type="submit">Pesquisar</button>
+                <a href="pesquisaShop.jsp">   
+                    <img src="img/036-zoom.png" alt="Procurar" width=15 height=15 />
+                </a>
             </form>
             <h3>Olá!</h3>
         </div>
         <div id="lateral">
-            <a class="left" href="cadastro.jsp">
-                <button>Cadastrar Loja</button>
-            </a>
             <fieldset class="filtro">
                 <legend>Escolha por Categorias</legend>
                 <div>

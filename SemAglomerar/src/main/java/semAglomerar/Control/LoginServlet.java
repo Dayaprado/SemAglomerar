@@ -39,7 +39,7 @@ public class LoginServlet extends HttpServlet {
         LoginDAO loginDAO = new LoginDAO(); 
         
         try {
-            Login usuario = new Login(email,senha);
+            Login usuario = new Login(email,senha,null);
             Login usuarioTeste = new Login();
             usuarioTeste = loginDAO.findByUser(usuarioTeste, email);  
             

@@ -20,7 +20,7 @@ USE `semAglomerar` ;
 CREATE TABLE IF NOT EXISTS `Login` (
   `login_id` INT NOT NULL AUTO_INCREMENT,
   `login_usuario` VARCHAR(50) NOT NULL,
-  `login_senha` VARCHAR(12) NOT NULL,
+  `login_senha` VARCHAR(60) NOT NULL,
   PRIMARY KEY (`login_id`),
   UNIQUE INDEX `login_usuario_UNIQUE` (`login_usuario` ASC))
 ENGINE = InnoDB;
