@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import semAglomerar.DAO.LoginDAO;
 import semAglomerar.Model.Login;
-import semAglomerar.DAO.ShoppingDAO;
+import semAglomerar.Model.Shopping;
 
 /**
  *
@@ -35,6 +35,7 @@ public class LoginServlet extends HttpServlet {
         String senha = request.getParameter("senha");
         
         LoginDAO loginDAO = new LoginDAO(); 
+        Shopping shop = new Shopping();
         
         try {
             Login usuario = new Login();
@@ -47,12 +48,12 @@ public class LoginServlet extends HttpServlet {
                 if(usuario_tipo.equals("Loja")){
                     RequestDispatcher dispatcher = request.getRequestDispatcher("/report.jsp");
                     dispatcher.forward(request, response);  
-                    LoadUsuarioLoja(email);
+                    shop.LoadUsuarioLoja(shop, email);
                     
                 }else{
                     RequestDispatcher dispatcher = request.getRequestDispatcher("/inicioAdmin.jsp");
                     dispatcher.forward(request, response);  
-                    LoadUsuarioShop(email);
+                    shop.LoadUsuarioShop(shop, email);
                 }
                 
             }else{
@@ -63,15 +64,5 @@ public class LoginServlet extends HttpServlet {
         } catch (SQLException ex) {
             Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
-    
-    public void LoadUsuarioShop(String usuario) throws SQLException{
-        ShoppingDAO shop = new ShoppingDAO();
-        shop.findByUser(usuario);
-    }
-
-    public void LoadUsuarioLoja(String usuario) throws SQLException{
-        ShoppingDAO shop = new ShoppingDAO();
-        shop.findUserShop(usuario);
     }
 }

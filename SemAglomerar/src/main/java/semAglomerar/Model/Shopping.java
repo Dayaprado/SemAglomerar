@@ -1,5 +1,8 @@
 package semAglomerar.Model;
 
+import java.sql.SQLException;
+import semAglomerar.DAO.ShoppingDAO;
+
 
 public class Shopping {
     private Integer id;
@@ -18,6 +21,30 @@ public class Shopping {
     }
     
     public Shopping(){
+        nome = null;
+        cnpj = null;
+        status = null;
+        login = null;
+        resp = null;
+    }
+    
+    
+    public Shopping LoadUsuarioShop(Shopping shop, String usuario) throws SQLException{
+        ShoppingDAO shopDAO = new ShoppingDAO();
+        shop = shopDAO.findByUser(shop, usuario);
+        return shop;
+    }
+
+    public Shopping LoadUsuarioLoja(Shopping shop, String usuario) throws SQLException{
+        ShoppingDAO shopDAO = new ShoppingDAO();
+        shop = shopDAO.findUserShop(shop, usuario);
+        return shop;
+    }
+
+    public Shopping LoadUsuarioId(Shopping shop) throws SQLException{
+        ShoppingDAO shopDAO = new ShoppingDAO();
+        shop = shopDAO.findById(getId());
+        return shop;
     }
     
     public Integer getId() {
