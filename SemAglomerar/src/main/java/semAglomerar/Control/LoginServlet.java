@@ -45,10 +45,10 @@ public class LoginServlet extends HttpServlet {
             if(email.equals(usuario.getUsuario()) && usuario.validarSenha(senha)){
                 
                 //LoadUsuarioShop(usuarioTeste, email);
-                if(usuario_tipo.equals("Loja")){
-                    RequestDispatcher dispatcher = request.getRequestDispatcher("/report.jsp");
-                    dispatcher.forward(request, response);  
+                if(usuario_tipo.equals("Loja")){ 
                     shop.LoadUsuarioLoja(shop, email);
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("/report.jsp");
+                    dispatcher.forward(request, response); 
                     
                 }else  if(usuario_tipo.equals("Shopping")){
                     RequestDispatcher dispatcher = request.getRequestDispatcher("/inicioAdmin.jsp");
