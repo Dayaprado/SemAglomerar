@@ -1,6 +1,5 @@
 package semAglomerar.Model;
 
-import java.util.List;
 import org.mindrot.jbcrypt.BCrypt;
 
 public class Login {
@@ -8,15 +7,18 @@ public class Login {
     private Integer id;
     private String usuario;
     private String hashSenha;
+    private String tipo;
 
     public Login() {
         usuario = null;
         hashSenha = null;
+        tipo = null;
     }
 
-    public Login(String usuario, String senha) {
+    public Login(String usuario, String senha, String tipo) {
         this.usuario = usuario;
         setSenha(senha);
+        this.tipo = tipo;
     }
 
     public int getId() {
@@ -49,6 +51,14 @@ public class Login {
 
     public boolean validarSenha(String senha) {
         return BCrypt.checkpw(senha, hashSenha);
+    }
+    
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
     
 }

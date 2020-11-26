@@ -18,16 +18,15 @@
             <a class="left" href="index.html">
                 <img src="img/logo.png" alt="Logotipo da Sem Aglomerar" width=200 height=100>
             </a>
-            <form class="search-center">
-                <input class="barra-de-pesquisa" type="text" id="txtPesquisa" placeholder="Pesquisar Shoppings" value=""/>
-                <button type="submit">Pesquisar</button>
+            <form class="search-center" method="post" action="/SemAglomerar/pesquisa-loja">
+                <input type="text" name="txtPesquisa" class= "barra-de-pesquisa" placeholder="Pesquisar Lojas" value=""/>
+                <a href="pesquisaLoja.jsp">   
+                    <img src="img/036-zoom.png" alt="Procurar" width=15 height=15 />
+                </a>
             </form>
             <h3>Olá!</h3>
         </div>
         <div id="lateral">
-            <a class="left" href="cadastro.jsp">
-                <button>Cadastrar Loja</button>
-            </a>
             <fieldset class="filtro">
                 <legend>Escolha por Categorias</legend>
                 <div>
@@ -63,9 +62,8 @@
         <div class="lista-lojas">
             <h2>Lojas</h2>
             <div class="card">
-                <img src="img/lojas/renner.png" alt="Logo Renner" style="width:90px"/>
-                <p><span>Lojas Renner</span> - Vestuário</p>
-                <p>Piso Térreo, Loja 02</p>
+                <p><span><c:out value="${loja.nome}"/></span> - <c:out value="${loja.categoria}"/></p>
+                <p><c:out value="${loja.piso}"/></p>
             </div>
             <div class="card">
                 <img src="img/lojas/cea.png" alt="Logo C&A" style="width:90px"/>

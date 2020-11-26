@@ -18,9 +18,11 @@
             <a class="left" href="index.html">
                 <img src="img/logo.png" alt="Logotipo da Sem Aglomerar" width=200 height=100>
             </a>
-            <form class="search-center">
-                <input class="barra-de-pesquisa" type="text" id="txtPesquisa" placeholder="Pesquisar Shoppings" value=""/>
-                <button type="submit">Pesquisar</button>
+            <form class="search-center" method="post" action="/SemAglomerar/pesquisa-loja">
+                <input type="text" name="txtPesquisa" class= "barra-de-pesquisa" placeholder="Pesquisar Lojas" value=""/>
+                <a href="pesquisaLoja.jsp">   
+                    <img src="img/036-zoom.png" alt="Procurar" width=15 height=15 />
+                </a>
             </form>
             <h3>Olá!</h3>
             <a class="right" href="index.html">Sair</a>

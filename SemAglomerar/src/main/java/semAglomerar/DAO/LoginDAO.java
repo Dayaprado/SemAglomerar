@@ -26,6 +26,7 @@ public class LoginDAO {
                 login.setId(rs.getInt("login_id"));
                 login.setUsuario(rs.getString("login_usuario"));
                 login.setHashSenha(rs.getString("login_senha"));
+                login.setTipo(rs.getString("login_tipo"));
                 resul.add(login);
             }
         }
@@ -48,12 +49,14 @@ public class LoginDAO {
                     login.setId(rs.getInt("login_id"));
                     login.setUsuario(rs.getString("login_usuario"));
                     login.setHashSenha(rs.getString("login_senha"));
+                    login.setTipo(rs.getString("login_tipo"));
                 }
             }catch (SQLException e) {
                 conn.rollback();
             }
         return login;
     }
+    
     public boolean findByUser2(String user) throws SQLException {
         String sql = "SELECT * FROM Login WHERE login_usuario=?";
         Connection conn = null;
@@ -70,6 +73,7 @@ public class LoginDAO {
                     login.setId(rs.getInt("login_id"));
                     login.setUsuario(rs.getString("login_usuario"));
                     login.setHashSenha(rs.getString("login_senha"));
+                    login.setTipo(rs.getString("login_tipo"));
                 }
             }catch (SQLException e) {
                 conn.rollback();
@@ -78,7 +82,7 @@ public class LoginDAO {
     }
     
     public void inserirLogin(Login login) throws SQLException {
-        String sql = "INSERT INTO Login (login_usuario, login_senha) VALUES (?,?)";
+        String sql = "INSERT INTO Login (login_usuario, login_senha, login_tipo) VALUES (?,?,?)";
         Connection conn = null;
         try  {
             conn = ConnectionMySql.obterConexao();
@@ -89,6 +93,7 @@ public class LoginDAO {
             PreparedStatement stmt =   conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             stmt.setString(1, login.getUsuario());
             stmt.setString(2, login.getHashSenha());
+            stmt.setString(3, login.getTipo());
             boolean resul = stmt.execute();
 
             ResultSet rs = stmt.getGeneratedKeys(); // RECUPERA O ID GERADO PARA O INFO NOVO

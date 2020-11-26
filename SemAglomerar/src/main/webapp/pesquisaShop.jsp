@@ -17,25 +17,20 @@
             <a class="left" href="index.html">
                 <img src="img/logo.png" alt="Logotipo da Sem Aglomerar" width=200 height=100>
             </a>
-            <form class="search-center">
-                <input class="barra-de-pesquisa" type="text" id="txtPesquisa" placeholder="Pesquisar Shoppings" value=""/>
-                <button type="submit">Pesquisar</button>
+            <form class="search-center" method="post" action="/SemAglomerar/pesquisa-shopping">
+                <input type="text" name="txtPesquisa" class= "barra-de-pesquisa" placeholder="Pesquisar Shoppings" value=""/>
+                <a href="pesquisaShop.jsp">   
+                    <img src="img/036-zoom.png" alt="Procurar" width=15 height=15 />
+                </a>
             </form>
-            <h3>Olá!</h3>
             <a class="right" href="index.html">Sair</a>
         </div>
         </div>
         <div class="lista-shopping">
             <h2>Shoppings</h2>
             <div class="card">
-                <img src="img/Shoppings/morumbi.jpg" alt="Logo Shopping Morumbi" style="width:90px"/>
-                <p><span><a href="pesquisaLoja.jsp">Shopping Morumbi</a></span></p>
-                <p>Endereço:Av. Roque Petroni Júnior, 1089 - Jardim das Acacias, São Paulo - SP, 04707-900</p>
-            </div>
-            <div class="card"> 
-                    <img src="img/Shoppings/eldorado.png" alt="Logo Shopping Eldorado" style="width:90px"/>
-                <p><span><a href="pesquisaLoja.jsp">Shopping Eldorado</a></span></p>
-                <p>Endereço:Av. Rebouças, 3970 - Pinheiros, São Paulo - SP, 05402-600</p>
+                <p><span><c:out value="${shopping.nome}"/></span></p>
+                <button>entrar</button>
             </div>
         </div>
     </div>

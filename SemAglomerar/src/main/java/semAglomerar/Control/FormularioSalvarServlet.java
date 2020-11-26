@@ -51,10 +51,9 @@ public class FormularioSalvarServlet extends HttpServlet {
         String senha = request.getParameter("senha");
 
         Responsavel responsavels = new Responsavel(responsavel,cpf,email,telefone);
-        Login logins = new Login(nomeLogin,senha);
+        Login logins = new Login(nomeLogin,senha,"Loja");
         Loja lojas = new Loja(nome,CNPJ,social,Piso,categoria);
         Shopping shoppings = new Shopping();
-        LoadShop(shoppings);
         
         request.setAttribute("responsavels", responsavels); 
         request.setAttribute("logins", logins);
@@ -65,8 +64,10 @@ public class FormularioSalvarServlet extends HttpServlet {
         ResponsavelDAO respDAO = new ResponsavelDAO();
         
         try {
+            shoppings.LoadUsuarioId(shoppings);
+            
             respDAO.inserirResponsavel(responsavels);
-            loginDAO.inserirLogin(logins);
+            loginDAO.inserirLogin(logins);            
             lojaDAO.inserirLoja(lojas,logins,responsavels,shoppings);
         } catch (SQLException ex) {
             Logger.getLogger(FormularioSalvarServlet.class.getName()).log(Level.SEVERE, null, ex);
@@ -75,14 +76,4 @@ public class FormularioSalvarServlet extends HttpServlet {
         RequestDispatcher dispatcher = request.getRequestDispatcher("/resultado.jsp");
         dispatcher.forward(request, response);
     }
-    
-    public void LoadShop(Shopping shop){
-        shop.getId();
-        shop.getNome();
-        shop.getCnpj();
-        shop.getStatus();
-        shop.getResp();
-        shop.getLogin();
-    }
-
 }

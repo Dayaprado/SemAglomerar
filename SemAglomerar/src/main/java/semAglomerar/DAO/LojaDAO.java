@@ -96,6 +96,36 @@ public class LojaDAO {
             }
         }
         return null;
+    }    
+    
+    public Loja Pesquisa(String pesq) throws SQLException{
+        String sql = "SELECT loja_id, loja_nome, loja_cnpj, loja_razao, loja_piso, loja_categoria " +
+            "FROM loja " +
+            "WHERE loja_nome like ? ;";
+        
+        Connection conn = null;
+        
+        try {
+            conn = ConnectionMySql.obterConexao();
+            conn.setAutoCommit(false);  
+            
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1, "%"+pesq+"%");    
+            
+            ResultSet rs = stmt.executeQuery();
+                if (rs.next()) {
+                    loja.setId(rs.getInt("loja_id"));
+                    loja.setNome(rs.getString("loja_nome"));
+                    loja.setRazaoSocial(rs.getString("loja_razao"));
+                    loja.setCnpj(rs.getString("loja_cnpj"));
+                    loja.setPiso(rs.getString("loja_piso"));
+                    loja.setCategoria(rs.getString("loja_categoria"));
+                    return loja;
+                }
+        }catch (SQLException e) {
+                conn.rollback();
+            }
+        return loja;
     }
     
     public void inserirLoja(Loja loja, Login login, Responsavel resp, Shopping shop) throws SQLException {
