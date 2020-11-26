@@ -26,11 +26,7 @@ import semAglomerar.Model.Shopping;
 
 @WebServlet(name = "FormularioSalvarShopping", urlPatterns = {"/formulario-salvarShop"})
 public class FormularioSalvarShopping extends HttpServlet  {
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        doPost(request, response);
-    }
+  
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -49,12 +45,18 @@ public class FormularioSalvarShopping extends HttpServlet  {
         Responsavel responsavels = new Responsavel(responsavel,cpf,email,telefone);
         Login logins = new Login(nomeLogin,senha,"Shopping");
         Shopping shoppings = new Shopping(nome,CNPJ,"Novo",logins,responsavels);
-      
+        //String = usuario.
         request.setAttribute("responsavels", responsavels); 
         request.setAttribute("logins", logins);
         request.setAttribute("shoppings", shoppings);
         
+        System.out.println(request.getSession().getAttribute("usuario.tipo"));
+        System.out.println("lala");
+       
+        
+      
         ShoppingDAO shopDAO = new ShoppingDAO();
+        
         LoginDAO loginDAO = new LoginDAO();
         ResponsavelDAO respDAO = new ResponsavelDAO();
         
@@ -65,7 +67,7 @@ public class FormularioSalvarShopping extends HttpServlet  {
             shopDAO.inserirShopping(shoppings,responsavels,logins);
             
         } catch (SQLException ex) {
-            Logger.getLogger(FormularioSalvarServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FormularioSalvarLoja.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         RequestDispatcher dispatcher = request.getRequestDispatcher("/resultadoShop.jsp");

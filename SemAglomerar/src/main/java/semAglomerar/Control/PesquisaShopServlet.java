@@ -37,7 +37,7 @@ public class PesquisaShopServlet extends HttpServlet {
         try{
             shopDAO.Pesquisa(shop,pesquisa);
         }catch (SQLException ex) {
-            Logger.getLogger(FormularioSalvarServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FormularioSalvarLoja.class.getName()).log(Level.SEVERE, null, ex);
         }
         RequestDispatcher dispatcher = request.getRequestDispatcher("/pesquisaShop.jsp");
         dispatcher.forward(request, response);

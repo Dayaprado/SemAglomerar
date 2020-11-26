@@ -26,7 +26,7 @@
             <a class="right" href="index.html">Sair</a>
         </div>
         <div id="lateral">
-            <a class="left" href="cadastro.jsp">
+            <a class="left" href="cadastroShopping.jsp">
                 <button>Cadastrar Shopping</button>
             </a>
         </div>
@@ -36,7 +36,7 @@
                 <img src="img/Shoppings/morumbi.jpg" alt="Logo Shopping Morumbi" style="width:90px"/>
                 <p><span><a href="pesquisaLoja.jsp">Shopping Morumbi</a></span></p>
                 <p>Endereço:Av. Roque Petroni Júnior, 1089 - Jardim das Acacias, São Paulo - SP, 04707-900</p>
-                <a class="right" href="cadastrarShopping.jsp">
+                <a class="right" href="editarShopping.jsp">
                     <button>Editar</button>
                 </a>
                 <a class="right">
@@ -47,7 +47,7 @@
                 <img src="img/Shoppings/eldorado.png" alt="Logo Shopping" style="width:90px"/>
                 <p><span><a href="pesquisaLoja.jsp">Shopping Eldorado</a></span></p>
                 <p>Endereço:Av. Rebouças, 3970 - Pinheiros, São Paulo - SP, 05402-600</p>
-                    <a class="right" href="cadastrarShopping.jsp">
+                    <a class="right" href="editarShopping.jsp">
                     <button>Editar</button>
                 </a>
                 <a class="right">

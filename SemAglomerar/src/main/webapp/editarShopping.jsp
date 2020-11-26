@@ -15,7 +15,7 @@
         <jsp:include page="cabecalho.jsp" /> 
         <h2>Cadastrar Shopping</h2>
         <div class="container">
-            <form method="post" action="/SemAglomerar/formulario-salvar">
+            <form method="post" action="/SemAglomerar/formulario-EditarShop">
                 <div class="row">
                     <label class="label">Shopping:
                         <input name="nome" type="text" value="" />

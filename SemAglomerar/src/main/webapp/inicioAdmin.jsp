@@ -28,7 +28,7 @@
             <a class="right" href="index.html">Sair</a>
         </div>
         <div id="lateral">
-            <a class="left" href="cadastro.jsp">
+            <a class="left" href="cadastroLoja.jsp">
                 <button>Cadastrar Loja</button>
             </a>
             <fieldset class="filtro">

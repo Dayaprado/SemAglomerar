@@ -40,12 +40,6 @@ public class Shopping {
         shop = shopDAO.findUserShop(shop, usuario);
         return shop;
     }
-
-    public Shopping LoadUsuarioId(Shopping shop) throws SQLException{
-        ShoppingDAO shopDAO = new ShoppingDAO();
-        shop = shopDAO.findById(getId());
-        return shop;
-    }
     
     public Integer getId() {
         return id;

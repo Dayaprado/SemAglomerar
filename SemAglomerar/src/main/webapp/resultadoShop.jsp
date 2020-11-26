@@ -33,7 +33,7 @@
             </div>
 
             <div class="row">
-                <h3> Recebeu o email de confirmação?</h3>  
+                </br></br></br></br><h3> Recebeu o email de confirmação?</h3>  
                 
                 <a href="login.jsp">   
                     <button style="float: none">Sim</button>

@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -24,14 +25,15 @@ import semAglomerar.Model.Login;
 import semAglomerar.Model.Shopping;
 
 
-@WebServlet(name = "FormularioSalvarServlet", urlPatterns = {"/formulario-salvar"})
-public class FormularioSalvarServlet extends HttpServlet {
+@WebServlet(name = "FormularioSalvarLoja", urlPatterns = {"/formulario-salvar"})
+public class FormularioSalvarLoja extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         doPost(request, response);
     }
+    
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -53,7 +55,7 @@ public class FormularioSalvarServlet extends HttpServlet {
         Responsavel responsavels = new Responsavel(responsavel,cpf,email,telefone);
         Login logins = new Login(nomeLogin,senha,"Loja");
         Loja lojas = new Loja(nome,CNPJ,social,Piso,categoria);
-        Shopping shoppings = new Shopping();
+        Shopping shoppings = (Shopping) request.getSession().getAttribute("shopping");
         
         request.setAttribute("responsavels", responsavels); 
         request.setAttribute("logins", logins);
@@ -63,14 +65,12 @@ public class FormularioSalvarServlet extends HttpServlet {
         LoginDAO loginDAO = new LoginDAO();
         ResponsavelDAO respDAO = new ResponsavelDAO();
         
-        try {
-            shoppings.LoadUsuarioId(shoppings);
-            
+        try {            
             respDAO.inserirResponsavel(responsavels);
             loginDAO.inserirLogin(logins);            
             lojaDAO.inserirLoja(lojas,logins,responsavels,shoppings);
         } catch (SQLException ex) {
-            Logger.getLogger(FormularioSalvarServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FormularioSalvarLoja.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         RequestDispatcher dispatcher = request.getRequestDispatcher("/resultado.jsp");
