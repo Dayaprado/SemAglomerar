@@ -145,10 +145,10 @@ public class ShoppingDAO {
         return shop;
     }
     
-    public Shopping Pesquisa(String pesq) throws SQLException{
+    public Shopping Pesquisa(Shopping shop,String pesq) throws SQLException{
         String sql = "SELECT shop_id, shop_nome, shop_cnpj, shop_status" +
             "FROM shopping " +
-            "WHERE shop_nome like ? ;";
+            "WHERE shop_nome like ?;";
         
         Connection conn = null;
         
@@ -157,7 +157,7 @@ public class ShoppingDAO {
             conn.setAutoCommit(false);  
             
             PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.setString(1, "%"+pesq+"%");    
+            stmt.setString(1,"%"+pesq+"%");    
             
             ResultSet rs = stmt.executeQuery();
                 if (rs.next()) {
@@ -170,7 +170,7 @@ public class ShoppingDAO {
         }catch (SQLException e) {
                 conn.rollback();
             }
-        return shop;
+        return null;
     }
     
     public void inserirShopping(Shopping shop, Responsavel resp, Login login) throws SQLException{

@@ -35,7 +35,7 @@ public class PesquisaShopServlet extends HttpServlet {
         request.setAttribute("shopping", shop);
         
         try{
-            shopDAO.Pesquisa(pesquisa);
+            shopDAO.Pesquisa(shop,pesquisa);
         }catch (SQLException ex) {
             Logger.getLogger(FormularioSalvarServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
