@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import static javafx.beans.binding.Bindings.when;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -26,11 +27,7 @@ import semAglomerar.Model.Shopping;
 
 @WebServlet(name = "FormularioSalvarShopping", urlPatterns = {"/formulario-salvarShop"})
 public class FormularioSalvarShopping extends HttpServlet  {
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        doPost(request, response);
-    }
+  
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -49,12 +46,18 @@ public class FormularioSalvarShopping extends HttpServlet  {
         Responsavel responsavels = new Responsavel(responsavel,cpf,email,telefone);
         Login logins = new Login(nomeLogin,senha,"Shopping");
         Shopping shoppings = new Shopping(nome,CNPJ,"Novo",logins,responsavels);
-      
+        //String = usuario.
         request.setAttribute("responsavels", responsavels); 
         request.setAttribute("logins", logins);
         request.setAttribute("shoppings", shoppings);
         
+        System.out.println(request.getSession().getAttribute("usuario.tipo"));
+        System.out.println("lala");
+       
+        
+      
         ShoppingDAO shopDAO = new ShoppingDAO();
+        
         LoginDAO loginDAO = new LoginDAO();
         ResponsavelDAO respDAO = new ResponsavelDAO();
         

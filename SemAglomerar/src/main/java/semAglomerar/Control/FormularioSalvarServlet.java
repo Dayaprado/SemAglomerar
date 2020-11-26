@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -32,6 +33,7 @@ public class FormularioSalvarServlet extends HttpServlet {
             throws ServletException, IOException {
         doPost(request, response);
     }
+    
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -64,7 +66,8 @@ public class FormularioSalvarServlet extends HttpServlet {
         ResponsavelDAO respDAO = new ResponsavelDAO();
         
         try {
-            shoppings.LoadUsuarioId(shoppings);
+            shoppings = (Shopping) request.getSession().getAttribute("shopping");
+            //request.getSession().getAttribute("usuario");
             
             respDAO.inserirResponsavel(responsavels);
             loginDAO.inserirLogin(logins);            

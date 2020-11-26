@@ -29,9 +29,7 @@
                     </label>
                 </div>
                 <div class="row">
-                    <a href="inicioAdmin.jsp">  
-                        <button>Entrar</button>
-                    </a>
+                    <button type="submit">Entrar</button>
                 </div>
             </form>
             
