@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -41,20 +43,91 @@ public class FormularioSalvarShopping extends HttpServlet  {
         String telefone = request.getParameter("telefone");
         String nomeLogin = request.getParameter("nomeLogin");
         String senha = request.getParameter("senha");
+        String repetirSenha = request.getParameter("repetirSenha");
+        
+        //Validação do nome
+        boolean nomeValido = (nome !=null && nome.trim().length() >2);
+        
+        //Validação do cnpj
+        boolean cnpjValido = (CNPJ != null && CNPJ.trim().length() >13);
+        
+        //Validação do responsavel
+        boolean responsavelValido = (responsavel !=null && responsavel.trim().length() >2);
+        
+        //Validação do cpf
+        boolean cpfValido = (cpf !=null && cpf.trim().length() > 10);
+        
+        //Validação do email
+        boolean emailValido = (email != null && email.trim().length() > 0 );
+        if (emailValido) {
+            Pattern emailPattern = Pattern.compile("^[a-z0-9.]+@[a-z0-9]+\\.[a-z]+(\\.[a-z]+)?$");
+            Matcher emailMatcher = emailPattern.matcher(email);
+            emailValido = emailValido && emailMatcher.matches();
+        }
+
+        //Validação do telefone
+        boolean telefoneValido = (telefone !=null && telefone.trim().length() > 7);
+        
+        //Validação do Login
+        boolean nomeLoginValido = (nomeLogin !=null && nomeLogin.trim().length() > 2);
+        
+        //Validação da senha
+        boolean senhaValido = (senha != null && senha.trim().length() > 0);
+        
+        boolean repetirsenhaValido = (senha.equals(repetirSenha));
+        
+        boolean camposValidosGlobal = nomeValido && cnpjValido && responsavelValido && cpfValido && emailValido 
+                 && telefoneValido && nomeLoginValido && senhaValido && repetirsenhaValido;
+        
+        if(!camposValidosGlobal){
+            if(!nomeValido){
+                request.setAttribute("nomeErro", "Nome deve ser preenchido");
+            }
+            if(!cnpjValido){
+                request.setAttribute("cnpjErro", "Cnjp deve ser preenchido");
+            }
+            if(!responsavelValido){
+                request.setAttribute("responsavelErro", "Responsavel deve ser preenchido");
+            }
+            if(!cpfValido){
+                request.setAttribute("cpfErro", "Cpf deve ser preenchido");
+            }
+            if(!emailValido){
+                request.setAttribute("emailErro", "Email deve ser preenchido");
+            }
+            if(!telefoneValido){
+                request.setAttribute("telefoneErro", "Telefone deve ser preenchido");
+            }
+            if(!nomeLoginValido){
+                request.setAttribute("nomeLoginErro", "Login deve ser preenchido");
+            }
+            if(!senhaValido){
+                 request.setAttribute("senhaErro", "Senha deve ser preenchido");
+            }
+            if(!repetirsenhaValido){
+                request.setAttribute("repetirSenhaErro", "Senha deve ser igual a digitada anterior");
+            }
+            request.setAttribute("nome", nome);
+            request.setAttribute("cnpj", CNPJ);
+            request.setAttribute("loja", responsavel);
+            request.setAttribute("cpf", cpf);
+            request.setAttribute("email", email);
+            request.setAttribute("telefone", telefone);
+            request.setAttribute("nomeLogin", nomeLogin);
+            
+            RequestDispatcher  dispatcher= request.getRequestDispatcher("/cadastroShopping.jsp");
+            dispatcher.forward(request, response);
+            return;
+        }
         
         Responsavel responsavels = new Responsavel(responsavel,cpf,email,telefone);
         Login logins = new Login(nomeLogin,senha,"Shopping");
         Shopping shoppings = new Shopping(nome,CNPJ,"Novo",logins,responsavels);
-        //String = usuario.
+
         request.setAttribute("responsavels", responsavels); 
         request.setAttribute("logins", logins);
         request.setAttribute("shoppings", shoppings);
         
-        System.out.println(request.getSession().getAttribute("usuario.tipo"));
-        System.out.println("lala");
-       
-        
-      
         ShoppingDAO shopDAO = new ShoppingDAO();
         
         LoginDAO loginDAO = new LoginDAO();

@@ -14,7 +14,7 @@ Author     : dayaprado
         <jsp:include page="cabecalho.jsp" /> 
         <h2>Cadastrar Loja</h2>
         <div class="container">
-            <form method="post" action="/SemAglomerar/formulario-salvar" novalidate>
+            <form method="post" action="/SemAglomerar/formulario-EditarLoja" novalidate>
                 <div class="row">
                     <label class="label">Nome da loja:</label>
                     <input name="nome" type="text" value="${nome}" />
@@ -37,7 +37,7 @@ Author     : dayaprado
                     </c:if>
                 </div>
                 <div class="row">
-                    <label class="label">Piso:</label>
+                    <label class="label">Localização:</label>
                     <input name="piso" type="text" value="${piso}" />                
                     <c:if test="${pisoErro != null}">
                         <span class="erro"><c:out value="${pisoErro}" /></span>

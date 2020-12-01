@@ -17,13 +17,12 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author blackNite
  */
-@WebServlet(name = "FormularioAbrirServlet", urlPatterns = {"/formulario-abrir"})
-public class FormularioAbrirServlet extends HttpServlet {
-
+@WebServlet(name = "FormularioAbrirServletShopping", urlPatterns = {"/formulario-Shopping"})
+public class FormularioAbrirServletShopping extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/cadastro.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/cadastroShopping.jsp");
         dispatcher.forward(request, response);
     }
 }
