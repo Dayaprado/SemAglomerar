@@ -37,10 +37,10 @@ Author     : dayaprado
                     </c:if>
                 </div>
                 <div class="row">
-                    <label class="label">Piso:</label>
-                    <input name="piso" type="text" value="${piso}" />                
-                    <c:if test="${pisoErro != null}">
-                        <span class="erro"><c:out value="${pisoErro}" /></span>
+                    <label class="label">localização:</label>
+                    <input name="piso" type="text" value="${localizacao}" />                
+                    <c:if test="${localizacaoErro != null}">
+                        <span class="erro"><c:out value="${localizacaoErro}" /></span>
                     </c:if>
                 </div>
                 <div class="row">

@@ -69,6 +69,8 @@
                 <img src="img/lojas/cea.png" alt="Logo C&A" style="width:90px"/>
                 <p><span>Lojas C&A</span> - Vestuário</p>
                 <p>Piso L1, Loja 01</p>
+                     <a class="right" href="report.jsp"></a>
+                    <button>Acompanhar a quantidade de pessoa nesta loja?</button>
             </div>
         </div>
     </div>
