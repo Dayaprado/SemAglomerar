@@ -22,7 +22,7 @@ public class LojaDAO {
 
     public List<Loja> findAll() throws SQLException {
 
-        String sql = "SELECT loja_nome, loja_razao, loja_cnpj, loja_piso, loja_categoria, resp_nome, resp_cpf, resp_email, resp_telefone, shop_nome, shop_cnpj, login_usuario"
+        String sql = "SELECT loja_nome, loja_razao, loja_cnpj, loja_localiza, loja_categoria, resp_nome, resp_cpf, resp_email, resp_telefone, shop_nome, shop_cnpj, login_usuario"
                 + " FROM  Loja, 	Responsavel,	Login,    Shopping "
                 + " WHERE loja_resp_id=resp_id AND loja_login_id=login_id AND loja_shop_id=shop_id; ";
 
@@ -36,7 +36,7 @@ public class LojaDAO {
                 loja.setNome(rs.getString("loja_nome"));
                 loja.setRazaoSocial(rs.getString("loja_razao"));
                 loja.setCnpj(rs.getString("loja_cnpj"));
-                loja.setPiso(rs.getString("loja_piso"));
+                loja.setLocalizacao(rs.getString("loja_localiza"));
                 loja.setCategoria(rs.getString("loja_categoria"));
 
                 resp.setId(rs.getInt("resp_id"));
@@ -60,7 +60,7 @@ public class LojaDAO {
 
     public Loja findByCnpj(String cnpj) throws SQLException {
 
-        String sql = "SELECT loja_id, loja_nome, loja_razao, loja_cnpj, loja_piso, loja_categoria, resp_id, resp_nome, resp_cpf, resp_email, resp_telefone, shop_id, shop_nome, shop_cnpj, login_id, login_usuario, login_senha"
+        String sql = "SELECT loja_id, loja_nome, loja_razao, loja_cnpj, loja_localiza, loja_categoria, resp_id, resp_nome, resp_cpf, resp_email, resp_telefone, shop_id, shop_nome, shop_cnpj, login_id, login_usuario, login_senha"
                 + " FROM  Loja, 	Responsavel,	Login,    Shopping "
                 + " WHERE loja_cnpj= ? "
                 + " AND loja_resp_id=resp_id AND loja_login_id=login_id AND loja_shop_id=shop_id; ";
@@ -74,7 +74,7 @@ public class LojaDAO {
                     loja.setNome(rs.getString("loja_nome"));
                     loja.setRazaoSocial(rs.getString("loja_razao"));
                     loja.setCnpj(rs.getString("loja_cnpj"));
-                    loja.setPiso(rs.getString("loja_piso"));
+                    loja.setLocalizacao(rs.getString("loja_localiza"));
                     loja.setCategoria(rs.getString("loja_categoria"));
 
                     resp.setId(rs.getInt("resp_id"));
@@ -121,7 +121,7 @@ public class LojaDAO {
                 loja.setNome(rs.getString("loja_nome"));
                 loja.setRazaoSocial(rs.getString("loja_razao"));
                 loja.setCnpj(rs.getString("loja_cnpj"));
-                loja.setPiso(rs.getString("loja_localiza"));
+                loja.setLocalizacao(rs.getString("loja_localiza"));
                 loja.setCategoria(rs.getString("loja_categoria"));
                 return loja;
             }
@@ -152,7 +152,7 @@ public class LojaDAO {
                 loja.setNome(rs.getString("loja_nome"));
                 loja.setRazaoSocial(rs.getString("loja_razao"));
                 loja.setCnpj(rs.getString("loja_cnpj"));
-                loja.setPiso(rs.getString("loja_piso"));
+                loja.setLocalizacao(rs.getString("loja_localiza"));
                 loja.setCategoria(rs.getString("loja_categoria"));
                 return loja;
             }
@@ -164,7 +164,7 @@ public class LojaDAO {
     }
 
     public void inserirLoja(Loja loja, Login login, Responsavel resp, Shopping shop) throws SQLException {
-        String sql = "INSERT INTO Loja (loja_nome, loja_cnpj, loja_piso, loja_razao, loja_categoria, loja_shop_id, loja_resp_id, loja_login_id) "
+        String sql = "INSERT INTO Loja (loja_nome, loja_cnpj, loja_localiza, loja_razao, loja_categoria, loja_shop_id, loja_resp_id, loja_login_id) "
                 + "VALUES (?,?,?,?,?,?,?,?)";
         Connection conn = null;
 
@@ -177,7 +177,7 @@ public class LojaDAO {
             PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             stmt.setString(1, loja.getNome());
             stmt.setString(2, loja.getCnpj());
-            stmt.setString(3, loja.getPiso());
+            stmt.setString(3, loja.getLocalizacao());
             stmt.setString(4, loja.getRazaoSocial());
             stmt.setString(5, loja.getCategoria());
             stmt.setInt(6, shop.getId());
@@ -199,7 +199,7 @@ public class LojaDAO {
     }
 
     public void atualizarLoja(Loja loja) throws SQLException {
-        String sql = "UPDATE Loja set loja_nome=?, loja_cnpj=?, loja_piso=?,loja_razao=?, loja_categoria=? WHERE loja_id=?";
+        String sql = "UPDATE Loja set loja_nome=?, loja_cnpj=?, loja_localiza=?,loja_razao=?, loja_categoria=? WHERE loja_id=?";
         try (Connection conn = ConnectionMySql.obterConexao()) {
             // DESLIGAR AUTO-COMMIT -> POSSIBILITAR DESFAZER OPERACOES EM CASOS DE ERROS
             conn.setAutoCommit(false);
@@ -207,7 +207,7 @@ public class LojaDAO {
             try (PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
                 stmt.setString(1, loja.getNome());
                 stmt.setString(2, loja.getCnpj());
-                stmt.setString(3, loja.getPiso());
+                stmt.setString(3, loja.getLocalizacao());
                 stmt.setString(4, loja.getRazaoSocial());
                 stmt.setString(5, loja.getCategoria());
                 stmt.setInt(6, loja.getId());

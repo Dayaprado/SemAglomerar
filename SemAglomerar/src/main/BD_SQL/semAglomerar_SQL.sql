@@ -51,8 +51,8 @@ CREATE TABLE IF NOT EXISTS `Shopping` (
   `shop_nome` VARCHAR(50) NOT NULL,
   `shop_cnpj` VARCHAR(20) NOT NULL,
   `shop_status` VARCHAR(50) NOT NULL,
-  `shop_endereco` VARCHAR(50) NOT NULL,
-  `shop_logo` VARCHAR(50) NOT NULL,
+  `shop_endereco` LONGTEXT NOT NULL,
+  `shop_logo` VARCHAR(50) NULL,
   `shop_login_id` INT NOT NULL,
   `shop_resp_id` INT NOT NULL,
   PRIMARY KEY (`shop_id`),
@@ -82,7 +82,7 @@ CREATE TABLE IF NOT EXISTS `Loja` (
   `loja_razao` VARCHAR(50) NOT NULL,
   `loja_localiza` VARCHAR(45) NOT NULL,
   `loja_categoria` VARCHAR(50) NOT NULL,    
-  `loja_logo` VARCHAR(50) NOT NULL,    
+  `loja_logo` VARCHAR(50) NULL,    
   `loja_shop_id` INT NOT NULL,
   `loja_login_id` INT NOT NULL,
   `loja_resp_id` INT NOT NULL,
@@ -139,4 +139,19 @@ SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
-INSERT into Login (login_usuario, login_senha,login_tipo) value("admin","$2a$10$OlgUxY2aZo7tyTYIffcW3OAGEBUGu3alalW6l7CVOYnQAjF7S2QE.","Administrador");
+
+INSERT INTO Login (login_usuario, login_senha,login_tipo) value("admin","$2a$10$OlgUxY2aZo7tyTYIffcW3OAGEBUGu3alalW6l7CVOYnQAjF7S2QE.","Administrador");
+
+INSERT INTO Login (login_usuario, login_senha, login_tipo) value("Interlagos","$2a$10$gLO3KwyTrzLifQwc27KYAuVOh9idypeTE9i7EoESmrjB6SKhuM0MO","Shopping");
+INSERT INTO Responsavel (resp_nome, resp_cpf, resp_email, resp_telefone) value("Barbara Dilnia", "456.486.212-10", "bar.admin@gmail.com", "11 99164-5788");
+INSERT INTO Shopping ( shop_nome, shop_cnpj, shop_status, shop_endereco, shop_logo, shop_login_id, shop_resp_id) VALUES ("Interlagos","60.500.139/0001-26","Aprovado","Av. Sen. Teotônio Vilela, 261 - Interlagos, São Paulo - SP, 04801-010", "n", 2, 1);
+
+
+INSERT INTO Login (login_usuario, login_senha, login_tipo) value("Livraria Saraiva","$2a$10$gLO3KwyTrzLifQwc27KYAuVOh9idypeTE9i7EoESmrjB6SKhuM0MO","Loja");
+INSERT INTO Responsavel (resp_nome, resp_cpf, resp_email, resp_telefone) value("Carlos Diniz", "876.155.542-17", "carlos.diniz@gmail.com", "11 94567-5778");
+INSERT INTO Loja (loja_nome,loja_cnpj,loja_razao,loja_localiza,loja_categoria,loja_logo,loja_shop_id,loja_login_id,loja_resp_id) VALUES ("Livraria Saraiva","56.563.158/0001-24","SARAIVA LIVR","Térrio, Loja 5","Livraria","",1,3,2);
+
+
+INSERT INTO Login (login_usuario, login_senha, login_tipo) value("Kalunga","$2a$10$gLO3KwyTrzLifQwc27KYAuVOh9idypeTE9i7EoESmrjB6SKhuM0MO","Loja");
+INSERT INTO Responsavel (resp_nome, resp_cpf, resp_email, resp_telefone) value("Claudia Alvarenga", "045.844.882-34", "c.alvarenga@gmail.com", "11 97774-4588");
+INSERT INTO Loja (loja_nome,loja_cnpj,loja_razao,loja_localiza,loja_categoria,loja_logo,loja_shop_id,loja_login_id,loja_resp_id) VALUES ("Kalunga","43.283.811/0001-50","KALUNGA COMERCIO E INDUSTRIA GRAFICA LTDA","Piso 1, Loja 15","Papelaria","",1,4,3);

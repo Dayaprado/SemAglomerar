@@ -5,17 +5,17 @@ public class Loja {
     private String nome;
     private String cnpj;
     private String razaoSocial;
-    private String piso;
+    private String localizacao;
     private String categoria;
     private Login login;
     private Responsavel resp;
     private Shopping shop;
 
-    public Loja(String nome, String cnpj, String razaoSocial, String piso, String categoria){
+    public Loja(String nome, String cnpj, String razaoSocial, String localizacao, String categoria){
         this.nome = nome;
         this.cnpj = cnpj;
         this.razaoSocial = razaoSocial;
-        this.piso = piso;
+        this.localizacao = localizacao;
         this.categoria = categoria;
     }
     
@@ -23,7 +23,7 @@ public class Loja {
         nome = null;
         cnpj = null;
         razaoSocial = null;
-        piso = null;
+        localizacao = null;
         categoria = null;
     }
     
@@ -59,12 +59,12 @@ public class Loja {
         this.razaoSocial = razaoSocial;
     }
 
-    public String getPiso() {
-        return piso;
+    public String getLocalizacao() {
+        return localizacao;
     }
 
-    public void setPiso(String piso) {
-        this.piso = piso;
+    public void setLocalizacao(String localizacao) {
+        this.localizacao = localizacao;
     }
 
     public String getCategoria() {
