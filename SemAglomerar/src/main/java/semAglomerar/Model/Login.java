@@ -60,5 +60,4 @@ public class Login {
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
-    
 }

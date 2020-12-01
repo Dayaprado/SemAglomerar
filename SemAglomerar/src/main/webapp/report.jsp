@@ -12,14 +12,17 @@
         <jsp:include page="cabecalho_admin.jsp" />
         <div class="container-2">
             <h3>Olá!, ${loja}</h3>
-            <form  method="post" action="/SemAglomerar/relatorio">
-                <div class="form-group">
-                    <label class="label">Reportar quantidade:
-                        <input type="number" id="quantidade" name="quantidade" min="1" max="999">
-                        <button>Reportar</button>
-                    </label>
-                </div>
-            </form>
+            <% Boolean admin = Boolean.parseBoolean(request.getAttribute("admin").toString()); %>
+            <% if (admin) { %>
+                <form  method="post" action="/SemAglomerar/relatorio">
+                    <div class="form-group">
+                        <label class="label">Reportar quantidade:
+                            <input type="number" id="quantidade" name="quantidade" min="1" max="999">
+                            <button>Reportar</button>
+                        </label>
+                    </div>
+                </form>
+            <% } %>
             <canvas id="report"></canvas>
         </div>
         <jsp:include page="footer-fixed.jsp" />

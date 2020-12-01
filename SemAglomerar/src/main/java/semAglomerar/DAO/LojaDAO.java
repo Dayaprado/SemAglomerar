@@ -14,19 +14,20 @@ import semAglomerar.Model.Responsavel;
 import semAglomerar.Model.Shopping;
 
 public class LojaDAO {
+
     private Loja loja;
     private Shopping shop;
     private Responsavel resp;
     private Login login;
-        
-    public List<Loja> findAll() throws SQLException {      
-        
-        String sql = "SELECT loja_nome, loja_razao, loja_cnpj, loja_piso, loja_categoria, resp_nome, resp_cpf, resp_email, resp_telefone, shop_nome, shop_cnpj, login_usuario" +
-        " FROM  Loja, 	Responsavel,	Login,    Shopping " +
-        " WHERE loja_resp_id=resp_id AND loja_login_id=login_id AND loja_shop_id=shop_id; ";
+
+    public List<Loja> findAll() throws SQLException {
+
+        String sql = "SELECT loja_nome, loja_razao, loja_cnpj, loja_piso, loja_categoria, resp_nome, resp_cpf, resp_email, resp_telefone, shop_nome, shop_cnpj, login_usuario"
+                + " FROM  Loja, 	Responsavel,	Login,    Shopping "
+                + " WHERE loja_resp_id=resp_id AND loja_login_id=login_id AND loja_shop_id=shop_id; ";
 
         List<Loja> resul = new ArrayList<>();
-        
+
         try (Connection conn = ConnectionMySql.obterConexao();
                 PreparedStatement stmt = conn.prepareStatement(sql);
                 ResultSet rs = stmt.executeQuery()) {
@@ -37,33 +38,33 @@ public class LojaDAO {
                 loja.setCnpj(rs.getString("loja_cnpj"));
                 loja.setPiso(rs.getString("loja_piso"));
                 loja.setCategoria(rs.getString("loja_categoria"));
-                
+
                 resp.setId(rs.getInt("resp_id"));
                 resp.setNome(rs.getString("resp_nome"));
                 resp.setCpf(rs.getString("resp_cpf"));
                 resp.setEmail(rs.getString("resp_email"));
                 resp.setTelefone(rs.getString("resp_telefone"));
-                
+
                 shop.setId(rs.getInt("shop_id"));
                 shop.setNome(rs.getString("shop_nome"));
                 shop.setCnpj(rs.getString("shop_cnpj"));
-                
+
                 login.setId(rs.getInt("login_id"));
                 login.setUsuario(rs.getString("login_usuario"));
-                
+
                 resul.add(loja);
             }
         }
         return resul;
     }
-    
+
     public Loja findByCnpj(String cnpj) throws SQLException {
-        
-        String sql = "SELECT loja_id, loja_nome, loja_razao, loja_cnpj, loja_piso, loja_categoria, resp_id, resp_nome, resp_cpf, resp_email, resp_telefone, shop_id, shop_nome, shop_cnpj, login_id, login_usuario, login_senha" +
-        " FROM  Loja, 	Responsavel,	Login,    Shopping " +
-        " WHERE loja_cnpj= ? " +
-        " AND loja_resp_id=resp_id AND loja_login_id=login_id AND loja_shop_id=shop_id; ";
-        
+
+        String sql = "SELECT loja_id, loja_nome, loja_razao, loja_cnpj, loja_piso, loja_categoria, resp_id, resp_nome, resp_cpf, resp_email, resp_telefone, shop_id, shop_nome, shop_cnpj, login_id, login_usuario, login_senha"
+                + " FROM  Loja, 	Responsavel,	Login,    Shopping "
+                + " WHERE loja_cnpj= ? "
+                + " AND loja_resp_id=resp_id AND loja_login_id=login_id AND loja_shop_id=shop_id; ";
+
         try (Connection conn = ConnectionMySql.obterConexao();
                 PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, cnpj);
@@ -75,79 +76,113 @@ public class LojaDAO {
                     loja.setCnpj(rs.getString("loja_cnpj"));
                     loja.setPiso(rs.getString("loja_piso"));
                     loja.setCategoria(rs.getString("loja_categoria"));
-                
+
                     resp.setId(rs.getInt("resp_id"));
                     resp.setNome(rs.getString("resp_nome"));
                     resp.setCpf(rs.getString("resp_cpf"));
                     resp.setEmail(rs.getString("resp_email"));
                     resp.setTelefone(rs.getString("resp_telefone"));
-                
+
                     shop.setId(rs.getInt("shop_id"));
                     shop.setNome(rs.getString("shop_nome"));
                     shop.setCnpj(rs.getString("shop_cnpj"));
-                
+
                     login.setId(rs.getInt("login_id"));
                     login.setUsuario(rs.getString("login_usuario"));
                     login.setHashSenha(rs.getString("login_senha"));
                     return loja;
                 }
-            }catch (Exception e) {
-            System.out.print("Erro ao pesquisar o CNPJ: " + cnpj);
+            } catch (Exception e) {
+                System.out.print("Erro ao pesquisar o CNPJ: " + cnpj);
             }
         }
         return null;
-    }    
-    
-    public Loja Pesquisa(String pesq) throws SQLException{
-        String sql = "SELECT loja_id, loja_nome, loja_cnpj, loja_razao, loja_piso, loja_categoria " +
-            "FROM loja " +
-            "WHERE loja_nome like ? ;";
-        
+    }
+
+    public Loja findById(int id) throws SQLException {
+
+        String sql = "SELECT loja_id, loja_nome, loja_cnpj, loja_razao, loja_localiza, loja_categoria "
+                + "FROM Loja "
+                + "WHERE loja_id = ?;";
+
         Connection conn = null;
-        
+
         try {
             conn = ConnectionMySql.obterConexao();
-            conn.setAutoCommit(false);  
-            
+            conn.setAutoCommit(false);
+
             PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.setString(1, "%"+pesq+"%");    
-            
+            stmt.setString(1, Integer.toString(id));
+
             ResultSet rs = stmt.executeQuery();
-                if (rs.next()) {
-                    loja.setId(rs.getInt("loja_id"));
-                    loja.setNome(rs.getString("loja_nome"));
-                    loja.setRazaoSocial(rs.getString("loja_razao"));
-                    loja.setCnpj(rs.getString("loja_cnpj"));
-                    loja.setPiso(rs.getString("loja_piso"));
-                    loja.setCategoria(rs.getString("loja_categoria"));
-                    return loja;
-                }
-        }catch (SQLException e) {
-                conn.rollback();
+            if (rs.next()) {
+                loja = new Loja();
+                loja.setId(rs.getInt("loja_id"));
+                loja.setNome(rs.getString("loja_nome"));
+                loja.setRazaoSocial(rs.getString("loja_razao"));
+                loja.setCnpj(rs.getString("loja_cnpj"));
+                loja.setPiso(rs.getString("loja_localiza"));
+                loja.setCategoria(rs.getString("loja_categoria"));
+                return loja;
             }
+        } catch (SQLException e) {
+            conn.rollback();
+        }
+
+        return null;
+    }
+
+    public Loja Pesquisa(String pesq) throws SQLException {
+        String sql = "SELECT loja_id, loja_nome, loja_cnpj, loja_razao, loja_localiza, loja_categoria "
+                + "FROM loja "
+                + "WHERE loja_nome like ? ;";
+
+        Connection conn = null;
+
+        try {
+            conn = ConnectionMySql.obterConexao();
+            conn.setAutoCommit(false);
+
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1, "%" + pesq + "%");
+
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                loja.setId(rs.getInt("loja_id"));
+                loja.setNome(rs.getString("loja_nome"));
+                loja.setRazaoSocial(rs.getString("loja_razao"));
+                loja.setCnpj(rs.getString("loja_cnpj"));
+                loja.setPiso(rs.getString("loja_piso"));
+                loja.setCategoria(rs.getString("loja_categoria"));
+                return loja;
+            }
+        } catch (SQLException e) {
+            conn.rollback();
+        }
+
         return loja;
     }
-    
+
     public void inserirLoja(Loja loja, Login login, Responsavel resp, Shopping shop) throws SQLException {
-        String sql = "INSERT INTO Loja (loja_nome, loja_cnpj, loja_piso, loja_razao, loja_categoria, loja_shop_id, loja_resp_id, loja_login_id) " 
+        String sql = "INSERT INTO Loja (loja_nome, loja_cnpj, loja_piso, loja_razao, loja_categoria, loja_shop_id, loja_resp_id, loja_login_id) "
                 + "VALUES (?,?,?,?,?,?,?,?)";
         Connection conn = null;
-        
-        try  {
+
+        try {
             conn = ConnectionMySql.obterConexao();
             // DESLIGAR AUTO-COMMIT -> POSSIBILITAR DESFAZER OPERACOES EM CASOS DE ERROS
             conn.setAutoCommit(false);
 
             // ADICIONAR O Statement.RETURN_GENERATED_KEYS PARA RECUPERAR O ID GERADO NO BD
-            PreparedStatement stmt =   conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-                stmt.setString(1, loja.getNome());
-                stmt.setString(2, loja.getCnpj());
-                stmt.setString(3, loja.getPiso());
-                stmt.setString(4, loja.getRazaoSocial());
-                stmt.setString(5, loja.getCategoria());
-                stmt.setInt(6, shop.getId());
-                stmt.setInt(7, resp.getId());
-                stmt.setInt(8, login.getId());
+            PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            stmt.setString(1, loja.getNome());
+            stmt.setString(2, loja.getCnpj());
+            stmt.setString(3, loja.getPiso());
+            stmt.setString(4, loja.getRazaoSocial());
+            stmt.setString(5, loja.getCategoria());
+            stmt.setInt(6, shop.getId());
+            stmt.setInt(7, resp.getId());
+            stmt.setInt(8, login.getId());
             boolean resul = stmt.execute();
 
             ResultSet rs = stmt.getGeneratedKeys(); // RECUPERA O ID GERADO PARA O INFO NOVO
@@ -159,10 +194,10 @@ public class LojaDAO {
             conn.commit();
 
         } catch (SQLException e) {
-            conn.rollback();            
-        }        
+            conn.rollback();
+        }
     }
-    
+
     public void atualizarLoja(Loja loja) throws SQLException {
         String sql = "UPDATE Loja set loja_nome=?, loja_cnpj=?, loja_piso=?,loja_razao=?, loja_categoria=? WHERE loja_id=?";
         try (Connection conn = ConnectionMySql.obterConexao()) {
@@ -191,7 +226,8 @@ public class LojaDAO {
             }
         }
     }
-     public void deletarLoja(Loja loja) throws SQLException {
+
+    public void deletarLoja(Loja loja) throws SQLException {
         String sql = "DELETE * FROM Loja WHERE loja_id=?";
         try (Connection conn = ConnectionMySql.obterConexao()) {
             // DESLIGAR AUTO-COMMIT -> POSSIBILITAR DESFAZER OPERACOES EM CASOS DE ERROS
@@ -213,5 +249,5 @@ public class LojaDAO {
                 throw e;
             }
         }
-    }    
+    }
 }
