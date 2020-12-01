@@ -8,6 +8,32 @@
     <packaging>war</packaging>
 
     <name>SemAglomerar</name>
+    
+    <pluginRepositories>
+        <pluginRepository>
+            <id>central</id>
+            <name>Central Repository</name>
+            <url>https://repo.maven.apache.org/maven2</url>
+            <layout>default</layout>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <releases>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+        </pluginRepository>
+    </pluginRepositories>
+    <repositories>
+        <repository>
+            <id>central</id>
+            <name>Central Repository</name>
+            <url>https://repo.maven.apache.org/maven2</url>
+            <layout>default</layout>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
 
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
@@ -93,48 +119,28 @@
         </plugins>
     </build>
     <dependencies>
-
         <dependency>
-
             <groupId>javax</groupId>
-
             <artifactId>javaee-web-api</artifactId>
-
             <version>7.0</version>
-
             <scope>provided</scope>
-
         </dependency>
-
-
-
         <dependency>
-
             <groupId>javax.servlet</groupId>
-
             <artifactId>jstl</artifactId>
-
             <version>1.2</version>
-
         </dependency>
-        
+       
         <dependency>
             <groupId>org.mindrot</groupId>
             <artifactId>jbcrypt</artifactId>
             <version>0.4</version>
         </dependency>
 
-
-
         <dependency>
-
             <groupId>mysql</groupId>
-
             <artifactId>mysql-connector-java</artifactId>
-
             <version>8.0.21</version>
-
         </dependency>
-
     </dependencies>
 </project>
