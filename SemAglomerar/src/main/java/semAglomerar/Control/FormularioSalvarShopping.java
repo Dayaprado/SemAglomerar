@@ -37,6 +37,7 @@ public class FormularioSalvarShopping extends HttpServlet  {
         //recuperar dados inseridos no formulario.
         String nome = request.getParameter("nome");
         String CNPJ = request.getParameter("cnpj");
+        String endereco = request.getParameter("endereco");
         String responsavel = request.getParameter("loja");
         String cpf = request.getParameter("cpf");
         String email = request.getParameter("email");
@@ -59,12 +60,14 @@ public class FormularioSalvarShopping extends HttpServlet  {
         
         //Validação do email
         boolean emailValido = (email != null && email.trim().length() > 0 );
+        /*
         if (emailValido) {
-            Pattern emailPattern = Pattern.compile("^[a-z0-9.]+@[a-z0-9]+\\.[a-z]+(\\.[a-z]+)?$");
+            Pattern emailPattern = Pattern.compile("[a-z0-9_.]+@[a-z0-9]+\\.[a-z]+(\\.[a-z]+)?$");
             Matcher emailMatcher = emailPattern.matcher(email);
             emailValido = emailValido && emailMatcher.matches();
         }
-
+        */
+        
         //Validação do telefone
         boolean telefoneValido = (telefone !=null && telefone.trim().length() > 7);
         
@@ -114,6 +117,7 @@ public class FormularioSalvarShopping extends HttpServlet  {
             request.setAttribute("email", email);
             request.setAttribute("telefone", telefone);
             request.setAttribute("nomeLogin", nomeLogin);
+            request.setAttribute("endereco", endereco);
             
             RequestDispatcher  dispatcher= request.getRequestDispatcher("/cadastroShopping.jsp");
             dispatcher.forward(request, response);
@@ -123,6 +127,7 @@ public class FormularioSalvarShopping extends HttpServlet  {
         Responsavel responsavels = new Responsavel(responsavel,cpf,email,telefone);
         Login logins = new Login(nomeLogin,senha,"Shopping");
         Shopping shoppings = new Shopping(nome,CNPJ,"Novo",logins,responsavels);
+        shoppings.setEndereco(endereco);
 
         request.setAttribute("responsavels", responsavels); 
         request.setAttribute("logins", logins);

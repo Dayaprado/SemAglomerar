@@ -98,8 +98,21 @@ body {
     background-color: #40E0D0;
 }
 
-.rodape-fixed {
+.rodape-abs {
     position: absolute;
+    border-top: 1px solid #333;
+    bottom: 0;
+    left: 0;
+    height: 40px;
+    width: 100%;
+    margin: 0px;
+    margin-top: 10px;
+    padding-top: 5px; 
+    background-color: #40E0D0;
+}
+
+.rodape-fixed {
+    position: fixed;
     border-top: 1px solid #333;
     bottom: 0;
     left: 0;

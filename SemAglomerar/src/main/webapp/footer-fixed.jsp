@@ -5,5 +5,5 @@
 --%>
 
 <div class="">
-    <p class="rodape-fixed">© Todos os direitos reservados | contato@semaglomerar | Termos de Serviço| Política de Privacidade</p>
+    <p class="rodape-abs">© Todos os direitos reservados | contato@semaglomerar | Termos de Serviço| Política de Privacidade</p>
 </div>
