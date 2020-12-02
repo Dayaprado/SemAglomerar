@@ -15,15 +15,15 @@ import javax.servlet.http.HttpServletResponse;
 import semAglomerar.DAO.ShoppingDAO;
 import semAglomerar.Model.Shopping;
 
-@WebServlet(name = "PesquisaShopServlet", urlPatterns = {"/pesquisar-shopping"})
-public class PesquisaShopServlet extends HttpServlet {
+@WebServlet(name = "AdminPesquisaShopServlet", urlPatterns = {"/admin-shopping"})
+public class AdminPesquisaShopServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         request.setAttribute("shops", new ArrayList<Shopping>());
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/pesquisaShop.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/adminPesquisaShop.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -39,10 +39,10 @@ public class PesquisaShopServlet extends HttpServlet {
             List<Shopping> shops = shopDAO.Pesquisa(pesquisa);
             request.setAttribute("shops", shops);
         } catch (SQLException ex) {
-            Logger.getLogger(PesquisaShopServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AdminPesquisaShopServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/pesquisaShop.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/adminPesquisaShop.jsp");
         dispatcher.forward(request, response);
     }
 }

@@ -98,7 +98,7 @@ public class LojaDAO {
         }
         return null;
     }
-
+    
     public Loja findById(int id) throws SQLException {
 
         String sql = "SELECT loja_id, loja_nome, loja_cnpj, loja_razao, loja_localiza, loja_categoria "
@@ -126,10 +126,76 @@ public class LojaDAO {
                 return loja;
             }
         } catch (SQLException e) {
-            conn.rollback();
+            conn.close();
         }
 
         return null;
+    }
+    
+    public Loja findByUser(String usuario) throws SQLException {
+
+        String sql = "SELECT loja_id, loja_nome, loja_cnpj, loja_razao, loja_localiza, loja_categoria "
+                + " FROM Loja, Responsavel,Login "
+                + " WHERE loja_resp_id=resp_id AND loja_login_id = login_id AND login_usuario= ?";
+
+        Connection conn = null;
+
+        try {
+            conn = ConnectionMySql.obterConexao();
+            conn.setAutoCommit(false);
+
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1, usuario);
+
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                loja = new Loja();
+                loja.setId(rs.getInt("loja_id"));
+                loja.setNome(rs.getString("loja_nome"));
+                loja.setRazaoSocial(rs.getString("loja_razao"));
+                loja.setCnpj(rs.getString("loja_cnpj"));
+                loja.setLocalizacao(rs.getString("loja_localiza"));
+                loja.setCategoria(rs.getString("loja_categoria"));
+                return loja;
+            }
+        } catch (SQLException e) {
+            conn.close();
+        }
+
+        return null;
+    }
+
+    public List<Loja> findByShopId(int shop_id) throws SQLException {
+        List<Loja> lojas = new ArrayList<>();
+        
+        Connection conn = null;
+        try {
+            String sql = "SELECT loja_id, loja_nome, loja_cnpj, loja_razao, loja_localiza, loja_categoria "
+                    + " FROM Loja "
+                    + " WHERE loja_shop_id = ?;";
+
+            conn = ConnectionMySql.obterConexao();
+            conn.setAutoCommit(false);
+
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1, Integer.toString(shop_id));
+
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                loja = new Loja();
+                loja.setId(rs.getInt("loja_id"));
+                loja.setNome(rs.getString("loja_nome"));
+                loja.setRazaoSocial(rs.getString("loja_razao"));
+                loja.setCnpj(rs.getString("loja_cnpj"));
+                loja.setLocalizacao(rs.getString("loja_localiza"));
+                loja.setCategoria(rs.getString("loja_categoria"));
+                lojas.add(loja);
+            }
+        } catch (SQLException e) {
+            conn.close();
+        }
+
+        return lojas;
     }
 
     public Loja Pesquisa(String pesq) throws SQLException {

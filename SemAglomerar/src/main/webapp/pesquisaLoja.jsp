@@ -4,6 +4,8 @@
     Author     : carol
 --%>
 
+<%@page import="java.util.List"%>
+<%@page import="semAglomerar.Model.Loja"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -18,9 +20,11 @@
             <a class="left" href="index.html">
                 <img src="img/logo.png" alt="Logotipo da Sem Aglomerar" width=200 height=100>
             </a>
-            <form class="search-center" method="post" action="/SemAglomerar/pesquisa-loja">
+            <form class="search-center" method="post" action="/SemAglomerar/pesquisar-loja">
                 <input type="text" name="txtPesquisa" class= "barra-de-pesquisa" placeholder="Pesquisar Lojas" value=""/>
-                <a href="pesquisaLoja.jsp">   
+                <% String shop = (String)request.getAttribute("shop_id"); %>
+                <input type="hidden" name="shop_id" value="<%= shop %>"/>   
+                <a href="#">   
                     <img src="img/036-zoom.png" alt="Procurar" width=15 height=15 />
                 </a>
             </form>
@@ -61,17 +65,21 @@
         </div>
         <div class="lista-lojas">
             <h2>Lojas</h2>
-            <div class="card">
-                <p><span><c:out value="${loja.nome}"/></span> - <c:out value="${loja.categoria}"/></p>
-                <p><c:out value="${loja.piso}"/></p>
-            </div>
-            <div class="card">
-                <img src="img/lojas/cea.png" alt="Logo C&A" style="width:90px"/>
-                <p><span>Lojas C&A</span> - Vestuário</p>
-                <p>Piso L1, Loja 01</p>
-                     <a class="right" href="report.jsp"></a>
-                    <button>Acompanhar a quantidade de pessoa nesta loja?</button>
-            </div>
+            
+            <% List<Loja> lojas = (List<Loja>) request.getAttribute("lojas"); %>
+            <% for (Loja loja : lojas) { %>
+                <div class="card">
+                    <!-- <img src="img/lojas/cea.png" alt="Logo C&A" style="width:90px"/> -->
+                    <p>
+                        <span><%= loja.getNome() %></span> 
+                        - <%= loja.getCategoria() %>
+                    </p>
+                    <p><%= loja.getLocalizacao() %></p>
+                    <a class="right" href="/SemAglomerar/relatorio?loja_id=<%= loja.getId() %>">                        
+                        Movimentação da Loja
+                    </a>
+                </div>
+            <% }%>
         </div>
     </div>
     <jsp:include page="footer-fixed.jsp" />

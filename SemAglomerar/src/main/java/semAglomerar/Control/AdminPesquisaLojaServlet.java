@@ -14,8 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import semAglomerar.DAO.LojaDAO;
 import semAglomerar.Model.Loja;
 
-@WebServlet(name = "PesquisaLojaServlet", urlPatterns = {"/pesquisar-loja"})
-public class PesquisaLojaServlet extends HttpServlet {
+@WebServlet(name = "AdminPesquisaLojaServlet", urlPatterns = {"/admin-loja"})
+public class AdminPesquisaLojaServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -30,10 +30,10 @@ public class PesquisaLojaServlet extends HttpServlet {
             request.setAttribute("shop_id", param1);
             request.setAttribute("lojas", lojas);
         } catch (SQLException ex) {
-            Logger.getLogger(PesquisaLojaServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AdminPesquisaLojaServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/pesquisaLoja.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/adminPesquisaLoja.jsp");
         dispatcher.forward(request, response);
         
     }
@@ -53,10 +53,10 @@ public class PesquisaLojaServlet extends HttpServlet {
             request.setAttribute("lojas", lojas);
 
         } catch (SQLException ex) {
-            Logger.getLogger(PesquisaLojaServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AdminPesquisaLojaServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/pesquisaLoja.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/adminPesquisaLoja.jsp");
         dispatcher.forward(request, response);
     }
 }

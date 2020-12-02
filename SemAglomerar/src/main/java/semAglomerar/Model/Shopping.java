@@ -1,6 +1,7 @@
 package semAglomerar.Model;
 
 import java.sql.SQLException;
+import semAglomerar.DAO.LojaDAO;
 import semAglomerar.DAO.ShoppingDAO;
 
 
@@ -9,6 +10,7 @@ public class Shopping {
     private String nome;
     private String cnpj;
     private String status;
+    private String endereco;
     private Login login;
     private Responsavel resp;
 
@@ -35,10 +37,10 @@ public class Shopping {
         return shop;
     }
 
-    public Shopping LoadUsuarioLoja(Shopping shop, String usuario) throws SQLException{
-        ShoppingDAO shopDAO = new ShoppingDAO();
-        shop = shopDAO.findUserShop(shop, usuario);
-        return shop;
+    public Loja LoadUsuarioLoja(String usuario) throws SQLException{
+        LojaDAO lojaDAO = new LojaDAO();
+        Loja loja = lojaDAO.findByUser(usuario);
+        return loja;
     }
     
     public Integer getId() {
@@ -88,4 +90,12 @@ public class Shopping {
     public void setResp(Responsavel resp) {
         this.resp = resp;
     }
+    
+    public String getEndereco() {
+        return endereco;
+    }
+    
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
+    }   
 }

@@ -17,6 +17,7 @@
                 <form  method="post" action="/SemAglomerar/relatorio">
                     <div class="form-group">
                         <label class="label">Reportar quantidade:
+                            <input type="hidden" name="loja_id" value="${loja_id}" />
                             <input type="number" id="quantidade" name="quantidade" min="1" max="999">
                             <button>Reportar</button>
                         </label>

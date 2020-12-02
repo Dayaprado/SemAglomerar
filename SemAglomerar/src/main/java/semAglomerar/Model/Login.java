@@ -60,4 +60,8 @@ public class Login {
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
+    
+    public boolean Admin(){
+        return this.tipo != null && this.tipo.equals("Administrador");
+    }
 }

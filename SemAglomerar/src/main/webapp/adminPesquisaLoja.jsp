@@ -4,6 +4,8 @@
     Author     : carolina Almeida
 --%>
 
+<%@page import="java.util.List"%>
+<%@page import="semAglomerar.Model.Loja"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -18,8 +20,10 @@
             <a class="left" href="index.html">
                 <img src="img/logo.png" alt="Logotipo da Sem Aglomerar" width=200 height=100>
             </a>
-            <form class="search-center" method="post" action="/SemAglomerar/admin-loja">
+            <form class="search-center" method="post" action="/SemAglomerar/pesquisa-loja">
                 <input type="text" name="txtPesquisa" class= "barra-de-pesquisa" placeholder="Pesquisar Lojas" value=""/>
+                <% String shop = (String)request.getAttribute("shop_id"); %>
+                <input type="hidden" name="shop_id" value="<%= shop %>"/>                
                 <a href="pesquisaLoja.jsp">   
                     <img src="img/036-zoom.png" alt="Procurar" width=15 height=15 />
                 </a>
@@ -65,6 +69,27 @@
         </div>
         <div class="lista-lojas">
             <h2>Lojas</h2>
+            <% List<Loja> lojas = (List<Loja>) request.getAttribute("lojas"); %>
+            <% for (Loja loja : lojas) { %>
+                <div class="card">
+                    <!-- <img src="img/lojas/renner.png" alt="Logo Renner" style="width:90px"/> -->
+                    <p>
+                        <span><%= loja.getNome() %></span> 
+                        - <%= loja.getCategoria() %>
+                    </p>
+                    <p><%= loja.getLocalizacao() %></p>
+                    <a class="right" href="/SemAglomerar/relatorio?loja_id=<%= loja.getId() %>">                        
+                        Movimentação da Loja
+                    </a>
+                    <a class="right" href="cadastro.jsp">
+                        <button>Editar</button>
+                    </a>
+                    <a class="right">
+                         <button id="btnExcluir">Excluir</button>
+                    </a>
+                </div>
+            <% }%>
+            <!--
             <div class="card">
                 <img src="img/lojas/renner.png" alt="Logo Renner" style="width:90px"/>
                 <p><span>Lojas Renner</span> - Vestuário</p>
@@ -88,6 +113,7 @@
                     <button id="btnExcluir">Excluir</button>
                 </a>
             </div>
+            -->
         </div>
     </div>
     <div id="modalExcluir" class="modal">
