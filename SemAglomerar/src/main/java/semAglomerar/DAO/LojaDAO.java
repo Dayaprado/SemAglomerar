@@ -230,8 +230,8 @@ public class LojaDAO {
     }
 
     public void inserirLoja(Loja loja, Login login, Responsavel resp, Shopping shop) throws SQLException {
-        String sql = "INSERT INTO Loja (loja_nome, loja_cnpj, loja_localiza, loja_razao, loja_categoria, loja_shop_id, loja_resp_id, loja_login_id) "
-                + "VALUES (?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO Loja (loja_nome, loja_cnpj, loja_localiza, loja_razao, loja_categoria, loja_logo, loja_shop_id, loja_resp_id, loja_login_id) "
+                + " VALUES (?,?,?,?,?,?,?,?,?)";
         Connection conn = null;
 
         try {
@@ -246,9 +246,10 @@ public class LojaDAO {
             stmt.setString(3, loja.getLocalizacao());
             stmt.setString(4, loja.getRazaoSocial());
             stmt.setString(5, loja.getCategoria());
-            stmt.setInt(6, shop.getId());
-            stmt.setInt(7, resp.getId());
-            stmt.setInt(8, login.getId());
+            stmt.setString(6, "n");
+            stmt.setInt(7, shop.getId());
+            stmt.setInt(8, resp.getId());
+            stmt.setInt(9, login.getId());
             boolean resul = stmt.execute();
 
             ResultSet rs = stmt.getGeneratedKeys(); // RECUPERA O ID GERADO PARA O INFO NOVO

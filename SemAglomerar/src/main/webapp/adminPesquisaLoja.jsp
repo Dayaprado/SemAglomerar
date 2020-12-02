@@ -32,7 +32,7 @@
             <a class="right" href="index.html">Sair</a>
         </div>
         <div id="lateral">
-            <a class="left" href="cadastroLoja.jsp">
+            <a class="left" href="/SemAglomerar/cadastrar-loja?shop_id=<%= shop %>">
                 <button>Cadastrar Loja</button>
             </a>
             <fieldset class="filtro">

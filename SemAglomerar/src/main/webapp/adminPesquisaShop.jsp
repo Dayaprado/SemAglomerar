@@ -28,7 +28,7 @@
             <a class="right" href="index.html">Sair</a>
         </div>
         <div id="lateral">
-            <a class="left" href="cadastroShopping.jsp">
+            <a class="left" href="/SemAglomerar/cadsatrar-shop">
                 <button>Cadastrar Shopping</button>
             </a>
         </div>

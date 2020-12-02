@@ -26,10 +26,17 @@ import semAglomerar.Model.Login;
 import semAglomerar.Model.Shopping;
 
 
-@WebServlet(name = "FormularioSalvarShopping", urlPatterns = {"/formulario-salvarShop"})
+@WebServlet(name = "FormularioSalvarShopping", urlPatterns = {"/cadastrar-shop"})
 public class FormularioSalvarShopping extends HttpServlet  {
   
-
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/cadastroShopping.jsp");
+        dispatcher.forward(request, response);
+    }
+    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
