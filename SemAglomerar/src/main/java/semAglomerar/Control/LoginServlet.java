@@ -58,8 +58,7 @@ public class LoginServlet extends HttpServlet {
                 if (usuario_tipo.equals("Loja")) {
                     Loja loja = shop.LoadUsuarioLoja(email);
                     sessao.setAttribute("shopping", loja);
-                    RequestDispatcher dispatcher = request.getRequestDispatcher("/relatorio?shop_id=" + loja.getId());
-                    dispatcher.forward(request, response);
+                    response.sendRedirect(request.getContextPath() + "/relatorio?loja_id=" + loja.getId());
 
                 } else if (usuario_tipo.equals("Shopping")) {
                     shop = shop.LoadUsuarioShop(shop, email);

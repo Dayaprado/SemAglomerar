@@ -62,6 +62,9 @@ public class Login {
     }
     
     public boolean Admin(){
-        return this.tipo != null && this.tipo.equals("Administrador");
+        return this.tipo != null && (
+                this.tipo.equals("Administrador") || 
+                this.tipo.equals("Shopping") ||
+                this.tipo.equals("Loja"));
     }
 }

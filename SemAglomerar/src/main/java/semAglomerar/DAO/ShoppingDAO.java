@@ -79,9 +79,9 @@ public class ShoppingDAO {
 
     public Shopping findByUser(Shopping shop, String usuario) throws SQLException {
         String sql = "SELECT shop_id, shop_nome, shop_cnpj, shop_status "
-                + "FROM shopping, responsavel,login "
-                + "WHERE login_usuario=? "
-                + "AND shop_resp_id=resp_id AND shop_login_id = login_id;";
+                + " FROM Shopping, Responsavel,Login "
+                + " WHERE login_usuario=? "
+                + " AND shop_resp_id=resp_id AND shop_login_id = login_id;";
 
         Connection conn = null;
 
