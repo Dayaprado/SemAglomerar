@@ -20,7 +20,7 @@
             <a class="left" href="index.html">
                 <img src="img/logo.png" alt="Logotipo da Sem Aglomerar" width=200 height=100>
             </a>
-            <form class="search-center" method="post" action="/SemAglomerar/pesquisa-loja">
+            <form class="search-center" method="post" action="/SemAglomerar/admin-loja">
                 <input type="text" name="txtPesquisa" class= "barra-de-pesquisa" placeholder="Pesquisar Lojas" value=""/>
                 <% String shop = (String)request.getAttribute("shop_id"); %>
                 <input type="hidden" name="shop_id" value="<%= shop %>"/>                
