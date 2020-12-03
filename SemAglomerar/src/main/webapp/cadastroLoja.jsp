@@ -23,7 +23,7 @@ Author     : dayaprado
                         </c:if></label>
                 </div>
                 <div class="row">
-                    <label class="label">Razï¿½o Social:
+                    <label class="label">Razão Social:
                         <input name="social" type="text" value="${social}" />
                         <c:if test="${socialErro != null}">
                             <p class="erro"><c:out value="${socialErro}" /></p>
@@ -37,8 +37,8 @@ Author     : dayaprado
                         </c:if>
                 </div>
                 <div class="row">
-                    <label class="label">localizaï¿½ï¿½o:
-                        <input name="piso" type="text" value="${localizacao}" />                
+                    <label class="label">localização:
+                        <input name="localizacao" type="text" value="${localizacao}" />                
                         <c:if test="${localizacaoErro != null}">
                             <p class="erro"><c:out value="${localizacaoErro}" /></p>
                         </c:if></label>
@@ -52,7 +52,7 @@ Author     : dayaprado
                     </label>
                 </div>
                 <div class="row">
-                    <label class="label">Responsï¿½vel:
+                    <label class="label">Responsável:
                         <input name="loja" type="text" value="${loja}" />
                         <c:if test="${lojaErro != null}">
                             <p class="erro"><c:out value="${lojaErro}" /></p>

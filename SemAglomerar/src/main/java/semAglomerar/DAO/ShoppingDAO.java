@@ -143,7 +143,7 @@ public class ShoppingDAO {
         Connection conn = null;
 
         try {
-            String sql = " SELECT shop_id, shop_nome, shop_cnpj, shop_status "
+            String sql = " SELECT shop_id, shop_nome, shop_cnpj, shop_endereco, shop_status "
                 + " FROM Shopping "
                 + " WHERE shop_status <> 'Inativo' AND shop_nome like ?;";
 
@@ -159,6 +159,7 @@ public class ShoppingDAO {
                 shop.setNome(rs.getString("shop_nome"));
                 shop.setCnpj(rs.getString("shop_cnpj"));
                 shop.setStatus(rs.getString("shop_status"));
+                shop.setEndereco(rs.getString("shop_endereco"));
                 shops.add(shop);
                 
             }

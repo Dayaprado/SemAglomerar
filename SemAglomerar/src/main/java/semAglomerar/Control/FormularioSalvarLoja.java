@@ -152,6 +152,7 @@ public class FormularioSalvarLoja extends HttpServlet {
             request.setAttribute("email", email);
             request.setAttribute("telefone", telefone);
             request.setAttribute("nomeLogin", nomeLogin);
+            request.setAttribute("shop_id", shopId);
 
             RequestDispatcher dispatcher = request.getRequestDispatcher("/cadastroLoja.jsp");
             dispatcher.forward(request, response);

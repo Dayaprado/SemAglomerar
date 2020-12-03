@@ -33,7 +33,7 @@
                         </c:if></label>
                 </div>
                 <div class="row">
-                    <label class="label">Endereï¿½o:
+                    <label class="label">Endereço:
                         <input name="endereco" type="text" value="${endereco}" />
 
                         <c:if test="${enderecoErro != null}">
@@ -41,7 +41,7 @@
                         </c:if></label>
                 </div>
                 <div class="row">
-                    <label class="label">Responsï¿½vel:
+                    <label class="label">Responsável:
                         <input name="loja" type="text" value="${loja}" />
 
                         <c:if test="${shoppingErro != null}">

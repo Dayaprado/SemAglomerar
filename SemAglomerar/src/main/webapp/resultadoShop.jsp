@@ -15,7 +15,7 @@
 
         <div class="container-2">
             <div class="row">
-                <label class="label"><b>Nome do Shopping:</b>
+                <label class="label"><b>Shopping:</b>
                     <div class="conteudo"><c:out value="${shoppings.nome}"/></div>
                 </label>                
             </div>

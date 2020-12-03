@@ -28,7 +28,7 @@
             <a class="right" href="index.html">Sair</a>
         </div>
         <div id="lateral">
-            <a class="left" href="/SemAglomerar/cadsatrar-shop">
+            <a class="left" href="/SemAglomerar/cadastrar-shop">
                 <button>Cadastrar Shopping</button>
             </a>
         </div>
@@ -44,7 +44,7 @@
                             <a href="/SemAglomerar/admin-loja?shop_id=<%= shop.getId() %>"><%= shop.getNome() %></a>
                         </span>
                     </p>
-                    <p><%= shop.getEndereco()%></p>
+                    <p><%= shop.getEndereco() %></p>
                     <a class="right" href="editarShopping.jsp">
                         <button>Editar</button>
                     </a>
