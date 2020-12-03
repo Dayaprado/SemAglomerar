@@ -36,4 +36,4 @@ jobs:
         app-name: 'sem-aglomerar'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_bf5ccc4c27b74e1fa56e4c502ab91696 }}
-        package: '${{ github.workspace }}/target/*.war'
+        package: 'D:\a\SemAglomerar\SemAglomerar\SemAglomerar/target/*.war'
