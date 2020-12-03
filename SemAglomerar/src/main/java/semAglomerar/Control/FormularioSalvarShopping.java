@@ -69,13 +69,12 @@ public class FormularioSalvarShopping extends HttpServlet  {
 
         //Validação do email
         boolean emailValido = (email != null && email.trim().length() > 0 );
-        /*
+        
         if (emailValido) {
-            Pattern emailPattern = Pattern.compile("[a-z0-9_.]+@[a-z0-9]+\\.[a-z]+(\\.[a-z]+)?$");
+            Pattern emailPattern = Pattern.compile("^[a-z0-9.]+@[a-z0-9]+\\.[a-z]+(\\.[a-z]+)?$");
             Matcher emailMatcher = emailPattern.matcher(email);
             emailValido = emailValido && emailMatcher.matches();
         }
-        */
         
         //Validação do telefone
         boolean telefoneValido = (telefone != null && (telefone.trim().length() >= 8 && telefone.trim().length() <= 14));
