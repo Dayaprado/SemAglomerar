@@ -75,7 +75,7 @@ public class AdminPesquisaLojaServlet extends HttpServlet {
         
         try {
             LojaDAO lojaDAO = new LojaDAO();
-            List<Loja> lojas = lojaDAO.findByShopId(Integer.parseInt(param1));
+            List<Loja> lojas = lojaDAO.Pesquisa(param2, Integer.parseInt(param1));
             request.setAttribute("shop_id", param1);
             request.setAttribute("lojas", lojas);
 

@@ -181,7 +181,8 @@ public class LojaDAO {
             stmt.setString(1, Integer.toString(shop_id));
 
             ResultSet rs = stmt.executeQuery();
-            if (rs.next()) {
+            
+            while (rs.next()) {
                 loja = new Loja();
                 loja.setId(rs.getInt("loja_id"));
                 loja.setNome(rs.getString("loja_nome"));
@@ -191,12 +192,50 @@ public class LojaDAO {
                 loja.setCategoria(rs.getString("loja_categoria"));
                 lojas.add(loja);
             }
+            
         } catch (SQLException e) {
             conn.close();
         }
 
         return lojas;
     }
+    
+    public List<Loja> Pesquisa(String pesq, int shop_id) throws SQLException {
+        List<Loja> lojas = new ArrayList<>();
+        
+        Connection conn = null;
+        try {
+            String sql = "SELECT loja_id, loja_nome, loja_cnpj, loja_razao, loja_localiza, loja_categoria "
+                    + " FROM Loja "
+                    + " WHERE loja_status <> 'Inativo' AND loja_nome like ? AND loja_shop_id = ?;";
+
+            conn = ConnectionMySql.obterConexao();
+            conn.setAutoCommit(false);
+
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1, "%" + pesq + "%");
+            stmt.setString(2, Integer.toString(shop_id));
+
+            ResultSet rs = stmt.executeQuery();
+            
+            while (rs.next()) {
+                loja = new Loja();
+                loja.setId(rs.getInt("loja_id"));
+                loja.setNome(rs.getString("loja_nome"));
+                loja.setRazaoSocial(rs.getString("loja_razao"));
+                loja.setCnpj(rs.getString("loja_cnpj"));
+                loja.setLocalizacao(rs.getString("loja_localiza"));
+                loja.setCategoria(rs.getString("loja_categoria"));
+                lojas.add(loja);
+            }
+            
+        } catch (SQLException e) {
+            conn.close();
+        }
+
+        return lojas;
+    }
+    
 
     public Loja Pesquisa(String pesq) throws SQLException {
         String sql = "SELECT loja_id, loja_nome, loja_cnpj, loja_razao, loja_localiza, loja_categoria "

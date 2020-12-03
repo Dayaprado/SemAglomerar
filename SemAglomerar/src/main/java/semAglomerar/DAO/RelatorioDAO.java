@@ -82,7 +82,7 @@ public class RelatorioDAO {
             stmt.setString(1, data.toString());
 
             ResultSet rs = stmt.executeQuery();
-            if (rs.next()) {
+            while (rs.next()) {
                 ResumoRelatorio resumo;
                 resumo = new ResumoRelatorio(loja, rs.getInt("quantidade"), rs.getTime("hora").toLocalTime());
                 resumos.add(resumo);

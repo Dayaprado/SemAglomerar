@@ -24,9 +24,7 @@
                 <input type="text" name="txtPesquisa" class= "barra-de-pesquisa" placeholder="Pesquisar Lojas" value=""/>
                 <% String shop = (String)request.getAttribute("shop_id"); %>
                 <input type="hidden" name="shop_id" value="<%= shop %>"/>                
-                <a href="pesquisaLoja.jsp">   
-                    <img src="img/036-zoom.png" alt="Procurar" width=15 height=15 />
-                </a>
+                <button type="submit">Pesquisar</button>
             </form>
             <h3>Olá!</h3>
             <a class="right" href="index.html">Sair</a>

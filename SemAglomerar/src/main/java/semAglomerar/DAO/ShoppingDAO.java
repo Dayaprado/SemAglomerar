@@ -152,7 +152,7 @@ public class ShoppingDAO {
             stmt.setString(1, "%" + pesq + "%");
 
             ResultSet rs = stmt.executeQuery();
-            if (rs.next()) {
+            while (rs.next()) {
                 
                 Shopping shop = new Shopping();
                 shop.setId(rs.getInt("shop_id"));
