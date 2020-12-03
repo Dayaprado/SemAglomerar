@@ -172,7 +172,7 @@ public class LojaDAO {
         try {
             String sql = "SELECT loja_id, loja_nome, loja_cnpj, loja_razao, loja_localiza, loja_categoria "
                     + " FROM Loja "
-                    + " WHERE loja_shop_id = ?;";
+                    + " WHERE loja_status <> 'Inativo' AND loja_shop_id = ?;";
 
             conn = ConnectionMySql.obterConexao();
             conn.setAutoCommit(false);
@@ -201,7 +201,7 @@ public class LojaDAO {
     public Loja Pesquisa(String pesq) throws SQLException {
         String sql = "SELECT loja_id, loja_nome, loja_cnpj, loja_razao, loja_localiza, loja_categoria "
                 + "FROM loja "
-                + "WHERE loja_nome like ? ;";
+                + "WHERE loja_status <> 'Inativo' AND loja_nome like ? ;";
 
         Connection conn = null;
 
@@ -295,21 +295,12 @@ public class LojaDAO {
     }
 
     public void deletarLoja(Loja loja) throws SQLException {
-        String sql = "DELETE * FROM Loja WHERE loja_id=?";
+        String sql = "UPDATE Loja SET loja_status = 'Inativo' WHERE loja_id=?";
         try (Connection conn = ConnectionMySql.obterConexao()) {
-            // DESLIGAR AUTO-COMMIT -> POSSIBILITAR DESFAZER OPERACOES EM CASOS DE ERROS
             conn.setAutoCommit(false);
-            // ADICIONAR O Statement.RETURN_GENERATED_KEYS PARA RECUPERAR O ID GERADO NO BD
             try (PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
                 stmt.setInt(1, loja.getId());
-                int resul = stmt.executeUpdate();
-                try (ResultSet rs = stmt.getGeneratedKeys()) {
-                    // RECUPERA O ID GERADO PARA O INFO NOVO
-                    while (rs.next()) {
-                        Integer idGerado = rs.getInt(1);
-                        loja.setId(idGerado);
-                    }
-                }
+                stmt.executeUpdate();
                 conn.commit();
             } catch (SQLException e) {
                 conn.rollback();
