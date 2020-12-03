@@ -20,7 +20,7 @@ public class ShoppingDAO {
 
     public List<Shopping> findall() throws SQLException {
         String sql = "SELECT shop_id, shop_nome,shop_cnpj,shop_status, resp_id, resp_nome, resp_cpf,resp_email,resp_telefone,login_id, login_usuario, login_usuario "
-                + " FROM shopping, responsavel,login "
+                + " FROM Shopping, Responsavel, Login "
                 + " WHERE shop_resp_id=resp_id AND shop_login_id = ?;";
 
         List<Shopping> resul = new ArrayList<>();
@@ -108,9 +108,9 @@ public class ShoppingDAO {
 
     public Shopping findUserShop(Shopping shop, String user) throws SQLException {
         String sql = "select shop_id, shop_nome, shop_cnpj, shop_status"
-                + "from login, loja, shopping "
-                + "where login_usuario =? "
-                + "and loja_login_id= login_id and loja_shop_id = shop_id; ";
+                + " from Login, Loja, Shopping "
+                + " where login_usuario =? "
+                + " and loja_login_id= login_id and loja_shop_id = shop_id; ";
 
         Connection conn = null;
 
@@ -131,7 +131,7 @@ public class ShoppingDAO {
             }
 
         } catch (SQLException e) {
-            conn.rollback();
+            conn.close();
         }
         return shop;
     }
@@ -145,7 +145,7 @@ public class ShoppingDAO {
         try {
             String sql = " SELECT shop_id, shop_nome, shop_cnpj, shop_status "
                 + " FROM Shopping "
-                + " WHERE shop_nome like ?;";
+                + " WHERE shop_status <> 'Inativo' AND shop_nome like ?;";
 
             conn = ConnectionMySql.obterConexao();
             PreparedStatement stmt = conn.prepareStatement(sql);
@@ -170,8 +170,8 @@ public class ShoppingDAO {
     }
 
     public void inserirShopping(Shopping shop, Responsavel resp, Login login) throws SQLException {
-        String sql = "INSERT INTO shopping (shop_nome, shop_cnpj, shop_status, shop_login_id, shop_resp_id) "
-                + "VALUES (?,?,?,?,?);";
+        String sql = "INSERT INTO Shopping (shop_nome, shop_cnpj, shop_status, shop_endereco, shop_logo, shop_login_id, shop_resp_id) "
+                + "VALUES (?,?,?,?, ?, ?,?);";
 
         Connection conn = null;
         try {
@@ -184,8 +184,10 @@ public class ShoppingDAO {
             stmt.setString(1, shop.getNome());
             stmt.setString(2, shop.getCnpj());
             stmt.setString(3, shop.getStatus());
-            stmt.setInt(4, login.getId());
-            stmt.setInt(5, resp.getId());
+            stmt.setString(4, shop.getEndereco());
+            stmt.setString(5, "n");
+            stmt.setInt(6, login.getId());
+            stmt.setInt(7, resp.getId());
             boolean resul = stmt.execute();
 
             ResultSet rs = stmt.getGeneratedKeys(); // RECUPERA O ID GERADO PARA O INFO NOVO
@@ -228,21 +230,12 @@ public class ShoppingDAO {
     }
 
     public void deletarShopping(Shopping shop) throws SQLException {
-        String sql = "DELETE * FROM Shopping WHERE shop_id=?";
+        String sql = "UPDATE Shopping SET shop_status = 'Inativo' WHERE shop_id=?";
         try (Connection conn = ConnectionMySql.obterConexao()) {
-            // DESLIGAR AUTO-COMMIT -> POSSIBILITAR DESFAZER OPERACOES EM CASOS DE ERROS
             conn.setAutoCommit(false);
-            // ADICIONAR O Statement.RETURN_GENERATED_KEYS PARA RECUPERAR O ID GERADO NO BD
-            try (PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+            try (PreparedStatement stmt = conn.prepareStatement(sql, Statement.SUCCESS_NO_INFO)) {
                 stmt.setInt(1, shop.getId());
-                int resul = stmt.executeUpdate();
-                try (ResultSet rs = stmt.getGeneratedKeys()) {
-                    // RECUPERA O ID GERADO PARA O INFO NOVO
-                    while (rs.next()) {
-                        Integer idGerado = rs.getInt(1);
-                        shop.setId(idGerado);
-                    }
-                }
+                stmt.executeUpdate();
                 conn.commit();
             } catch (SQLException e) {
                 conn.rollback();

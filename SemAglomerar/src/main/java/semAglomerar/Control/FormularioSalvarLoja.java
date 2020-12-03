@@ -26,13 +26,18 @@ import semAglomerar.Model.Responsavel;
 import semAglomerar.Model.Login;
 import semAglomerar.Model.Shopping;
 
-@WebServlet(name = "FormularioSalvarLoja", urlPatterns = {"/formulario-salvar"})
+@WebServlet(name = "FormularioSalvarLoja", urlPatterns = {"/cadastrar-loja"})
 public class FormularioSalvarLoja extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        doPost(request, response);
+        
+        String param1 = request.getParameter("shop_id");
+        request.setAttribute("shop_id", param1);
+        
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/cadastroLoja.jsp");
+        dispatcher.forward(request, response);
     }
 
     @Override
@@ -52,6 +57,7 @@ public class FormularioSalvarLoja extends HttpServlet {
         String nomeLogin = request.getParameter("nomeLogin");
         String senha = request.getParameter("senha");
         String repetirSenha = request.getParameter("repetirSenha");
+        int shopId = Integer.parseInt(request.getParameter("shop_id"));
         
         //Validação do nome
         boolean nomeValido = (nome != null && nome.trim().length() >= 3);
@@ -155,8 +161,14 @@ public class FormularioSalvarLoja extends HttpServlet {
 
         Responsavel responsavels = new Responsavel(responsavel, cpf, email, telefone);
         Login logins = new Login(nomeLogin, senha, "Loja");
+<<<<<<< HEAD
         Loja lojas = new Loja(nome, CNPJ, social, localizacao, categoria);
         Shopping shoppings = (Shopping) request.getSession().getAttribute("shopping");
+=======
+        Loja lojas = new Loja(nome, CNPJ, social, Piso, categoria);
+        Shopping shoppings = new Shopping();
+        shoppings.setId(shopId);
+>>>>>>> c48fe5af18f0221076e7fb04e57250ae107a9989
 
         request.setAttribute("responsavels", responsavels);
         request.setAttribute("logins", logins);

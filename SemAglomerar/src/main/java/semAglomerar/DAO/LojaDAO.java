@@ -172,7 +172,7 @@ public class LojaDAO {
         try {
             String sql = "SELECT loja_id, loja_nome, loja_cnpj, loja_razao, loja_localiza, loja_categoria "
                     + " FROM Loja "
-                    + " WHERE loja_shop_id = ?;";
+                    + " WHERE loja_status <> 'Inativo' AND loja_shop_id = ?;";
 
             conn = ConnectionMySql.obterConexao();
             conn.setAutoCommit(false);
@@ -201,7 +201,7 @@ public class LojaDAO {
     public Loja Pesquisa(String pesq) throws SQLException {
         String sql = "SELECT loja_id, loja_nome, loja_cnpj, loja_razao, loja_localiza, loja_categoria "
                 + "FROM loja "
-                + "WHERE loja_nome like ? ;";
+                + "WHERE loja_status <> 'Inativo' AND loja_nome like ? ;";
 
         Connection conn = null;
 
@@ -230,8 +230,8 @@ public class LojaDAO {
     }
 
     public void inserirLoja(Loja loja, Login login, Responsavel resp, Shopping shop) throws SQLException {
-        String sql = "INSERT INTO Loja (loja_nome, loja_cnpj, loja_localiza, loja_razao, loja_categoria, loja_shop_id, loja_resp_id, loja_login_id) "
-                + "VALUES (?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO Loja (loja_nome, loja_cnpj, loja_localiza, loja_razao, loja_categoria, loja_logo, loja_shop_id, loja_resp_id, loja_login_id) "
+                + " VALUES (?,?,?,?,?,?,?,?,?)";
         Connection conn = null;
 
         try {
@@ -246,9 +246,10 @@ public class LojaDAO {
             stmt.setString(3, loja.getLocalizacao());
             stmt.setString(4, loja.getRazaoSocial());
             stmt.setString(5, loja.getCategoria());
-            stmt.setInt(6, shop.getId());
-            stmt.setInt(7, resp.getId());
-            stmt.setInt(8, login.getId());
+            stmt.setString(6, "n");
+            stmt.setInt(7, shop.getId());
+            stmt.setInt(8, resp.getId());
+            stmt.setInt(9, login.getId());
             boolean resul = stmt.execute();
 
             ResultSet rs = stmt.getGeneratedKeys(); // RECUPERA O ID GERADO PARA O INFO NOVO
@@ -294,21 +295,12 @@ public class LojaDAO {
     }
 
     public void deletarLoja(Loja loja) throws SQLException {
-        String sql = "DELETE * FROM Loja WHERE loja_id=?";
+        String sql = "UPDATE Loja SET loja_status = 'Inativo' WHERE loja_id=?";
         try (Connection conn = ConnectionMySql.obterConexao()) {
-            // DESLIGAR AUTO-COMMIT -> POSSIBILITAR DESFAZER OPERACOES EM CASOS DE ERROS
             conn.setAutoCommit(false);
-            // ADICIONAR O Statement.RETURN_GENERATED_KEYS PARA RECUPERAR O ID GERADO NO BD
             try (PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
                 stmt.setInt(1, loja.getId());
-                int resul = stmt.executeUpdate();
-                try (ResultSet rs = stmt.getGeneratedKeys()) {
-                    // RECUPERA O ID GERADO PARA O INFO NOVO
-                    while (rs.next()) {
-                        Integer idGerado = rs.getInt(1);
-                        loja.setId(idGerado);
-                    }
-                }
+                stmt.executeUpdate();
                 conn.commit();
             } catch (SQLException e) {
                 conn.rollback();

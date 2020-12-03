@@ -37,7 +37,7 @@
                 <p><span><%= shop.getNome() %></span></p>
                 
                 <a href="/SemAglomerar/pesquisar-loja?shop_id=<%= shop.getId() %>">
-                    Entrar
+                   <button style="float: none">Entrar</button> 
                 </a>
             </div>
         <% }%>

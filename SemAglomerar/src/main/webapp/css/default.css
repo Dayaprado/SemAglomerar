@@ -98,8 +98,21 @@ body {
     background-color: #40E0D0;
 }
 
-.rodape-fixed {
+.rodape-abs {
     position: absolute;
+    border-top: 1px solid #333;
+    bottom: 0;
+    left: 0;
+    height: 40px;
+    width: 100%;
+    margin: 0px;
+    margin-top: 10px;
+    padding-top: 5px; 
+    background-color: #40E0D0;
+}
+
+.rodape-fixed {
+    position: fixed;
     border-top: 1px solid #333;
     bottom: 0;
     left: 0;
@@ -172,7 +185,19 @@ body {
   margin: 16px 0;
   text-align: left;
 }
-
+.card a{
+    float: right;
+    color: black;
+    background-color: #40E0D0;
+    font-weight: bold;
+    cursor: pointer;
+    border: 1px solid blue;
+    border-radius: 6px;
+    text-transform: inherit;
+    height: 25px;
+    line-height: 10px;
+    padding: 0 60px;
+}
 .card::after {
   content: "";
   clear: both;
@@ -238,4 +263,29 @@ body {
   color: #000;
   text-decoration: none;
   cursor: pointer;
+}
+
+.default-bottom {
+    appearance: button;
+    -webkit-writing-mode: horizontal-tb !important;
+    text-rendering: auto;
+    color: -internal-light-dark(black, white);
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: center;
+    align-items: flex-start;
+    cursor: default;
+    background-color: -internal-light-dark(rgb(239, 239, 239), rgb(59, 59, 59));
+    box-sizing: border-box;
+    margin: 0em;
+    font: 400 13.3333px Arial;
+    padding: 1px 6px;
+    border-width: 2px;
+    border-style: outset;
+    border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+    border-image: initial;
 }

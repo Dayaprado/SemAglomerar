@@ -14,97 +14,114 @@ Author     : dayaprado
         <jsp:include page="cabecalho.jsp" /> 
         <h2>Cadastrar Loja</h2>
         <div class="container">
-            <form method="post" action="/SemAglomerar/formulario-salvar" novalidate>
+            <form method="post" action="/SemAglomerar/cadastrar-loja" novalidate>
                 <div class="row">
-                    <label class="label">Nome da loja:</label>
-                    <input name="nome" type="text" value="${nome}" />
-                    <c:if test="${nomeErro != null}">
-                        <span class="erro"><c:out value="${nomeErro}" /></span>
-                    </c:if>
+                    <label class="label">Nome da loja:
+                        <input name="nome" type="text" value="${nome}" />
+                        <c:if test="${nomeErro != null}">
+                            <p class="erro"><c:out value="${nomeErro}" /></p>
+                        </c:if></label>
                 </div>
                 <div class="row">
-                    <label class="label">Razão Social: </label>
-                    <input name="social" type="text" value="${social}" />
-                    <c:if test="${socialErro != null}">
-                        <span class="erro"><c:out value="${socialErro}" /></span>
-                    </c:if>
+                    <label class="label">Razão Social:
+                        <input name="social" type="text" value="${social}" />
+                        <c:if test="${socialErro != null}">
+                            <p class="erro"><c:out value="${socialErro}" /></p>
+                        </c:if></label>
                 </div>
                 <div class="row">
-                    <label class="label">CNPJ:</label>
-                    <input name="cnpj" type="text" value="${cnpj}" />
-                    <c:if test="${cnpjErro != null}">
-                        <span class="erro"><c:out value="${cnpjErro}" /></span>
-                    </c:if>
+                    <label class="label">CNPJ:
+                        <input name="cnpj" type="text" value="${cnpj}" />
+                        <c:if test="${cnpjErro != null}">
+                            <p class="erro"><c:out value="${cnpjErro}" /></p>
+                        </c:if>
                 </div>
                 <div class="row">
+<<<<<<< HEAD
                     <label class="label">Localização:</label>
                     <input name="localizacao" type="text" value="${localizacao}" />                
                     <c:if test="${localizacaoErro != null}">
                         <span class="erro"><c:out value="${localizacaoErro}" /></span>
                     </c:if>
+=======
+                    <label class="label">localização:
+                        <input name="piso" type="text" value="${localizacao}" />                
+                        <c:if test="${localizacaoErro != null}">
+                            <p class="erro"><c:out value="${localizacaoErro}" /></p>
+                        </c:if></label>
+>>>>>>> c48fe5af18f0221076e7fb04e57250ae107a9989
                 </div>
                 <div class="row">
-                    <label class="label">Categoria:</label>
-                    <input name="categoria" type="text" value="${categoria}" />                
-                    <c:if test="${categoriaErro != null}">
-                        <span class="erro"><c:out value="${categoriaErro}" /></span>
-                    </c:if>
-
+                    <label class="label">Categoria:
+                        <input name="categoria" type="text" value="${categoria}" />                
+                        <c:if test="${categoriaErro != null}">
+                            <p class="erro"><c:out value="${categoriaErro}" /></p>
+                        </c:if>
+                    </label>
                 </div>
                 <div class="row">
-                    <label class="label">Responsável:</label>
-                    <input name="loja" type="text" value="${loja}" />
-                    <c:if test="${lojaErro != null}">
-                        <span class="erro"><c:out value="${lojaErro}" /></span>
-                    </c:if>
+                    <label class="label">Responsável:
+                        <input name="loja" type="text" value="${loja}" />
+                        <c:if test="${lojaErro != null}">
+                            <p class="erro"><c:out value="${lojaErro}" /></p>
+                        </c:if></label>
                 </div>
                 <div class="row">
-                    <label class="label">Cpf:</label>
-                    <input name="cpf" type="text" value="${cpf}" />
-                    <c:if test="${cpf != null}">
-                        <span class="erro"><c:out value="${cpfErro}" /></span>
-                    </c:if>
+                    <label class="label">Cpf:
+                        <input name="cpf" type="text" value="${cpf}" />
+                        <c:if test="${cpf != null}">
+                            <p class="erro"><c:out value="${cpfErro}" /></p>
+                        </c:if></label>
                 </div>
                 <div class="row">
+<<<<<<< HEAD
                     <label class="label">E-mail:</label>
                     <input name="email" type="email" value="${email}" />                
                     <c:if test="${emailErro != null}">
                         <span class="erro"><c:out value="${emailErro}" /></span>
                     </c:if>
+=======
+                    <label class="label">E-mail:
+                        <input name="email" type="text" value="${email}" />                
+                        <c:if test="${emailErro != null}">
+                            <p class="erro"><c:out value="${emailErro}" /></p>
+                        </c:if></label>
+>>>>>>> c48fe5af18f0221076e7fb04e57250ae107a9989
                 </div>
                 <div class="row">
-                    <label class="label">Telefone:</label>
-                    <input name="telefone" type="text" value="${telefone}" />                
-                    <c:if test="${telefoneErro != null}">
-                        <span class="erro"><c:out value="${telefoneErro}" /></span>
-                    </c:if>
+                    <label class="label">Telefone:
+                        <input name="telefone" type="text" value="${telefone}" />                
+                        <c:if test="${telefoneErro != null}">
+                            <p class="erro"><c:out value="${telefoneErro}" /></p>
+                        </c:if></label>
                 </div>
                 <div class="row">
-                    <label class="label">Nome Login:</label>
-                    <input name="nomeLogin" type="text" value="${nomeLogin}" />
-                    <c:if test="${nomeLoginErro != null}">
-                        <span class="erro"><c:out value="${nomeLoginErro}" /></span>
-                    </c:if>
+                    <label class="label">Nome Login:
+                        <input name="nomeLogin" type="text" value="${nomeLogin}" />
+                        <c:if test="${nomeLoginErro != null}">
+                            <p class="erro"><c:out value="${nomeLoginErro}" /></p>
+                        </c:if></label>
                 </div>
                 <div class="row">
-                    <label class="label">Senha:</label>
-                    <input name="senha" type="password" value="${senha}" />
-                    <c:if test="${senhaErro != null}">
-                        <span class="erro"><c:out value="${senhaErro}" /></span>
-                    </c:if>
+                    <label class="label">Senha:
+                        <input name="senha" type="password" value="${senha}" />
+                        <c:if test="${senhaErro != null}">
+                            <p class="erro"><c:out value="${senhaErro}" /></p>
+                        </c:if></label>
                 </div>
                 <div class="row">
-                    <label class="label">Repetir senha:</label>
-                    <input name="repetirSenha" type="password" value="${repetirSenha}" />
-                    <c:if test="${repetirSenhaErro != null}">
-                        <span class="erro"><c:out value="${repetirSenhaErro}" /></span>
-                    </c:if>
+                    <label class="label">Repetir senha:
+                        <input name="repetirSenha" type="password" value="${repetirSenha}" />
+                        <c:if test="${repetirSenhaErro != null}">
+                            <p class="erro"><c:out value="${repetirSenhaErro}" /></p>
+                        </c:if></label>
                 </div>
                 <div class="row">
                     <a href="resultado.jsp">   
                         <button>Salvar</button>
                     </a>
                 </div>
+                <input name="shop_id" type="hidden" value="${shop_id}" />
             </form>
         </div>
         <jsp:include page="footer-fixed.jsp" />  

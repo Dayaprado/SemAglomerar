@@ -12,7 +12,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import semAglomerar.DAO.LojaDAO;
 import semAglomerar.DAO.ShoppingDAO;
+import semAglomerar.Model.Loja;
 import semAglomerar.Model.Shopping;
 
 @WebServlet(name = "AdminPesquisaShopServlet", urlPatterns = {"/admin-shopping"})
@@ -22,9 +24,29 @@ public class AdminPesquisaShopServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        
         request.setAttribute("shops", new ArrayList<Shopping>());
         RequestDispatcher dispatcher = request.getRequestDispatcher("/adminPesquisaShop.jsp");
         dispatcher.forward(request, response);
+    }
+    
+    @Override
+    protected void doDelete(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        String param1 = request.getParameter("shop_id");
+        
+        try {
+            ShoppingDAO shopDAO = new ShoppingDAO();
+            Shopping shop = new Shopping();
+            shop.setId(Integer.parseInt(param1));
+                    
+            shopDAO.deletarShopping(shop);
+            
+            response.sendRedirect(request.getContextPath() + "/admin-shopping");
+        } catch (SQLException ex) {
+            Logger.getLogger(AdminPesquisaLojaServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
@@ -32,6 +54,12 @@ public class AdminPesquisaShopServlet extends HttpServlet {
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
 
+        if ("delete".equals(request.getParameter("action"))) {
+            doDelete(request, response);
+            return;
+        }
+        
+        
         String pesquisa = request.getParameter("txtPesquisa");
 
         ShoppingDAO shopDAO = new ShoppingDAO();

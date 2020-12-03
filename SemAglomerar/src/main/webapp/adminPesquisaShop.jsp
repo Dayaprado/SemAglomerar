@@ -28,7 +28,7 @@
             <a class="right" href="index.html">Sair</a>
         </div>
         <div id="lateral">
-            <a class="left" href="cadastroShopping.jsp">
+            <a class="left" href="/SemAglomerar/cadsatrar-shop">
                 <button>Cadastrar Shopping</button>
             </a>
         </div>
@@ -48,9 +48,12 @@
                     <a class="right" href="editarShopping.jsp">
                         <button>Editar</button>
                     </a>
-                    <a class="right">
-                         <button id="btnExcluir">Excluir</button>
-                    </a>
+                    <form method="post" action="/SemAglomerar/admin-shopping">
+                        <input type="hidden" name="shop_id" value="<%= shop.getId() %>">
+                        <input type="hidden" name="action" value="delete"/>
+                        <input type="submit" class="right" value="Excluir"/>
+                    </form>
+                        
                 </div>
             <% }%>
             <!--
