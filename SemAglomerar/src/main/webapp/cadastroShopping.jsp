@@ -32,7 +32,7 @@
                 </div>
                 <div class="row">
                     <label class="label">Endereço:</label>
-                    <input name="cnpj" type="text" value="${endereco}" />
+                    <input name="endereco" type="text" value="${endereco}" />
                     <c:if test="${enderecoErro != null}">
                         <span class="erro"><c:out value="${enderecoErro}" /></span>
                     </c:if>
@@ -40,8 +40,8 @@
                 <div class="row">
                     <label class="label">Responsável:</label>
                         <input name="loja" type="text" value="${loja}" />
-                          <c:if test="${shoppingErro != null}">
-                        <span class="erro"><c:out value="${ShoppingErro}" /></span>
+                          <c:if test="${lojaErro != null}">
+                        <span class="erro"><c:out value="${lojaErro}" /></span>
                     </c:if>
                 </div>
                  <div class="row">

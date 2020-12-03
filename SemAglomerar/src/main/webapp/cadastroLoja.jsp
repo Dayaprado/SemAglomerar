@@ -37,8 +37,8 @@ Author     : dayaprado
                     </c:if>
                 </div>
                 <div class="row">
-                    <label class="label">localização:</label>
-                    <input name="piso" type="text" value="${localizacao}" />                
+                    <label class="label">Localização:</label>
+                    <input name="localizacao" type="text" value="${localizacao}" />                
                     <c:if test="${localizacaoErro != null}">
                         <span class="erro"><c:out value="${localizacaoErro}" /></span>
                     </c:if>
@@ -67,7 +67,7 @@ Author     : dayaprado
                 </div>
                 <div class="row">
                     <label class="label">E-mail:</label>
-                    <input name="email" type="text" value="${email}" />                
+                    <input name="email" type="email" value="${email}" />                
                     <c:if test="${emailErro != null}">
                         <span class="erro"><c:out value="${emailErro}" /></span>
                     </c:if>

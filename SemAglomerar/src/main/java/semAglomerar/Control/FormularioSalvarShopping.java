@@ -5,7 +5,6 @@
  */
 package semAglomerar.Control;
 
-
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -25,10 +24,8 @@ import semAglomerar.Model.Responsavel;
 import semAglomerar.Model.Login;
 import semAglomerar.Model.Shopping;
 
-
 @WebServlet(name = "FormularioSalvarShopping", urlPatterns = {"/formulario-salvarShop"})
-public class FormularioSalvarShopping extends HttpServlet  {
-  
+public class FormularioSalvarShopping extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -37,6 +34,7 @@ public class FormularioSalvarShopping extends HttpServlet  {
         //recuperar dados inseridos no formulario.
         String nome = request.getParameter("nome");
         String CNPJ = request.getParameter("cnpj");
+        String endereco = request.getParameter("endereco");
         String responsavel = request.getParameter("loja");
         String cpf = request.getParameter("cpf");
         String email = request.getParameter("email");
@@ -44,21 +42,24 @@ public class FormularioSalvarShopping extends HttpServlet  {
         String nomeLogin = request.getParameter("nomeLogin");
         String senha = request.getParameter("senha");
         String repetirSenha = request.getParameter("repetirSenha");
-        
+
         //Validação do nome
-        boolean nomeValido = (nome !=null && nome.trim().length() >2);
-        
+        boolean nomeValido = (nome != null && nome.trim().length() >= 3);
+
         //Validação do cnpj
-        boolean cnpjValido = (CNPJ != null && CNPJ.trim().length() >13);
-        
+        boolean cnpjValido = (CNPJ != null && (CNPJ.trim().length() >= 14 && CNPJ.trim().length() <= 18));
+
+        //Validação do endereço
+        boolean enderecoValido = (endereco != null && endereco.trim().length() >= 3);
+
         //Validação do responsavel
-        boolean responsavelValido = (responsavel !=null && responsavel.trim().length() >2);
-        
+        boolean responsavelValido = (responsavel != null && responsavel.trim().length() >= 3);
+
         //Validação do cpf
-        boolean cpfValido = (cpf !=null && cpf.trim().length() > 10);
-        
+        boolean cpfValido = (cpf != null && (cpf.trim().length() >= 11 && cpf.trim().length() <= 14));
+
         //Validação do email
-        boolean emailValido = (email != null && email.trim().length() > 0 );
+        boolean emailValido = (email != null && email.trim().length() > 0);
         if (emailValido) {
             Pattern emailPattern = Pattern.compile("^[a-z0-9.]+@[a-z0-9]+\\.[a-z]+(\\.[a-z]+)?$");
             Matcher emailMatcher = emailPattern.matcher(email);
@@ -66,83 +67,87 @@ public class FormularioSalvarShopping extends HttpServlet  {
         }
 
         //Validação do telefone
-        boolean telefoneValido = (telefone !=null && telefone.trim().length() > 7);
-        
+        boolean telefoneValido = (telefone != null && (telefone.trim().length() >= 8 && telefone.trim().length() <= 14));
+
         //Validação do Login
-        boolean nomeLoginValido = (nomeLogin !=null && nomeLogin.trim().length() > 2);
-        
+        boolean nomeLoginValido = (nomeLogin != null && nomeLogin.trim().length() >= 3);
+
         //Validação da senha
-        boolean senhaValido = (senha != null && senha.trim().length() > 0);
-        
+        boolean senhaValido = (senha != null && senha.trim().length() >= 6);
+
         boolean repetirsenhaValido = (senha.equals(repetirSenha));
-        
-        boolean camposValidosGlobal = nomeValido && cnpjValido && responsavelValido && cpfValido && emailValido 
-                 && telefoneValido && nomeLoginValido && senhaValido && repetirsenhaValido;
-        
-        if(!camposValidosGlobal){
-            if(!nomeValido){
+
+        boolean camposValidosGlobal = nomeValido && cnpjValido && enderecoValido && responsavelValido && cpfValido && emailValido
+                && telefoneValido && nomeLoginValido && senhaValido && repetirsenhaValido;
+
+        if (!camposValidosGlobal) {
+            if (!nomeValido) {
                 request.setAttribute("nomeErro", "Nome deve ser preenchido");
             }
-            if(!cnpjValido){
+            if (!cnpjValido) {
                 request.setAttribute("cnpjErro", "Cnjp deve ser preenchido");
             }
-            if(!responsavelValido){
+            if (!enderecoValido) {
+                request.setAttribute("enderecoErro", "Endereço deve ser preenchido");
+            }
+            if (!responsavelValido) {
                 request.setAttribute("responsavelErro", "Responsavel deve ser preenchido");
             }
-            if(!cpfValido){
+            if (!cpfValido) {
                 request.setAttribute("cpfErro", "Cpf deve ser preenchido");
             }
-            if(!emailValido){
+            if (!emailValido) {
                 request.setAttribute("emailErro", "Email deve ser preenchido");
             }
-            if(!telefoneValido){
+            if (!telefoneValido) {
                 request.setAttribute("telefoneErro", "Telefone deve ser preenchido");
             }
-            if(!nomeLoginValido){
+            if (!nomeLoginValido) {
                 request.setAttribute("nomeLoginErro", "Login deve ser preenchido");
             }
-            if(!senhaValido){
-                 request.setAttribute("senhaErro", "Senha deve ser preenchido");
+            if (!senhaValido) {
+                request.setAttribute("senhaErro", "Senha deve conter pelo menos 6 caracteres");
             }
-            if(!repetirsenhaValido){
+            if (!repetirsenhaValido) {
                 request.setAttribute("repetirSenhaErro", "Senha deve ser igual a digitada anterior");
             }
             request.setAttribute("nome", nome);
             request.setAttribute("cnpj", CNPJ);
+            request.setAttribute("endereco", endereco);
             request.setAttribute("loja", responsavel);
             request.setAttribute("cpf", cpf);
             request.setAttribute("email", email);
             request.setAttribute("telefone", telefone);
             request.setAttribute("nomeLogin", nomeLogin);
-            
-            RequestDispatcher  dispatcher= request.getRequestDispatcher("/cadastroShopping.jsp");
+
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/cadastroShopping.jsp");
             dispatcher.forward(request, response);
             return;
         }
-        
-        Responsavel responsavels = new Responsavel(responsavel,cpf,email,telefone);
-        Login logins = new Login(nomeLogin,senha,"Shopping");
-        Shopping shoppings = new Shopping(nome,CNPJ,"Novo",logins,responsavels);
 
-        request.setAttribute("responsavels", responsavels); 
+        Responsavel responsavels = new Responsavel(responsavel, cpf, email, telefone);
+        Login logins = new Login(nomeLogin, senha, "Shopping");
+        Shopping shoppings = new Shopping(nome, CNPJ, "Novo", logins, responsavels);
+
+        request.setAttribute("responsavels", responsavels);
         request.setAttribute("logins", logins);
         request.setAttribute("shoppings", shoppings);
-        
+
         ShoppingDAO shopDAO = new ShoppingDAO();
-        
+
         LoginDAO loginDAO = new LoginDAO();
         ResponsavelDAO respDAO = new ResponsavelDAO();
-        
+
         try {
             respDAO.inserirResponsavel(responsavels);
             loginDAO.inserirLogin(logins);
-            
-            shopDAO.inserirShopping(shoppings,responsavels,logins);
-            
+
+            shopDAO.inserirShopping(shoppings, responsavels, logins);
+
         } catch (SQLException ex) {
             Logger.getLogger(FormularioSalvarLoja.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         RequestDispatcher dispatcher = request.getRequestDispatcher("/resultadoShop.jsp");
         dispatcher.forward(request, response);
     }

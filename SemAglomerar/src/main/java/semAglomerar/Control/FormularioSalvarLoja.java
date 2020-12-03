@@ -43,7 +43,7 @@ public class FormularioSalvarLoja extends HttpServlet {
         String nome = request.getParameter("nome");
         String social = request.getParameter("social");
         String CNPJ = request.getParameter("cnpj");
-        String Piso = request.getParameter("piso");
+        String localizacao = request.getParameter("localizacao");
         String categoria = request.getParameter("categoria");
         String responsavel = request.getParameter("loja");
         String cpf = request.getParameter("cpf");
@@ -54,25 +54,25 @@ public class FormularioSalvarLoja extends HttpServlet {
         String repetirSenha = request.getParameter("repetirSenha");
         
         //Validação do nome
-        boolean nomeValido = (nome != null && nome.trim().length() > 2);
+        boolean nomeValido = (nome != null && nome.trim().length() >= 3);
 
         //Validação da Razão Social
-        boolean socialValido = (social != null && social.trim().length() > 2);
+        boolean socialValido = (social != null && social.trim().length() >= 3);
 
         //Validação do cnpj
-        boolean cnpjValido = (CNPJ != null && CNPJ.trim().length() > 13);
+        boolean cnpjValido = (CNPJ != null && (CNPJ.trim().length() >=14 && CNPJ.trim().length() <=18 ));
 
         //Validação do piso
-        boolean pisoValido = (Piso != null && Piso.trim().length() > 0);
+        boolean localizacaoValido = (localizacao != null && localizacao.trim().length() >=3);
 
         //Validação da categoria
-        boolean categoriaValido = (categoria != null && categoria.trim().length() > 0);
+        boolean categoriaValido = (categoria != null && categoria.trim().length() >= 3);
 
         //Validação do responsavel
-        boolean responsavelValido = (responsavel != null && responsavel.trim().length() > 2);
+        boolean responsavelValido = (responsavel != null && responsavel.trim().length() >= 3);
 
         //Validação do cpf
-        boolean cpfValido = (cpf != null && cpf.trim().length() > 10);
+        boolean cpfValido = (cpf !=null && (cpf.trim().length() >= 11 && cpf.trim().length() <=14));
 
         //Validação do email
         boolean emailValido = (email != null && email.trim().length() > 0);
@@ -83,18 +83,18 @@ public class FormularioSalvarLoja extends HttpServlet {
         }
 
         //Validação do telefone
-        boolean telefoneValido = (telefone != null && telefone.trim().length() > 7);
+        boolean telefoneValido = (telefone !=null && (telefone.trim().length() >= 8 && telefone.trim().length() <= 14));
 
         //Validação do Login
-        boolean nomeLoginValido = (nomeLogin != null && nomeLogin.trim().length() > 2);
+        boolean nomeLoginValido = (nomeLogin !=null && nomeLogin.trim().length() >= 3);
 
         //Validação da senha
-        boolean senhaValido = (senha != null && senha.trim().length() > 0);
+        boolean senhaValido = (senha != null && senha.trim().length() >= 6);
         
         //validação do repetir senha
         boolean repetirsenhaValido = (senha.equals(repetirSenha));
 
-        boolean camposValidosGlobal = nomeValido && socialValido && cnpjValido && pisoValido && categoriaValido
+        boolean camposValidosGlobal = nomeValido && socialValido && cnpjValido && localizacaoValido && categoriaValido
                 && responsavelValido && cpfValido && emailValido && telefoneValido && nomeLoginValido 
                 && senhaValido && repetirsenhaValido;
         
@@ -108,8 +108,8 @@ public class FormularioSalvarLoja extends HttpServlet {
             if (!cnpjValido) {
                 request.setAttribute("cnpjErro", "Cnpj deve ser preenchido");
             }
-            if (!pisoValido) {
-                request.setAttribute("pisoErro", "Piso deve ser preenchido");
+            if (!localizacaoValido) {
+                request.setAttribute("localizacaoErro", "Localizacao deve ser preenchido");
             }
             if (!categoriaValido) {
                 request.setAttribute("categoriaErro", "Categoria deve ser preenchido");
@@ -130,16 +130,16 @@ public class FormularioSalvarLoja extends HttpServlet {
                 request.setAttribute("nomeLoginErro", "Login deve ser preenchido");
             }
             if(!senhaValido){
-                request.setAttribute("senhaErro", "Senha deve ser preenchido");
+                request.setAttribute("senhaErro", "Senha deve conter pelo menos 6 caracteres");
             }
             if (!repetirsenhaValido) {
                 request.setAttribute("repetirSenhaErro", "Senha deve ser igual a digitada anterior");
             }
-
+            
             request.setAttribute("nome", nome);
             request.setAttribute("social", nome);
             request.setAttribute("cnpj", CNPJ);
-            request.setAttribute("piso", Piso);
+            request.setAttribute("localizacao", localizacao);
             request.setAttribute("categoria", categoria);
             request.setAttribute("loja", responsavel);
             request.setAttribute("cpf", cpf);
@@ -155,7 +155,7 @@ public class FormularioSalvarLoja extends HttpServlet {
 
         Responsavel responsavels = new Responsavel(responsavel, cpf, email, telefone);
         Login logins = new Login(nomeLogin, senha, "Loja");
-        Loja lojas = new Loja(nome, CNPJ, social, Piso, categoria);
+        Loja lojas = new Loja(nome, CNPJ, social, localizacao, categoria);
         Shopping shoppings = (Shopping) request.getSession().getAttribute("shopping");
 
         request.setAttribute("responsavels", responsavels);
