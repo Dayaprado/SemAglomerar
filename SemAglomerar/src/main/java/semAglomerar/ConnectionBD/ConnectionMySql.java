@@ -14,7 +14,7 @@ public class ConnectionMySql {
             throw new SQLException(e);
         }
         
-        String url ="jdbc:mysql://sem-aglomerar-pi3.mysql.database.azure.com:3306/semAglomerar?useSSL=true&requireSSL=false"; 
+        String url ="jdbc:mysql://sem-aglomerar-pi3.mysql.database.azure.com:3306/semAglomerar?useUnicode=yes&characterEncoding=UTF-8&useTimezone=true&serverTimezone=UTC&useSSL=false&requireSSL=false"; 
         
         Connection conn = DriverManager.getConnection(url, "adminadmin@sem-aglomerar-pi3", "12345678A!");
         
