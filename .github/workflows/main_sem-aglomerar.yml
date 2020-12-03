@@ -21,7 +21,7 @@ jobs:
         java-version: '8'
 
     - name: Move Sub Dir
-      run: cd ./SemAglomerar
+      run: cd D:\a\SemAglomerar\SemAglomerar\SemAglomerar\
 
     - name: Build with Maven
       run: mvn clean install
