@@ -27,6 +27,7 @@ jobs:
       run: ls
 
     - name: Build with Maven
+      working-directory: D:\a\SemAglomerar\SemAglomerar\SemAglomerar\
       run: mvn clean install
 
     - name: Deploy to Azure Web App
