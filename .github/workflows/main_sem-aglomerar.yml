@@ -20,8 +20,11 @@ jobs:
       with:
         java-version: '8'
 
-    - name: Check Files
+    - name: Check Dir
       run: Get-Location
+      
+    - name: Check Files
+      run: ls
 
     - name: Build with Maven
       run: mvn clean install
