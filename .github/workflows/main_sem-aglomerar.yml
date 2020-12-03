@@ -1,0 +1,39 @@
+# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
+# More GitHub Actions for Azure: https://github.com/Azure/actions
+
+name: Build and deploy WAR app to Azure Web App - sem-aglomerar
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@master
+
+    - name: Set up Java version
+      uses: actions/setup-java@v1
+      with:
+        java-version: '8'
+
+    - name: Check Dir
+      run: Get-Location
+      
+    - name: Check Files
+      run: ls
+
+    - name: Build with Maven
+      working-directory: D:\a\SemAglomerar\SemAglomerar\SemAglomerar\
+      run: mvn clean install
+
+    - name: Deploy to Azure Web App
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: 'sem-aglomerar'
+        slot-name: 'production'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_bf5ccc4c27b74e1fa56e4c502ab91696 }}
+        package: 'D:\a\SemAglomerar\SemAglomerar\SemAglomerar\target\*.war'
