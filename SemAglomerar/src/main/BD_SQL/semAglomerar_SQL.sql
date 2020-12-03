@@ -155,3 +155,7 @@ INSERT INTO Loja (loja_nome,loja_cnpj,loja_razao,loja_localiza,loja_categoria,lo
 INSERT INTO Login (login_usuario, login_senha, login_tipo) value("Kalunga","$2a$10$gLO3KwyTrzLifQwc27KYAuVOh9idypeTE9i7EoESmrjB6SKhuM0MO","Loja");
 INSERT INTO Responsavel (resp_nome, resp_cpf, resp_email, resp_telefone) value("Claudia Alvarenga", "045.844.882-34", "c.alvarenga@gmail.com", "11 97774-4588");
 INSERT INTO Loja (loja_nome,loja_cnpj,loja_razao,loja_localiza,loja_categoria,loja_logo,loja_shop_id,loja_login_id,loja_resp_id) VALUES ("Kalunga","43.283.811/0001-50","KALUNGA COMERCIO E INDUSTRIA GRAFICA LTDA","Piso 1, Loja 15","Papelaria","",1,4,3);
+
+
+-- ALTERAÇÕES (2/12/2020)
+ALTER TABLE Loja ADD COLUMN loja_status VARCHAR(20) DEFAULT("Ativo");

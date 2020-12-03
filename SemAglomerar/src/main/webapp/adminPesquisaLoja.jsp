@@ -78,15 +78,18 @@
                         - <%= loja.getCategoria() %>
                     </p>
                     <p><%= loja.getLocalizacao() %></p>
-                    <a class="right" href="/SemAglomerar/relatorio?loja_id=<%= loja.getId() %>">                        
+                    <a class="default-bottom right" href="/SemAglomerar/relatorio?loja_id=<%= loja.getId() %>">                        
                         Movimentação da Loja
                     </a>
                     <a class="right" href="cadastro.jsp">
                         <button>Editar</button>
                     </a>
-                    <a class="right">
-                         <button id="btnExcluir">Excluir</button>
-                    </a>
+                    <form method="post" action="/SemAglomerar/admin-loja">
+                        <input type="hidden" name="shop_id" value="${shop_id}">
+                        <input type="hidden" name="loja_id" value="<%= loja.getId() %>">
+                        <input type="hidden" name="action" value="delete"/>
+                        <button class="right" id="btnExcluir">Excluir</button>
+                    </form>
                 </div>
             <% }%>
             <!--
