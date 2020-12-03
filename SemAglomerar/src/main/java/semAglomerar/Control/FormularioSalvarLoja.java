@@ -161,14 +161,9 @@ public class FormularioSalvarLoja extends HttpServlet {
 
         Responsavel responsavels = new Responsavel(responsavel, cpf, email, telefone);
         Login logins = new Login(nomeLogin, senha, "Loja");
-<<<<<<< HEAD
         Loja lojas = new Loja(nome, CNPJ, social, localizacao, categoria);
-        Shopping shoppings = (Shopping) request.getSession().getAttribute("shopping");
-=======
-        Loja lojas = new Loja(nome, CNPJ, social, Piso, categoria);
         Shopping shoppings = new Shopping();
         shoppings.setId(shopId);
->>>>>>> c48fe5af18f0221076e7fb04e57250ae107a9989
 
         request.setAttribute("responsavels", responsavels);
         request.setAttribute("logins", logins);

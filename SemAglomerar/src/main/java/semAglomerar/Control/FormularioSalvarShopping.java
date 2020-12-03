@@ -24,11 +24,6 @@ import semAglomerar.Model.Responsavel;
 import semAglomerar.Model.Login;
 import semAglomerar.Model.Shopping;
 
-<<<<<<< HEAD
-@WebServlet(name = "FormularioSalvarShopping", urlPatterns = {"/formulario-salvarShop"})
-public class FormularioSalvarShopping extends HttpServlet {
-
-=======
 
 @WebServlet(name = "FormularioSalvarShopping", urlPatterns = {"/cadastrar-shop"})
 public class FormularioSalvarShopping extends HttpServlet  {
@@ -41,7 +36,6 @@ public class FormularioSalvarShopping extends HttpServlet  {
         dispatcher.forward(request, response);
     }
     
->>>>>>> c48fe5af18f0221076e7fb04e57250ae107a9989
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -74,12 +68,8 @@ public class FormularioSalvarShopping extends HttpServlet  {
         boolean cpfValido = (cpf != null && (cpf.trim().length() >= 11 && cpf.trim().length() <= 14));
 
         //Validação do email
-<<<<<<< HEAD
-        boolean emailValido = (email != null && email.trim().length() > 0);
-=======
         boolean emailValido = (email != null && email.trim().length() > 0 );
         /*
->>>>>>> c48fe5af18f0221076e7fb04e57250ae107a9989
         if (emailValido) {
             Pattern emailPattern = Pattern.compile("[a-z0-9_.]+@[a-z0-9]+\\.[a-z]+(\\.[a-z]+)?$");
             Matcher emailMatcher = emailPattern.matcher(email);
@@ -140,13 +130,6 @@ public class FormularioSalvarShopping extends HttpServlet  {
             request.setAttribute("email", email);
             request.setAttribute("telefone", telefone);
             request.setAttribute("nomeLogin", nomeLogin);
-<<<<<<< HEAD
-
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/cadastroShopping.jsp");
-            dispatcher.forward(request, response);
-            return;
-        }
-=======
             request.setAttribute("endereco", endereco);
             
             RequestDispatcher  dispatcher= request.getRequestDispatcher("/cadastroShopping.jsp");
@@ -158,11 +141,6 @@ public class FormularioSalvarShopping extends HttpServlet  {
         Login logins = new Login(nomeLogin,senha,"Shopping");
         Shopping shoppings = new Shopping(nome,CNPJ,"Novo",logins,responsavels);
         shoppings.setEndereco(endereco);
->>>>>>> c48fe5af18f0221076e7fb04e57250ae107a9989
-
-        Responsavel responsavels = new Responsavel(responsavel, cpf, email, telefone);
-        Login logins = new Login(nomeLogin, senha, "Shopping");
-        Shopping shoppings = new Shopping(nome, CNPJ, "Novo", logins, responsavels);
 
         request.setAttribute("responsavels", responsavels);
         request.setAttribute("logins", logins);

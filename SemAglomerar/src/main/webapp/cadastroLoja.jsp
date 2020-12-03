@@ -23,7 +23,7 @@ Author     : dayaprado
                         </c:if></label>
                 </div>
                 <div class="row">
-                    <label class="label">Razão Social:
+                    <label class="label">Razï¿½o Social:
                         <input name="social" type="text" value="${social}" />
                         <c:if test="${socialErro != null}">
                             <p class="erro"><c:out value="${socialErro}" /></p>
@@ -37,19 +37,11 @@ Author     : dayaprado
                         </c:if>
                 </div>
                 <div class="row">
-<<<<<<< HEAD
-                    <label class="label">Localização:</label>
-                    <input name="localizacao" type="text" value="${localizacao}" />                
-                    <c:if test="${localizacaoErro != null}">
-                        <span class="erro"><c:out value="${localizacaoErro}" /></span>
-                    </c:if>
-=======
-                    <label class="label">localização:
+                    <label class="label">localizaï¿½ï¿½o:
                         <input name="piso" type="text" value="${localizacao}" />                
                         <c:if test="${localizacaoErro != null}">
                             <p class="erro"><c:out value="${localizacaoErro}" /></p>
                         </c:if></label>
->>>>>>> c48fe5af18f0221076e7fb04e57250ae107a9989
                 </div>
                 <div class="row">
                     <label class="label">Categoria:
@@ -60,7 +52,7 @@ Author     : dayaprado
                     </label>
                 </div>
                 <div class="row">
-                    <label class="label">Responsável:
+                    <label class="label">Responsï¿½vel:
                         <input name="loja" type="text" value="${loja}" />
                         <c:if test="${lojaErro != null}">
                             <p class="erro"><c:out value="${lojaErro}" /></p>
@@ -74,19 +66,11 @@ Author     : dayaprado
                         </c:if></label>
                 </div>
                 <div class="row">
-<<<<<<< HEAD
-                    <label class="label">E-mail:</label>
-                    <input name="email" type="email" value="${email}" />                
-                    <c:if test="${emailErro != null}">
-                        <span class="erro"><c:out value="${emailErro}" /></span>
-                    </c:if>
-=======
                     <label class="label">E-mail:
                         <input name="email" type="text" value="${email}" />                
                         <c:if test="${emailErro != null}">
                             <p class="erro"><c:out value="${emailErro}" /></p>
                         </c:if></label>
->>>>>>> c48fe5af18f0221076e7fb04e57250ae107a9989
                 </div>
                 <div class="row">
                     <label class="label">Telefone:

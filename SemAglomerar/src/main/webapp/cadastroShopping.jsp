@@ -33,34 +33,20 @@
                         </c:if></label>
                 </div>
                 <div class="row">
-<<<<<<< HEAD
-                    <label class="label">Endereço:</label>
-                    <input name="endereco" type="text" value="${endereco}" />
-                    <c:if test="${enderecoErro != null}">
-                        <span class="erro"><c:out value="${enderecoErro}" /></span>
-                    </c:if>
-=======
-                    <label class="label">Endereço:
+                    <label class="label">Endereï¿½o:
                         <input name="endereco" type="text" value="${endereco}" />
 
                         <c:if test="${enderecoErro != null}">
                             <p class="erro"><c:out value="${enderecoErro}" /></p>
                         </c:if></label>
->>>>>>> c48fe5af18f0221076e7fb04e57250ae107a9989
                 </div>
                 <div class="row">
-                    <label class="label">Responsável:
+                    <label class="label">Responsï¿½vel:
                         <input name="loja" type="text" value="${loja}" />
-<<<<<<< HEAD
-                          <c:if test="${lojaErro != null}">
-                        <span class="erro"><c:out value="${lojaErro}" /></span>
-                    </c:if>
-=======
 
                         <c:if test="${shoppingErro != null}">
                             <p class="erro"><c:out value="${ShoppingErro}" /></p>
                         </c:if></label>
->>>>>>> c48fe5af18f0221076e7fb04e57250ae107a9989
                 </div>
                 <div class="row">
                     <label class="label">Cpf:
