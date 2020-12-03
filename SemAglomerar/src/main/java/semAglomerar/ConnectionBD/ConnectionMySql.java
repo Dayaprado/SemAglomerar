@@ -14,11 +14,17 @@ public class ConnectionMySql {
             throw new SQLException(e);
         }
         
+        String url ="jdbc:mysql://sem-aglomerar-pi3.mysql.database.azure.com:3306/semAglomerar?useSSL=true&requireSSL=false"; 
+        
+        Connection conn = DriverManager.getConnection(url, "adminadmin@sem-aglomerar-pi3", "12345678A!");
+        
         // 2) Abrir a conexão
+        /*
         Connection conn = DriverManager.getConnection(
-                "jdbc:mysql://localhost:3307/semAglomerar?useUnicode=yes&characterEncoding=UTF-8&useTimezone=true&serverTimezone=UTC",
-                "root", // Usuário de conexão no BD
-                ""); // Senha
+                "jdbc:mysql://192.168.64.2:3306/semAglomerar?useUnicode=yes&characterEncoding=UTF-8&useTimezone=true&serverTimezone=UTC",
+                "sysadmin", // Usuário de conexão no BD
+                "sysadmin"); // Senha
+        */
         return conn ;
     }
 }
